@@ -1,0 +1,24 @@
+[Login Info]
+host = 
+port = 
+username = 
+password = 
+authdb = admin
+
+[databases]
+logsDB = Logs
+mainDB = DeviousPs
+definitionsDB = Definitions
+
+[collections]
+logsCollection=logs
+donationsCollection=donations
+votesCollection=votes
+punishmentCollection=punishments
+charactersCollection=characters
+ipCollection=ip-locations
+npcDropsCollection=npc-drops
+shopsCollection=shops
+itemDefinitionsCollection=item-definitions
+npcDefinitionsCollection=npc-definitions
+worldNpcsCollection=world-npcs
