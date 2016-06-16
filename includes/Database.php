@@ -5,15 +5,15 @@ class Database
 {
 
     /* DB connection */
-    protected static $connection;
+    private static $connection;
 
     /* Config File */
-    protected static $config = null;
+    private static $config = null;
     
-    public function connect()
+    public static function connect()
     {
 
-        $this->getConfig();
+        self::getConfig();
         if (!isset(self::$connection)) {
             self::$connection = new MongoClient('mongodb://' . self::$config['host'] . ':' . self::$config['port'] . '/' . self::$config['authdb'], array('username' => self::$config['username'], 'password' => self::$config['password'], 'replicaSet' => false, 'connect' => false));
         }
@@ -23,7 +23,7 @@ class Database
         return self::$connection;
     }
 
-    public function getConfig()
+    public static function getConfig()
     {
 
         if (self::$config == null) {

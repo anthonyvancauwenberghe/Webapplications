@@ -1,5 +1,6 @@
 <?php
-include 'Data.php';
+require_once '../libs/AutoLoader.php';
+
 class GeneralData extends Data
 {
     public function getIpLocation($ip)

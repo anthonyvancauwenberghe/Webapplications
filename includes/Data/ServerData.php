@@ -1,5 +1,5 @@
 <?php
-include 'Data.php';
+require_once '../libs/AutoLoader.php';
 
 class ServerData extends Data
 {
@@ -66,20 +66,15 @@ class ServerData extends Data
 
     function avgOnlineHourData($hours)
     {
-        global $logs_collection;
 
         $query = [['$match' => ['log-type' => 'player-count-log']], ['$project' => ['year' => ['$year' => '$time'], 'dayOfYear' => ['$dayOfYear' => '$time'], 'hour' => ['$hour' => '$time'], 'content.amount' => 1]], ['$group' => ['_id' => ['year' => '$year', 'dayOfYear' => '$dayOfYear', 'hour' => '$hour'], 'average' => ['$avg' => '$content.amount']]], ['$sort' => ['year' => -1, 'dayOfYear' => -1, 'hour' => -1]], ['$limit' => $hours]];
-        $data = $logs_collection->aggregateCursor($query);
-
+        $data = $this->getLogsCollection()->aggregateCursor($query);
+        $avgData=array();
         foreach ($data as $document) {
-            if (isset($avgData)) {
-                $avgData = $avgData . ', ' . round($document['average'], 0);
-            } else {
-                $avgData = round($document['average'], 0);
-            }
+            $avgData=array_push($avgData, round($document['average'], 0));
 
         }
-        return $avgData;
+        return json_encode($avgData);
     }
 
     /**

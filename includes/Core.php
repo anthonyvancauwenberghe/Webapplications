@@ -3,43 +3,31 @@
 
 class Core
 {
-
-    /**
-     * @return mixed
-     */
     protected static $startTime;
     protected static $endTime;
-
-    /**
-     * @return mixed
-     */
-
 
     public function convertToTime($time)
     {
         return date('h:i:s d-M-Y', $time->sec);
     }
 
-    function getDateof($timeUnit){
+    public function getDateof($timeUnit)
+    {
         $now = new \DateTime('now');
         $hour = $now->format('h');
         $day = $now->format('d');
         $month = $now->format('m');
         $year = $now->format('Y');
 
-        if($timeUnit=='h'){
+        if ($timeUnit == 'h') {
             return (int)$hour;
-        }
-        elseif($timeUnit=='d'){
+        } elseif ($timeUnit == 'd') {
             return (int)$day;
-        }
-        elseif($timeUnit=='m'){
+        } elseif ($timeUnit == 'm') {
             return (int)$month;
-        }
-        elseif($timeUnit=='y'){
+        } elseif ($timeUnit == 'y') {
             return (int)$year;
-        }
-        else{
+        } else {
             return 0;
         }
 
@@ -59,7 +47,7 @@ class Core
         self::$endTime = $time[1] + $time[0];
     }
 
-    public function getLoadTime()
+    public function getPageLoadTime()
     {
         if (isset(self::$startTime) && isset(self::$endTime)) {
             $loadTime = round(self::$endTime - self::$startTime, 6) * 1000;
@@ -72,12 +60,21 @@ class Core
 
     public function filterGETRequest($variable)
     {
-        return (string) $_GET[$variable];
+        if (isset($_GET[$variable])) {
+            return (string)$_GET[$variable];
+        } else {
+            return null;
+        }
+
     }
 
     public function filterPOSTRequest($variable)
     {
-        return (string) $_POST[$variable];
+        if (isset($_POST[$variable])) {
+            return (string)$_POST[$variable];
+        } else {
+            return null;
+        }
     }
 }
 

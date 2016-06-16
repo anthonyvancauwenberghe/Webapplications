@@ -1,5 +1,5 @@
 <?php
-include 'Database.php';
+require_once '../libs/AutoLoader.php';
 
 /**
  * Created by PhpStorm.
@@ -9,195 +9,195 @@ include 'Database.php';
  */
 class Data
 {
-    /* Database */
-    protected static $database;
-    protected static $config;
-    protected static $connection;
+    /* Objects */
+    private static $core;
 
     /* DB collections */
-    protected static $logsCollection;
-    protected static $donationsCollection;
-    protected static $votesCollection;
-    protected static $charactersCollection;
-    protected static $ipCollection;
-    protected static $npcDropsCollection;
-    protected static $npcDefinitionsCollection;
-    protected static $worldNpcsCollection;
-    protected static $itemDefinitionsCollection;
-    protected static $shopsCollection;
-    protected static $punishmentsCollection;
-
-
+    private static $logsCollection;
+    private static $donationsCollection;
+    private static $votesCollection;
+    private static $charactersCollection;
+    private static $ipCollection;
+    private static $npcDropsCollection;
+    private static $npcDefinitionsCollection;
+    private static $worldNpcsCollection;
+    private static $itemDefinitionsCollection;
+    private static $shopsCollection;
+    private static $punishmentsCollection;
+    
     /**
      * @return Database
      */
     private static function getDatabase()
     {
+        
         if (!isset(self::$database)) {
             self::$database = new Database;
         }
         return self::$database;
     }
 
-    private static function getConnection(){
-        if (!isset(self::$connection)) {
-           self::$connection =  self::getDatabase()->connect();
-        }
-        return self::$connection;
-    }
-
-    private static function getConfig()
-    {
-
-        if (!isset(self::$config)) {
-            self::$config = self::getDatabase()->getConfig();
-        }
-        return self::$config;
-    }
-
     /**
-     * @return array|null
+     * @return Core
      */
+    protected static function getCoreFunctions()
+    {
+        if(!isset(self::$Core)){
+            self::$core =new Core();
+    }
+        return self::$core;
+    }
+    
+    
 
+    private function getConnection(){
+        return Database::connect();
+    }
 
-    public function getDonationsCollection()
+    private function getConfig()
+    {
+        return Database::getConfig();
+    }
+
+    
+    protected function getDonationsCollection()
     {
         if (!isset(self::$donationsCollection)) {
             $config = $this->getConfig();
             $collection = $config['donationsCollection'];
-            self::$donationsCollection = $this->getConnection()->selectDB(self::$config['mainDB'])->$collection;
+            self::$donationsCollection = $this->getConnection()->selectDB($config['mainDB'])->$collection;
         }
 
         return self::$donationsCollection;
     }
 
-    public function getVotesCollection()
+    protected function getVotesCollection()
     {
 
         if (!isset(self::$votesCollection)) {
             $config = $this->getConfig();
             $collection = $config['votesCollection'];
-            self::$votesCollection = $this->getConnection()->selectDB(self::$config['mainDB'])->$collection;
+            self::$votesCollection = $this->getConnection()->selectDB($config['mainDB'])->$collection;
         }
 
         return self::$votesCollection;
     }
 
-    public function geNpcDropsCollection()
+    protected function geNpcDropsCollection()
     {
 
         if (!isset(self::$npcDropsCollection)) {
             $config = $this->getConfig();
             $collection = $config['npcDropsCollection'];
-            self::$npcDropsCollection = $this->getConnection()->selectDB(self::$config['Definitions'])->$collection;
+            self::$npcDropsCollection = $this->getConnection()->selectDB($config['Definitions'])->$collection;
         }
 
         return self::$npcDropsCollection;
     }
 
-    public function getNpcDefinitionsCollection()
+    protected function getNpcDefinitionsCollection()
     {
 
         if (!isset(self::$npcDefinitionsCollection)) {
             $config = $this->getConfig();
             $collection = $config['npcDefinitionsCollection'];
-            self::$npcDefinitionsCollection = $this->getConnection()->selectDB(self::$config['Definitions'])->$collection;
+            self::$npcDefinitionsCollection = $this->getConnection()->selectDB($config['Definitions'])->$collection;
         }
 
         return self::$npcDefinitionsCollection;
     }
 
-    public function getWorldNpcsCollection()
+    protected function getWorldNpcsCollection()
     {
 
         if (!isset(self::$worldNpcsCollection)) {
             $config = $this->getConfig();
             $collection = $config['worldNpcsCollection'];
-            self::$worldNpcsCollection = $this->getConnection()->selectDB(self::$config['Definitions'])->$collection;
+            self::$worldNpcsCollection = $this->getConnection()->selectDB($config['Definitions'])->$collection;
         }
 
         return self::$worldNpcsCollection;
     }
 
-    public function getItemDefinitionsCollection()
+    protected function getItemDefinitionsCollection()
     {
 
         if (!isset(self::$itemDefinitionsCollection)) {
             $config = $this->getConfig();
             $collection = $config['itemDefinitionsCollection'];
-            self::$itemDefinitionsCollection = $this->getConnection()->selectDB(self::$config['Definitions'])->$collection;
+            self::$itemDefinitionsCollection = $this->getConnection()->selectDB($config['Definitions'])->$collection;
         }
 
         return self::$itemDefinitionsCollection;
     }
 
-    public function getShopsCollection()
+    protected function getShopsCollection()
     {
 
         if (!isset(self::$shopsCollection)) {
             $config = $this->getConfig();
             $collection = $config['shopsCollection'];
-            self::$shopsCollection = $this->getConnection()->selectDB(self::$config['Definitions'])->$collection;
+            self::$shopsCollection = $this->getConnection()->selectDB($config['Definitions'])->$collection;
         }
 
         return self::$shopsCollection;
     }
 
-    public function getLogsCollection()
+    protected function getLogsCollection()
     {
 
         if (!isset(self::$logsCollection)) {
             $config = $this->getConfig();
             $collection = $config['logsCollection'];
-            self::$logsCollection = $this->getConnection()->selectDB(self::$config['logsDB'])->$collection;
+            self::$logsCollection = $this->getConnection()->selectDB($config['logsDB'])->$collection;
         }
 
         return self::$logsCollection;
     }
 
-    public function getCharactersCollection()
+    protected function getCharactersCollection()
     {
 
         if (!isset(self::$charactersCollection)) {
             $config = $this->getConfig();
             $collection = $config['charactersCollection'];
-            self::$charactersCollection = $this->getConnection()->selectDB(self::$config['mainDB'])->$collection;
+            self::$charactersCollection = $this->getConnection()->selectDB($config['mainDB'])->$collection;
         }
 
         return self::$charactersCollection;
     }
 
-    public function getNpcDropsCollection()
+    protected function getNpcDropsCollection()
     {
 
         if (!isset(self::$npcDropsCollection)) {
             $config = $this->getConfig();
             $collection = $config['npcDropsCollection'];
-            self::$npcDropsCollection = $this->getConnection()->selectDB(self::$config['definitionsDB'])->$collection;
+            self::$npcDropsCollection = $this->getConnection()->selectDB($config['definitionsDB'])->$collection;
         }
 
         return self::$npcDropsCollection;
     }
 
-    public function getIpCollection()
+    protected function getIpCollection()
     {
 
         if (!isset(self::$ipCollection)) {
             $config = $this->getConfig();
             $collection = $config['ipCollection'];
-            self::$ipCollection = $this->getConnection()->selectDB(self::$config['logsDB'])->$collection;
+            self::$ipCollection = $this->getConnection()->selectDB($config['logsDB'])->$collection;
         }
 
         return self::$ipCollection;
     }
 
-    public function getPunishmentsCollection()
+    protected function getPunishmentsCollection()
     {
 
         if (!isset(self::$punishmentsCollection)) {
             $config = $this->getConfig();
             $collection = $config['punishmentsCollection'];
-            self::$punishmentsCollection = $this->getConnection()->selectDB(self::$config['logsDB'])->$collection;
+            self::$punishmentsCollection = $this->getConnection()->selectDB($config['logsDB'])->$collection;
         }
 
         return self::$punishmentsCollection;
