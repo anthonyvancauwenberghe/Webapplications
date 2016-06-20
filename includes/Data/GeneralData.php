@@ -5,12 +5,20 @@ class GeneralData extends Data
 {
     public function getIpLocation($ip)
     {
-        $country = $this->getIpCollection()->findOne(['ip-address' => $ip]);
-        if ($country == null) {
+
+        $filter = ['ip-address' => $ip];
+        $cursor = $this->find('ipCollection', $filter);
+
+        foreach($cursor as $document){
+            $countryCode=$document['country-code'];
+        }
+
+        if ($countryCode == null) {
             $xml = simplexml_load_file("http://www.geoplugin.net/xml.gp?ip=" . $ip);
             return $xml->geoplugin_countryCode->__toString();
+            return null;
         } else {
-            return $country['country-code'];
+            return $countryCode;
         }
     }
 }

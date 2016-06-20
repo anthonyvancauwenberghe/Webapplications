@@ -5,11 +5,17 @@ require_once '../libs/AutoLoader.php';
 $core = new Core();
 $core->setStartTime();
 
-$generalData = new GeneralData();
-$donatorData = new DonatorData();
-echo $donatorData->avgDonationsHourData();
-echo '<br>';
+
+$serverData = new ServerData();
+$generalData= new generalData();
+var_dump($serverData->avgOnlineDayData());
+
+
+
+
 echo $generalData->getIpLocation("84.28.124.122");
+echo '<br>';
+
 
 
 $core->setEndTime();

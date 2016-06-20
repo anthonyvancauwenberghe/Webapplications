@@ -80,7 +80,7 @@ class ServerData extends Data
     /**
      * @return Average PlayerCount Last x Days
      */
-    function avgOnlineDayData($days)
+    function avgOnlineDayData($days=30)
     {
 
         $query = array(array('$match' => array(
@@ -101,7 +101,8 @@ class ServerData extends Data
             array('$sort' => array('_id.year' => -1)),
             array('$sort' => array('_id.day' => 1)),
             array('$limit' => $days));
-        $data = $this->getLogsCollection()->aggregateCursor($query);
+        
+        $data = $this->aggregate('logsCollection', $query);
 
         foreach ($data as $document) {
             if (isset($avgData)) {

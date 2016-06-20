@@ -194,5 +194,6 @@ function autoloader($class_paths = NULL, $use_base_dir = true)
 }
 autoloader(array(
     'includes/',
-    'includes/data'
+    'includes/data',
+	'libs/phpFastCache'
 ));

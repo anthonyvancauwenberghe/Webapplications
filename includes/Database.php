@@ -1,5 +1,6 @@
 <?php
 ini_set('mongo.long_as_object', 1);
+require_once __DIR__ . "/vendor/autoload.php";
 
 class Database
 {
@@ -8,14 +9,23 @@ class Database
     private static $connection;
 
     /* Config File */
-    private static $config = null;
+    private static $config;
     
     public static function connect()
     {
 
-        self::getConfig();
+
         if (!isset(self::$connection)) {
-            self::$connection = new MongoClient('mongodb://' . self::$config['host'] . ':' . self::$config['port'] . '/' . self::$config['authdb'], array('username' => self::$config['username'], 'password' => self::$config['password'], 'replicaSet' => false, 'connect' => false));
+            self::getConfig();
+            try {
+                self::$connection = new MongoDB\Client('mongodb://' . self::$config['host'] . ':' . self::$config['port'] . '/' . self::$config['authdb'],
+                    array('username' => self::$config['username'], 'password' => self::$config['password'], 'replicaSet' => false, 'connect' => false),
+                    ['typeMap' => ['root' => 'array', 'document' => 'array', 'array' => 'array']]);
+            } catch(MongoConnectionException $e) {
+                trigger_error('Mongodb not available', E_USER_ERROR);
+                die();
+            }
+
         }
 
         //TODO ERROR HANDLING

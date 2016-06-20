@@ -1,2 +1,0 @@
-# Webapplications
-Webapplications for DeviousPs
