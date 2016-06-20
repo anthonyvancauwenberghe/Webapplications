@@ -11,7 +11,7 @@ class Data
 {
     /* Objects */
     private static $core;
-
+    
     /**
      * @return Core
      */
@@ -19,13 +19,16 @@ class Data
     {
         if (!isset(self::$Core)) {
             self::$core = new Core();
+            
         }
         return self::$core;
+       
     }
 
 
     private function getConnection()
     {
+        $test=$this::LOGS;
         return Database::connect();
     }
 
@@ -47,6 +50,19 @@ class Data
         return $cursor;
     }
 
+    protected function count($collectionLocation, $filter, $options = null)
+    {
+        $collection = $this->getCollection($collectionLocation);
+
+        if (isset($options)) {
+            $count = $collection->count($filter, $options);
+        } else {
+            $count = $collection->count($filter);
+        }
+
+        return $count;
+    }
+
     protected function find($collectionLocation, $filter, $options = null)
     {
         $collection = $this->getCollection($collectionLocation);
@@ -59,7 +75,6 @@ class Data
 
         return $cursor;
     }
-
 
     private function extractDatabaseName($collectionLocation)
     {

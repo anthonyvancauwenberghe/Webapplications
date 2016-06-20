@@ -9,7 +9,7 @@ class ServerData extends Data
      */
     public function getPlayersOnline()
     {
-        return $this->getCharactersCollection()->find(['status.online' => true])->count();
+        return $this->count(Collection::CHARACTERS, ['status.online' => true]);
     }
 
     /**
@@ -17,7 +17,7 @@ class ServerData extends Data
      */
     public function getPlayercountByCountry()
     {
-        $cursor = $this->getCharactersCollection()->find(['status.online' => true]);
+        $cursor = $this->find(Collection::CHARACTERS, ['status.online' => true]);
 
         $i = 0;
         $countryArray = array();
@@ -43,8 +43,8 @@ class ServerData extends Data
      */
     public function getPlayercountData()
     {
-
-        $cursor = $this->getLogsCollection()->find(array(array('log-type' => 'player-count-log')))->sort(array("time" => 1));
+        // TODO SORT THE FUCKING ARRAY PROPERLY
+        $cursor = $this->find(Collection::LOGS, (array('log-type' => 'player-count-log')))->sort(array("time" => 1));
         //$cursor -> limit(50);
 
         $i = 0;
@@ -68,10 +68,10 @@ class ServerData extends Data
     {
 
         $query = [['$match' => ['log-type' => 'player-count-log']], ['$project' => ['year' => ['$year' => '$time'], 'dayOfYear' => ['$dayOfYear' => '$time'], 'hour' => ['$hour' => '$time'], 'content.amount' => 1]], ['$group' => ['_id' => ['year' => '$year', 'dayOfYear' => '$dayOfYear', 'hour' => '$hour'], 'average' => ['$avg' => '$content.amount']]], ['$sort' => ['year' => -1, 'dayOfYear' => -1, 'hour' => -1]], ['$limit' => $hours]];
-        $data = $this->getLogsCollection()->aggregateCursor($query);
-        $avgData=array();
+        $data = $this->aggregate(Collection::LOGS, $query);
+        $avgData = array();
         foreach ($data as $document) {
-            $avgData=array_push($avgData, round($document['average'], 0));
+            $avgData = array_push($avgData, round($document['average'], 0));
 
         }
         return json_encode($avgData);
@@ -80,7 +80,7 @@ class ServerData extends Data
     /**
      * @return Average PlayerCount Last x Days
      */
-    function avgOnlineDayData($days=30)
+    function avgOnlineDayData($days = 30)
     {
 
         $query = array(array('$match' => array(
@@ -101,7 +101,7 @@ class ServerData extends Data
             array('$sort' => array('_id.year' => -1)),
             array('$sort' => array('_id.day' => 1)),
             array('$limit' => $days));
-        
+
         $data = $this->aggregate('logsCollection', $query);
 
         foreach ($data as $document) {
@@ -321,48 +321,50 @@ class ServerData extends Data
             $cursor->limit($amount);
         }
 
-        $i=0;
+        $i = 0;
         foreach ($cursor as $document) {
-            $errors[$i]['time']= convertToTime($document['time']);
-            $errors[$i]['message']=$document['content']['message'];
-            $errors[$i]['cause']=$document['content']['cause'];
-            $errors[$i]['stack-trace']=$document['content']['stack-trace'];
+            $errors[$i]['time'] = convertToTime($document['time']);
+            $errors[$i]['message'] = $document['content']['message'];
+            $errors[$i]['cause'] = $document['content']['cause'];
+            $errors[$i]['stack-trace'] = $document['content']['stack-trace'];
         }
 
         return json_encode($errors);
     }
 
-    function getDonatorWealthData(){
+    function getDonatorWealthData()
+    {
 
-        $query =array('log-type' => 'server-wealth-log');
+        $query = array('log-type' => 'server-wealth-log');
         $cursor = $this->getLogsCollection()->find($query)->sort(array("time" => 1));
 
-        $i=0;
+        $i = 0;
 
-        foreach($cursor as $item){
+        foreach ($cursor as $item) {
 
             $wealthArray[$i] = array(
 
-                0=>($item['time']->sec)*1000,
-                1=>((int)($item['content']['donator-points']->value/100)));
+                0 => ($item['time']->sec) * 1000,
+                1 => ((int)($item['content']['donator-points']->value / 100)));
             $i++;
         }
 
         return json_encode($wealthArray);
     }
 
-    function getGPWealthData(){
-        $query =array('log-type' => 'server-wealth-log');
+    function getGPWealthData()
+    {
+        $query = array('log-type' => 'server-wealth-log');
         $cursor = $this->getLogsCollection()->find($query)->sort(array("time" => 1));
 
-        $i=0;
+        $i = 0;
 
-        foreach($cursor as $item){
+        foreach ($cursor as $item) {
 
             $wealthArray[$i] = array(
 
-                0=>($item['time']->sec)*1000,
-                1=>((int)($item['content']['coins']->value/1000000)));
+                0 => ($item['time']->sec) * 1000,
+                1 => ((int)($item['content']['coins']->value / 1000000)));
             $i++;
         }
 

@@ -13,8 +13,6 @@ class Database
     
     public static function connect()
     {
-
-
         if (!isset(self::$connection)) {
             self::getConfig();
             try {

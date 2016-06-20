@@ -1,13 +1,21 @@
 <?php
 require_once '../libs/AutoLoader.php';
 
+/**
+ * Class GeneralData
+ */
 class GeneralData extends Data
 {
+    /**
+     * @param $ip
+     * @return null
+     */
     public function getIpLocation($ip)
     {
 
         $filter = ['ip-address' => $ip];
-        $cursor = $this->find('ipCollection', $filter);
+        
+        $cursor = $this->find(Collection::IP_ADDRESSES, $filter);
 
         foreach($cursor as $document){
             $countryCode=$document['country-code'];
