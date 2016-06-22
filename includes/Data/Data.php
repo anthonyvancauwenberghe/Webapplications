@@ -1,5 +1,5 @@
 <?php
-require_once '../libs/AutoLoader.php';
+require_once '../includes/Database.php';
 
 /**
  * Created by PhpStorm.
@@ -28,7 +28,6 @@ class Data
 
     private function getConnection()
     {
-        $test=$this::LOGS;
         return Database::connect();
     }
 
@@ -42,7 +41,7 @@ class Data
         return Database::getReadPreference();
     }
 
-    protected function aggregate($collectionLocation, $pipeline)
+    public function aggregate($collectionLocation, $pipeline)
     {
         $collection = $this->getCollection($collectionLocation);
 
@@ -50,7 +49,7 @@ class Data
         return $cursor;
     }
 
-    protected function count($collectionLocation, $filter, $options = null)
+    public function count($collectionLocation, $filter, $options = null)
     {
         $collection = $this->getCollection($collectionLocation);
 
@@ -63,7 +62,7 @@ class Data
         return $count;
     }
 
-    protected function find($collectionLocation, $filter, $options = null)
+    public function find($collectionLocation, $filter, $options = null)
     {
         $collection = $this->getCollection($collectionLocation);
 
@@ -71,6 +70,18 @@ class Data
             $cursor = $collection->find($filter, $options);
         } else {
             $cursor = $collection->find($filter);
+        }
+
+        return $cursor;
+    }
+    public function findOne($collectionLocation, $filter, $options = null)
+    {
+        $collection = $this->getCollection($collectionLocation);
+
+        if (isset($options)) {
+            $cursor = $collection->findOne($filter, $options);
+        } else {
+            $cursor = $collection->findOne($filter);
         }
 
         return $cursor;
