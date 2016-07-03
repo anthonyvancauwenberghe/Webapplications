@@ -31,7 +31,7 @@ class Data
         return Database::connect();
     }
 
-    private function getConfig()
+    public function getConfig()
     {
         return Database::getConfig();
     }

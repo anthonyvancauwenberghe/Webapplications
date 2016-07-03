@@ -4,6 +4,7 @@ require_once '../libs/AutoLoader.php';
 if (isset($_GET['request'])){
 	
 	$core = new Core();
+	$core->errorReporting();
 	$playerData = new PlayerData();
 	
 	if($_GET['request']=="playercount"){

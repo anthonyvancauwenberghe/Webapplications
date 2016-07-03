@@ -280,6 +280,21 @@ class Core
     {
         return false;
     }
+    
+    public function errorReporting(){
+
+        $config=parse_ini_file('config.ini');
+        
+        if($config['Errors']=='ON'){
+            ini_set('display_errors', 1);
+            ini_set('display_startup_errors', 1);
+            error_reporting(E_ALL);
+        }
+        else {
+            
+        }
+        
+    }
 
 }
 
