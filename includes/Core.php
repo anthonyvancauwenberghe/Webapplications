@@ -1,6 +1,6 @@
 <?php
 
-require_once '../libs/AutoLoader.php';
+require_once '../includes/Data.php';
 
 class Core
 {
