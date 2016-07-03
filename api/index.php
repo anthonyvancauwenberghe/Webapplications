@@ -1,5 +1,8 @@
 <?php
-require_once '../libs/AutoLoader.php';
+//require_once '../libs/AutoLoader.php';
+include_once '../includes/Core.php';
+include_once '../includes/Data/ServerData.php';
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -8,7 +11,7 @@ if (isset($_GET['request'])){
 	
 	$core = new Core();
 	$core->errorReporting();
-	$playerData = new PlayerData();
+	$playerData = new ServerData();
 	
 	if($_GET['request']=="playercount"){
 		echo $playerData->getPlayersOnline();
