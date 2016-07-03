@@ -1,6 +1,6 @@
 <?php
-include '../includes/Data/PlayerData.php';
-include '../includes/Core.php';
+require_once '../libs/AutoLoader.php';
+
 if (isset($_GET['request'])){
 	
 	$core = new Core();
