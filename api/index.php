@@ -1,5 +1,4 @@
 <?php
-//require_once '../libs/AutoLoader.php';
 include_once '../includes/Core.php';
 include_once '../includes/Data/ServerData.php';
 

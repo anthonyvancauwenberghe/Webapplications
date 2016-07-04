@@ -296,6 +296,13 @@ class Core
         
     }
 
+    function normalizeUsername($username){
+        $username=strtolower($username);
+        $username=str_replace(' ', '_', $username);
+        $username=ucwords($username);
+        return $username;
+    }
+
 }
 
 

@@ -1,5 +1,6 @@
 <?php
 require_once '../includes/Database.php';
+require_once '../includes/Collection.php';
 
 /**
  * Created by PhpStorm.
@@ -85,6 +86,18 @@ class Data
         }
 
         return $cursor;
+    }
+
+    public function insertOne($collectionLocation, $document, $options = null){
+        
+        $collection = $this->getCollection($collectionLocation);
+
+        if (isset($options)) {
+            $collection->insertOne($document, $options);
+        } else {
+            $collection->insertOne($document);
+        }
+
     }
 
     private function extractDatabaseName($collectionLocation)
