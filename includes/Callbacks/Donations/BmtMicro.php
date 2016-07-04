@@ -1,9 +1,24 @@
 <?php
-require_once '../includes/Data.php';
+require_once('../libs/AutoLoader.php');
 
 class BmtMicro implements Donations
 {
-    
+    private $ingame_name;
+    private $order_id;
+    private $product_id;
+    private $mail;
+    private $profit;
+    private $quantity;
+    private $productName;
+    private $ip;
+    private $phone;
+    private $country;
+    private $firstName;
+    private $lastName;
+    private $amount;
+    private $currency;
+    private $orderDate;
+
     private function calculateAmount($productid, $quantity)
     {
 
@@ -33,60 +48,73 @@ class BmtMicro implements Donations
                 $amount = 0;
                 break;
         }
+        
         $amount *= 100;
 
         return $amount;
     }
 
-    public function insertDonation($bmtparser)
-    {
+    private function extractData($bmtparser){
         $core = new Core();
+
+        $this->ingame_name = ucfirst($bmtparser->getElement('orderparameters'));
+        $this->ingame_name = $core->normalizeUsername($this->ingame_name);
+        $this->order_id = (int)$bmtparser->getElement('orderid');
+        $this->product_id = (int)$bmtparser->getElement('productid');
+        $this->mail = $bmtparser->getElement('billing.email');
+        $this->profit = (double)$bmtparser->getElement('vendorroyalty');
+        $this->quantity = (int)$bmtparser->getElement('quantity');
+        $this->productName = $bmtparser->getElement('productname');
+        $this->ip = $bmtparser->getElement('ipaddress');
+        $this->phone = $bmtparser->getElement('billing.phone');
+        $this->country = $bmtparser->getElement('billing.country');
+        $this->firstName = $bmtparser->getElement('billing.firstname');
+        $this->lastName = $bmtparser->getElement('billing.lastname');
+        $this->amount = $this->calculateAmount($this->product_id, $this->quantity);
+        $this->currency = $bmtparser->getElement('ordercurrency');
+        $this->orderDate = $bmtparser->getElement('orderdate');
+    }
+
+    private function insertDonation()
+    {
+        
+
         $data = new Data();
-        $ingame_name = ucfirst($bmtparser->getElement('orderparameters'));
-        $ingame_name = $core->normalizeUsername($ingame_name);
-        $order_id = (int)$bmtparser->getElement('orderid');
-        $product_id = (int)$bmtparser->getElement('productid');
-        $mail = $bmtparser->getElement('billing.email');
-        $profit = (double)$bmtparser->getElement('vendorroyalty');
-        $quantity = (int)$bmtparser->getElement('quantity');
-        $productName = $bmtparser->getElement('productname');
-        $ip = $bmtparser->getElement('ipaddress');
-        $phone = $bmtparser->getElement('billing.phone');
-        $country = $bmtparser->getElement('billing.country');
-        $firstName = $bmtparser->getElement('billing.firstname');
-        $lastName = $bmtparser->getElement('billing.lastname');
-        $amount = $this->calculateAmount($product_id, $quantity);
-        $currency = $bmtparser->getElement('ordercurrency');
-        $orderDate = $bmtparser->getElement('orderdate');
+
         
         $document = array("time" => new MongoDate(),
 
             "customer" => array(
-                "first-name" => $firstName,
-                "last-name" => $lastName,
-                "country" => $country,
-                "mail-address" => $mail,
-                "phone" => $phone,
-                "ip-address" => $ip,
+                "first-name" => $this->firstName,
+                "last-name" => $this->lastName,
+                "country" => $this->country,
+                "mail-address" => $this->mail,
+                "phone" => $this->phone,
+                "ip-address" => $this->ip,
             ),
             "purchase" => array(
-                "order-id" => $order_id,
-                "order-date" => new MongoDate(strtotime($orderDate)),
-                "product-name" => $productName,
-                "product-id" => $product_id,
-                "quantity" => $quantity,
-                "profit" => $profit,
-                "order-currency" => $currency,
+                "order-id" => $this->order_id,
+                "order-date" => new MongoDate(strtotime($this->orderDate)),
+                "product-name" => $this->productName,
+                "product-id" => $this->product_id,
+                "quantity" => $this->quantity,
+                "profit" => $this->profit,
+                "order-currency" => $this->currency,
                 "payment-method" => "BMTMICRO"
             ),
             "game" => array(
-                "player-name" => $ingame_name,
-                "points-amount" => $amount,
+                "player-name" => $this->ingame_name,
+                "points-amount" => $this->amount,
                 "processed" => false
             )
         );
 
         $data->insertOne(Collection::DONATIONS, $document);
+    }
+    
+    public function processDonation($bmtparser){
+        $this->extractData($bmtparser);
+        $this->insertDonation();
     }
 
 

@@ -8,5 +8,5 @@
  */
 interface Donations
 {
-    public function insertDonation($input);
+    function processDonation($input);
 }

@@ -1,55 +1,102 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: tony
- * Date: 4/07/2016
- * Time: 17:33
- */
-class HiPay
-{
-    var $code;
-    var $message;
-    var $parameters;
+require_once('../libs/AutoLoader.php');
 
-    private function getData(){
+class HiPay implements Donations
+{
+    public $code;
+    public $message;
+    
+    private $parameters;
+
+    private $ingame_name;
+    private $order_id;
+    private $SMSCode;
+    private $profit;
+    private $productName;
+    private $country;
+    private $amount;
+    private $currency;
+    private $orderDate;
+
+    private function extractData()
+    {
+        $secretKey = 'c14dd20de7d0db42627fa3aae73d4c19';
+        $core = new Core();
+
         $this->parameters = $_GET;
         $signature = $this->parameters['api_sig'];
         unset($this->parameters['api_sig']);
         ksort($this->parameters);
-        $secretKey = 'c14dd20de7d0db42627fa3aae73d4c19'; // renseignez ici votre Clé d’API secrète
+
         $string2compute = '';
+
         foreach ($this->parameters as $name => $value) {
             $string2compute .= $name . $value;
         }
-// true si OK, false sinon
-// si vous utilisez md5 au lieu de sha1 merci de le remplacer
+
         if (sha1($string2compute . $secretKey) == $signature) {
             $this->code = 0;
             $this->message = 'OK';
-        }
-        else {
+        } else {
             $this->code = 1;
             $this->message = 'KO';
         }
+
+        $this->ingame_name = $this->parameters['user_id'];
+        $this->ingame_name = strtr($this->ingame_name, array('+' => ' '));
+        $this->ingame_name = $core->normalizeUsername($this->parameters['user_id']);
+
+        $this->amount = $this->parameters['virtual_amount'];
+        $this->amount = $this->amount / 100;
+
+        $this->SMSCode = $this->parameters['code'];
+        $this->order_id = $this->parameters['transaction_id'];
+        $this->currency = $this->parameters['currency'];
+        $this->country = $this->parameters['customer_country'];
+        $this->productName = $this->parameters['product_name'];
+        $this->profit = $this->parameters['payout_amount'];
+        $this->orderDate = $this->parameters['date'];
     }
 
 
-   public function insertDonation(){
-       $ingame_name = $this->parameters['user_id'];
-       $ingame_name = strtr($ingame_name, array ('+' => ' '));
-       $amount = $this->parameters['virtual_amount'];
-       $amount = $amount/100;
-       $order_id = $this->parameters['code'];
+    private function insertDonation()
+    {
+        $data = new Data();
 
-// setup database connection
+        $document = array("time" => new MongoDate(),
 
-       $sql="INSERT INTO donator (TOKEN_ID, name, amount, finished, passed, recklesspk, method) VALUES('".$order_id."', '".$ingame_name."', '".$amount."', 0, 1, 2, 'allopass')";
-   }
+            "customer" => array(
+                "country" => $this->country
+            ),
+            "purchase" => array(
+                "order-id" => $this->order_id,
+                "sms-code" => $this->SMSCode,
+                "order-date" => new MongoDate(strtotime($this->orderDate)),
+                "product-name" => $this->productName,
+                "quantity" => 1,
+                "profit" => $this->profit,
+                "order-currency" => $this->currency,
+                "payment-method" => "HIPAY"
+            ),
+            "game" => array(
+                "player-name" => $this->ingame_name,
+                "points-amount" => $this->amount,
+                "processed" => false
+            )
+        );
+
+        $data->insertOne(Collection::DONATIONS, $document);
+    }
 
 
+    public function processDonation($input = null)
+    {
+        $this->extractData();
 
+        if ($this->code == 0) {
+            $this->insertDonation();
+        }
 
-
-
+    }
 }

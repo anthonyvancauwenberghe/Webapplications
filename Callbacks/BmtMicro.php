@@ -10,7 +10,7 @@ echo '<response>';
 echo '<ordernotification>';
 
 if ($bmtparser->parse($HTTP_RAW_POST_DATA)) {
-    $bmtmicro->insertQuery($bmtparser);
+    $bmtmicro->processDonation($bmtparser);
 }
 
 else {

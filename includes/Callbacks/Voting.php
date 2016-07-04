@@ -8,6 +8,6 @@
  */
 interface Voting
 {
-    public function insertVote($input);
+    function processVote($input);
 
 }
