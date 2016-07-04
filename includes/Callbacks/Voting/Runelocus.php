@@ -3,9 +3,22 @@ require_once('../libs/AutoLoader.php');
 
 class Runelocus implements Voting
 {
-    public function processVote($input)
+    private $ingame_name;
+
+    public function insertVote()
     {
         // TODO: Implement processVote() method.
-        echo "inserted succesfully";
+        echo "inserted vote succesfully for: " . $this->ingame_name;
+    }
+
+    public function processVote($input)
+    {
+        $this->extractData($input);
+        $this->insertVote();
+    }
+
+    private function extractData($input)
+    {
+        $this->ingame_name = $input;
     }
 }

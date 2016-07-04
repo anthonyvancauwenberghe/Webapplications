@@ -1,6 +1,5 @@
 <?php
-require_once '../includes/Callbacks/BmtMicro.php';
-require_once '../includes/Callbacks/BMTXMLParser.php';
+require_once('../libs/AutoLoader.php');
 
 $bmtparser = new BMTXMLParser ();
 $bmtmicro = new BmtMicro();
