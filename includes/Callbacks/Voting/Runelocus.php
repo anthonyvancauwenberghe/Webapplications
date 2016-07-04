@@ -7,8 +7,17 @@ class Runelocus implements Voting
 
     public function insertVote()
     {
-        // TODO: Implement processVote() method.
-        echo "inserted vote succesfully for: " . $this->ingame_name;
+        $data = new Data();
+
+        $document = array("time" => new MongoDB\BSON\UTCDateTime(time() * 1000),
+            "processed" => false,
+            "content" => array(
+                "real-username" => $this->ingame_name,
+                "fake-username" => $this->ingame_name,
+                "website" => 'RUNELOCUS'
+            ));
+
+        $data->insertOne(Collection::VOTES, $document);
     }
 
     public function processVote($input)
@@ -19,6 +28,7 @@ class Runelocus implements Voting
 
     private function extractData($input)
     {
-        $this->ingame_name = $input;
+        $core = new Core();
+        $this->ingame_name = $core->normalizeUsername($input);
     }
 }

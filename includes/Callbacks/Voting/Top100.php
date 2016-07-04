@@ -5,43 +5,30 @@ class Top100 implements Voting
 {
     private $ingame_name;
 
+    public function insertVote()
+    {
+        $data = new Data();
+
+        $document = array("time" => new MongoDB\BSON\UTCDateTime(time() * 1000),
+            "processed" => false,
+            "content" => array(
+                "real-username" => $this->ingame_name,
+                "fake-username" => $this->ingame_name,
+                "website" => 'TOP100'
+            ));
+
+        $data->insertOne(Collection::VOTES, $document);
+    }
+
     public function processVote($input)
     {
         $this->extractData($input);
         $this->insertVote();
-
     }
 
-    private function extractData($input){
-        $this->ingame_name=$input;
-    }
-
-    private function insertVote()
+    private function extractData($input)
     {
-        $data = new Data();
-
-        $document = array("time" => new MongoDate(),
-
-            "customer" => array(
-                "country" => $this->country
-            ),
-            "purchase" => array(
-                "order-id" => $this->order_id,
-                "sms-code" => $this->SMSCode,
-                "order-date" => new MongoDate(strtotime($this->orderDate)),
-                "product-name" => $this->productName,
-                "quantity" => 1,
-                "profit" => $this->profit,
-                "order-currency" => $this->currency,
-                "payment-method" => "HIPAY"
-            ),
-            "game" => array(
-                "player-name" => $this->ingame_name,
-                "points-amount" => $this->amount,
-                "processed" => false
-            )
-        );
-
-        $data->insertOne(Collection::VOTES, $document);
+        $core = new Core();
+        $this->ingame_name = $core->normalizeUsername($input);
     }
 }
