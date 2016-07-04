@@ -196,7 +196,7 @@ function autoloader($class_paths = NULL, $use_base_dir = true)
 autoloader(array(
     '',
     'includes',
-    'includes/data',
+    'includes/Data',
 	'includes/Callbacks',
     'includes/Callbacks/Donations',
     'includes/Callbacks/voting'
