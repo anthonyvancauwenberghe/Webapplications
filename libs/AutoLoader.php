@@ -199,5 +199,5 @@ autoloader(array(
     'includes/Data',
 	'includes/Callbacks',
     'includes/Callbacks/Donations',
-    'includes/Callbacks/voting'
+    'includes/Callbacks/Voting'
 ));

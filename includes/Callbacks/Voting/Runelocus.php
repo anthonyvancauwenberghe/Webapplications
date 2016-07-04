@@ -6,5 +6,6 @@ class Runelocus implements voting
     public function processVote($input)
     {
         // TODO: Implement processVote() method.
+        echo "inserted succesfully";
     }
 }

@@ -1,5 +1,6 @@
 <?php
 require_once('../libs/AutoLoader.php');
+
 if (isset($_GET['usr'])) {
     $runelocus = new Runelocus();
     $runelocus->processVote($_GET['usr']);
