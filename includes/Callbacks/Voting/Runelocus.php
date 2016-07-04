@@ -1,7 +1,7 @@
 <?php
 require_once('../libs/AutoLoader.php');
 
-class Runelocus implements voting
+class Runelocus implements Voting
 {
     public function processVote($input)
     {
