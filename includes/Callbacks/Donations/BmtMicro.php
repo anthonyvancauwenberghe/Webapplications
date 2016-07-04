@@ -1,10 +1,9 @@
 <?php
 require_once '../includes/Data.php';
 
-class BmtMicro extends data
+class BmtMicro implements Donations
 {
-
-
+    
     private function calculateAmount($productid, $quantity)
     {
 
@@ -39,9 +38,10 @@ class BmtMicro extends data
         return $amount;
     }
 
-    public function insertQuery($bmtparser)
+    public function insertDonation($bmtparser)
     {
         $core = new Core();
+        $data = new Data();
         $ingame_name = ucfirst($bmtparser->getElement('orderparameters'));
         $ingame_name = $core->normalizeUsername($ingame_name);
         $order_id = (int)$bmtparser->getElement('orderid');
@@ -58,6 +58,7 @@ class BmtMicro extends data
         $amount = $this->calculateAmount($product_id, $quantity);
         $currency = $bmtparser->getElement('ordercurrency');
         $orderDate = $bmtparser->getElement('orderdate');
+        
         $document = array("time" => new MongoDate(),
 
             "customer" => array(
@@ -85,7 +86,7 @@ class BmtMicro extends data
             )
         );
 
-        $this->insertOne(Collection::DONATIONS, $document);
+        $data->insertOne(Collection::DONATIONS, $document);
     }
 
 

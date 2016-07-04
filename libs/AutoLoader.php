@@ -64,7 +64,7 @@ function autoloader($class_paths = NULL, $use_base_dir = true)
     static $is_init = false;
 
     static $conf = [
-        'basepath' => 'C:\Users\Anthony\PhpstormProjects\Webapplications',
+        'basepath' => 'var\www\html',
         'debug' => false,
         'extensions' => ['.php'], // multiple extensions ex: ['.php', '.class.php']
         'namespace' => '',
@@ -192,9 +192,12 @@ function autoloader($class_paths = NULL, $use_base_dir = true)
         return !$conf['debug'] ? !$is_unregistered : $paths;
     }
 }
+
 autoloader(array(
     '',
     'includes',
     'includes/data',
-	'libs/phpFastCache'
+	'includes/Callbacks',
+    'includes/Callbacks/Donations',
+    'includes/Callbacks/voting'
 ));

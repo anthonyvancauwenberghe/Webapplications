@@ -1,6 +1,5 @@
 <?php
-require_once '../includes/Database.php';
-require_once '../includes/Collection.php';
+require_once('../libs/AutoLoader.php');
 
 /**
  * Created by PhpStorm.

@@ -1,6 +1,5 @@
 <?php
-include_once '../includes/Core.php';
-include_once '../includes/Data/ServerData.php';
+require_once('../libs/AutoLoader.php');
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
