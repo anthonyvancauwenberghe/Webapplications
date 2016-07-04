@@ -6,7 +6,7 @@ class HiPay implements Donations
 {
     public $code;
     public $message;
-    
+
     private $parameters;
 
     private $ingame_name;
@@ -64,7 +64,7 @@ class HiPay implements Donations
     {
         $data = new Data();
 
-        $document = array("time" => new MongoDate(),
+        $document = array("time" => new MongoDB\BSON\UTCDateTime(time() * 1000),
 
             "customer" => array(
                 "country" => $this->country
