@@ -10,6 +10,11 @@ if (isset($_GET['usr'])) {
 } elseif (isset($_GET['p_resp'])) {
     $topg = new TopG();
     $topg->processVote($_GET['p_resp']);
-} else {
+}
+elseif (isset($_GET['postback'])) {
+    $topg = new Top100();
+    $topg->processVote($_GET['postback']);
+}
+else {
     die();
 }
