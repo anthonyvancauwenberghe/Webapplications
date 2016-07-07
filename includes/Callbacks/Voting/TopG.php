@@ -1,7 +1,7 @@
 <?php
 require_once('../libs/AutoLoader.php');
 
-class TopG implements voting
+class TopG implements Voting
 {
     private $ingame_name;
 
