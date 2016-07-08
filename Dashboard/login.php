@@ -18,11 +18,11 @@
 
 require_once '../libs/AutoLoader.php';
 
-$core=new Core();
+$login = new Login();
 
-$core->sec_session_start();
+$login->sec_session_start();
 
-if ($core->login_check()) {
+if ($login->login_check()) {
     $logged = 'in';
 } else {
     $logged = 'out';

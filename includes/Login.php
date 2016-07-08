@@ -1,7 +1,18 @@
 <?php
+require_once('../libs/AutoLoader.php');
 
-class Login
+class login
 {
+    private $core;
+    
+    private function getCore(){
+        if(!isset($this->core)){
+            $this->core=new Core();
+        }
+        
+        return $this->core;
+    }
+    
     public function processLogout()
     {
         if (isset($_GET['logout'])) {
@@ -177,6 +188,9 @@ class Login
     {
 
         if (isset($username, $password)) {
+            $username=$this->getCore()->filterRequest($username);
+            $username = $this->getCore()->normalizeUsername($username);
+            
             //$username = filter_input($username, 'username', FILTER_SANITIZE_EMAIL);
             //$username = strtolower($username);
             //$password = $_POST['p']; // The hashed password.
