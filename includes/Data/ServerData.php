@@ -370,4 +370,14 @@ class ServerData extends Data
 
         return json_encode($wealthArray);
     }
+    
+    function ServerStatus() {
+        $fp = @fsockopen('gameserver.deviousps.com', 13377, $errno, $errstr, 0.5);
+        if (!$fp) {
+            return 'Offline';
+        } else {
+            return 'Online';
+            fclose($fp);
+        }
+    }
 }
