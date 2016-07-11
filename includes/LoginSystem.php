@@ -168,6 +168,11 @@ class LoginSystem
                 $_SESSION['rank'] = $member['ranks']['highest-rank'];
                 $_SESSION['login_string'] = hash('sha512', $member['password']['hashed'] . $user_browser);
 
+                echo $_SESSION['user_id'];
+                echo $_SESSION['username'];
+                echo $_SESSION['rank'];
+                echo $_SESSION['login_string'];
+                die();
                 // Login successful.
                 return true;
             } else {
