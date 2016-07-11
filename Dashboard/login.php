@@ -28,8 +28,8 @@ if ($login->login_check()) {
     header("Location: ../index.php");
 } else {
     $logged = 'out';
-    if (isset($_POST['username']) && isset($_POST['p'])) {
-        $login->processLogin($_POST['username'], $_POST['p']);
+    if (isset($_GET['username']) && isset($_GET['p'])) {
+        $login->processLogin($_GET['username'], $_GET['p']);
     }
 }
 ?>
@@ -67,7 +67,7 @@ if ($login->login_check()) {
     <div id="wrapper">
         <div id="login" class=" form">
             <section class="login_content">
-                <form action="" method="POST">
+                <form action="" method="GET">
                     <h1>Login Form</h1>
                     <div>
                         <input name="username" type="text" class="form-control" placeholder="Username" required=""/>
