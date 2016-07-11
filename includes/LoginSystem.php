@@ -119,18 +119,18 @@ class LoginSystem
                     // Logged In!!!!
                     return true;
                 } else {
-                    header('Location: ../login.php?error=11');
+                    //header('Location: ../login.php?error=11');
                     // Not logged in
                     return false;
                 }
 
             } else {
-                header('Location: ../login.php?error=12');
+                //header('Location: ../login.php?error=12');
                 // Not logged in
                 return false;
             }
         } else {
-            header('Location: ../login.php?error=13');
+            //header('Location: ../login.php?error=13');
             // Not logged in
             return false;
         }
