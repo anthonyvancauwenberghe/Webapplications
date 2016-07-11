@@ -12,7 +12,7 @@ $core = new Core();
 $login = new LoginSystem();
 $core->setStartTime();
 $login->sec_session_start();
-//$login->processLogout();
+$login->processLogout();
 
 if ($login->login_check()) {
     $logged = 'in';
