@@ -112,7 +112,7 @@ class LoginSystem
             //$query = array('player-name' => new MongoRegex('/' . strtolower($username) . '/i'));
             if ($member = $this->data->findOne(Collection::CHARACTERS, array('player-name' => $username))) {
 
-                $login_check = hash('sha512', $member['encrypted'] . $user_browser);
+                $login_check = hash('sha512', $member['password']['hashed'] . $user_browser);
 
                 if (hash_equals($login_check, $login_string)) {
                     // Logged In!!!!
@@ -153,7 +153,6 @@ class LoginSystem
             // Check if the password in the database matches
             // the password the user submitted. We are using
             // the hahs_equals function to avoid timing attacks.
-
             if (hash_equals($member['password']['hashed'], hash('sha512', $member['password']['salt'] . $password))) {
                 // Password is correct!
                 // Get the user-agent string of the user.
@@ -202,10 +201,10 @@ class LoginSystem
                 exit();
             } else {
                 // Login failed
-                echo $username;
-                echo '<br>';
-                echo $password;
-                //header('Location: ../login.php?error=');
+                //echo $username;
+                //echo '<br>';
+                //echo $password;
+                header('Location: ../login.php?error=1');
                 exit();
             }
         } else {
