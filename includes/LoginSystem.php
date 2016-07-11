@@ -165,8 +165,8 @@ class LoginSystem
 
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['username'] = $playerName;
-                $_SESSION['rank'] = $member['highest-rank'];
-                $_SESSION['login_string'] = hash('sha512', $member['encrypted'] . $user_browser);
+                $_SESSION['rank'] = $member['ranks']['highest-rank'];
+                $_SESSION['login_string'] = hash('sha512', $member['password']['hashed'] . $user_browser);
 
                 // Login successful.
                 return true;
