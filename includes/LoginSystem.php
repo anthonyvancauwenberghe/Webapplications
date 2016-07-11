@@ -160,7 +160,7 @@ class LoginSystem
                 // Password is correct!
                 // Get the user-agent string of the user.
                 $user_browser = $_SERVER['HTTP_USER_AGENT'];
-                $user_id = $member['_id'];
+                $user_id = (string) $member['_id'];
                 // XSS protection as we might print this value
 
                 $_SESSION['user_id'] = $user_id;
