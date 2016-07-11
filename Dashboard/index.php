@@ -15,4 +15,5 @@ $login->sec_session_start();
 $login->processLogout();
 $login->processLoginCheck();
 
+echo ' <br> Page generated in ' . $core->getPageLoadTime() . ' ms';
 
