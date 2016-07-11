@@ -201,7 +201,10 @@ class LoginSystem
                 exit();
             } else {
                 // Login failed
-                header('Location: ../login.php?error=1');
+                echo $username;
+                echo '<br>';
+                echo $password;
+                //header('Location: ../login.php?error=');
                 exit();
             }
         } else {
