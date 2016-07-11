@@ -4,6 +4,7 @@ require_once('../libs/AutoLoader.php');
 class LoginSystem
 {
     private $core;
+    private $data;
     
     private function getCore(){
         if(!isset($this->core)){
