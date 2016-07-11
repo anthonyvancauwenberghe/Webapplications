@@ -1,22 +1,26 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: tony
+ * Date: 22/06/2016
+ * Time: 19:00
+ */
 
 require_once '../libs/AutoLoader.php';
 
 $core = new Core();
+$login = new LoginSystem();
 $core->setStartTime();
 
-
-$serverData = new ServerData();
-$generalData= new GeneralData();
-var_dump($serverData->avgOnlineDayData());
+$login->sec_session_start();
 
 
+if ($login->login_check()) {
+    $logged = 'in';
+    echo ' <br> Page generated in ' . $core->getPageLoadTime() . ' ms.';
+} else {
+    $logged = 'out';
+    header("Location: ../login.php");
+}
 
-
-echo $generalData->getIpLocation("84.28.124.122");
-echo '<br>';
-
-
-
-$core->setEndTime();
-echo ' <br> Page generated in ' . $core->getPageLoadTime() . ' ms.';
+echo $logged;
