@@ -17,6 +17,7 @@ class LoginSystem
     public function processLogout()
     {
         if (isset($_GET['logout'])) {
+
             // Unset all session values
             $_SESSION = array();
 
@@ -201,9 +202,7 @@ class LoginSystem
                 exit();
             } else {
                 // Login failed
-                //echo $username;
-                //echo '<br>';
-                //echo $password;
+
                 header('Location: ../login.php?error=1');
                 exit();
             }
