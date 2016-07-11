@@ -132,7 +132,7 @@ class LoginSystem
             $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
             //$query = array('player-name' => new MongoRegex('/' . strtolower($username) . '/i'));
-            if ($member = $this->data->findOne(Collection::CHARACTERS, array('player-name' => $username))) {
+            if ($member = $this->data->findOne(Collection::CHARACTERS, array('_id' => $user_id))) {
 
                 $login_check = hash('sha512', $member['password']['hashed'] . $user_browser);
 
