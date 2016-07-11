@@ -119,18 +119,18 @@ class LoginSystem
                     // Logged In!!!!
                     return true;
                 } else {
-                    //header('Location: ../login.php?error=11');
+
                     // Not logged in
                     return false;
                 }
 
             } else {
-                //header('Location: ../login.php?error=12');
+
                 // Not logged in
                 return false;
             }
         } else {
-            //header('Location: ../login.php?error=13');
+
             // Not logged in
             return false;
         }
@@ -167,12 +167,6 @@ class LoginSystem
                 $_SESSION['username'] = $playerName;
                 $_SESSION['rank'] = $member['ranks']['highest-rank'];
                 $_SESSION['login_string'] = hash('sha512', $member['password']['hashed'] . $user_browser);
-
-                echo $_SESSION['user_id'];
-                echo $_SESSION['username'];
-                echo $_SESSION['rank'];
-                echo $_SESSION['login_string'];
-                die();
                 // Login successful.
                 return true;
             } else {
