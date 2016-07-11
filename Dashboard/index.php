@@ -7,7 +7,7 @@ $core->setStartTime();
 
 
 $serverData = new ServerData();
-$generalData= new generalData();
+$generalData= new GeneralData();
 var_dump($serverData->avgOnlineDayData());
 
 

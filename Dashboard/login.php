@@ -18,7 +18,7 @@
 
 require_once '../libs/AutoLoader.php';
 
-$login = new Login();
+$login = new LoginSystem();
 
 $login->sec_session_start();
 

@@ -1,7 +1,7 @@
 <?php
 require_once('../libs/AutoLoader.php');
 
-class login
+class LoginSystem
 {
     private $core;
     
