@@ -43,7 +43,7 @@ class Core
         self::$startTime = $time[1] + $time[0];
     }
 
-    public function setEndTime()
+    private function setEndTime()
     {
         $time = microtime();
         $time = explode(' ', $time);
@@ -52,6 +52,7 @@ class Core
 
     public function getPageLoadTime()
     {
+        $this->setEndTime();
         if (isset(self::$startTime) && isset(self::$endTime)) {
             $loadTime = round(self::$endTime - self::$startTime, 6) * 1000;
         } else {

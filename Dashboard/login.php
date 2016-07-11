@@ -21,17 +21,11 @@ require_once '../libs/AutoLoader.php';
 $login = new LoginSystem();
 
 $login->sec_session_start();
+$login->processLoginCheck();
 
 
-if ($login->login_check()) {
-    $logged = 'in';
-    header("Location: ../index.php");
-} else {
-    $logged = 'out';
-    if (isset($_GET['username']) && isset($_GET['p'])) {
-        $login->processLogin($_GET['username'], $_GET['p']);
-    }
-}
+
+echo ' <br> Page generated in ' . $core->getPageLoadTime() . ' ms';
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +61,7 @@ if ($login->login_check()) {
     <div id="wrapper">
         <div id="login" class=" form">
             <section class="login_content">
-                <form action="" method="get">
+                <form action="" method="POST">
                     <h1>Login Form</h1>
                     <div>
                         <input name="username" type="text" class="form-control" placeholder="Username" required="" />
@@ -87,40 +81,6 @@ if ($login->login_check()) {
                         <div>
 
                             <p>©2016 All Rights Reserved DeviousPs </p>
-                        </div>
-                    </div>
-                </form>
-            </section>
-        </div>
-
-        <div id="register" class=" form">
-            <section class="login_content">
-                <form>
-                    <h1>Create Account</h1>
-                    <div>
-                        <input type="text" class="form-control" placeholder="Username" required="" />
-                    </div>
-                    <div>
-                        <input type="email" class="form-control" placeholder="Email" required="" />
-                    </div>
-                    <div>
-                        <input type="password" class="form-control" placeholder="Password" required="" />
-                    </div>
-                    <div>
-                        <a class="btn btn-default submit" href="index.html">Submit</a>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="separator">
-
-                        <p class="change_link">Already a member ?
-                            <a href="#tologin" class="to_register"> Log in </a>
-                        </p>
-                        <div class="clearfix"></div>
-                        <br />
-                        <div>
-                            <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Gentelella Alela!</h1>
-
-                            <p>©2015 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                         </div>
                     </div>
                 </form>

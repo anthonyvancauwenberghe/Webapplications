@@ -91,8 +91,19 @@ class LoginSystem
             return $url;
         }
     }
+    public function processLoginCheck(){
+        if (!$this->login_check()) {
+            if (isset($_POST['username']) && isset($_POST['p'])) {
+                $this->processLogin($_POST['username'], $_POST['p']);
+            }
+            else {
+                header("Location: ../login.php");
+                die();
+            }
 
-    function login_check()
+        } 
+    }
+    private function login_check()
     {
 
         if (!isset($this->data)) {
@@ -218,4 +229,6 @@ class LoginSystem
     {
         return false;
     }
+    
+    
 }
