@@ -198,7 +198,7 @@ class LoginSystem
 
             if ($this->login($username, $password) == true) {
                 // Login success
-                header("Location: ../index.php");
+                header("Location: ../test.php");
                 exit();
             } else {
                 // Login failed
