@@ -110,7 +110,7 @@ class LoginSystem
             $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
             //$query = array('player-name' => new MongoRegex('/' . strtolower($username) . '/i'));
-            if ($member = $this->data->findOne(Collection::CHARACTERS, array('player-name' => ucfirst($username)))) {
+            if ($member = $this->data->findOne(Collection::CHARACTERS, array('player-name' => $username))) {
 
                 $login_check = hash('sha512', $member['encrypted'] . $user_browser);
 
@@ -138,7 +138,7 @@ class LoginSystem
             $this->data = new Data();
         }
         //new MongoRegex('/' . strtolower($playerName) . '/i')
-        if ($member = $this->data->findOne(Collection::CHARACTERS, array('player-name' => ucfirst($playerName)))) {
+        if ($member = $this->data->findOne(Collection::CHARACTERS, array('player-name' => $playerName))) {
 
 
             // If the user exists we check if the account is locked
@@ -154,7 +154,7 @@ class LoginSystem
             // the password the user submitted. We are using
             // the hahs_equals function to avoid timing attacks.
 
-            if (hash_equals($member['encrypted'], hash('sha512', $member['salt'] . $password))) {
+            if (hash_equals($member['password']['hashed'], hash('sha512', $member['password']['salt'] . $password))) {
                 // Password is correct!
                 // Get the user-agent string of the user.
                 $user_browser = $_SERVER['HTTP_USER_AGENT'];
@@ -162,7 +162,7 @@ class LoginSystem
                 // XSS protection as we might print this value
 
                 $_SESSION['user_id'] = $user_id;
-                $_SESSION['username'] = strtolower($playerName);
+                $_SESSION['username'] = $playerName;
                 $_SESSION['rank'] = $member['highest-rank'];
                 $_SESSION['login_string'] = hash('sha512', $member['encrypted'] . $user_browser);
 
