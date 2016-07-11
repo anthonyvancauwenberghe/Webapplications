@@ -5,15 +5,16 @@ class LoginSystem
 {
     private $core;
     private $data;
-    
-    private function getCore(){
-        if(!isset($this->core)){
-            $this->core=new Core();
+
+    private function getCore()
+    {
+        if (!isset($this->core)) {
+            $this->core = new Core();
         }
-        
+
         return $this->core;
     }
-    
+
     public function processLogout()
     {
         if (isset($_GET['logout'])) {
@@ -91,18 +92,27 @@ class LoginSystem
             return $url;
         }
     }
-    public function processLoginCheck(){
+
+    public function processLoginCheck()
+    {
+        if (!$this->login_check()) {
+            header("Location: ../login.php");
+            die();
+        }
+    }
+
+    public function processLoginCheckLoginPage()
+    {
         if (!$this->login_check()) {
             if (isset($_POST['username']) && isset($_POST['p'])) {
                 $this->processLogin($_POST['username'], $_POST['p']);
             }
-            else {
-                header("Location: ../login.php");
-                die();
-            }
-
-        } 
+        } else {
+            header("Location: ../index.php");
+            die();
+        }
     }
+
     private function login_check()
     {
 
@@ -171,7 +181,7 @@ class LoginSystem
                 // Password is correct!
                 // Get the user-agent string of the user.
                 $user_browser = $_SERVER['HTTP_USER_AGENT'];
-                $user_id = (string) $member['_id'];
+                $user_id = (string)$member['_id'];
                 // XSS protection as we might print this value
 
                 $_SESSION['user_id'] = $user_id;
@@ -201,9 +211,9 @@ class LoginSystem
     {
 
         if (isset($username, $password)) {
-            $username=$this->getCore()->filterRequest($username);
+            $username = $this->getCore()->filterRequest($username);
             $username = $this->getCore()->normalizeUsername($username);
-            
+
             //$username = filter_input($username, 'username', FILTER_SANITIZE_EMAIL);
             //$username = strtolower($username);
             //$password = $_POST['p']; // The hashed password.
@@ -229,6 +239,6 @@ class LoginSystem
     {
         return false;
     }
-    
-    
+
+
 }

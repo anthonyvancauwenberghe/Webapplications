@@ -9,10 +9,10 @@
 require_once '../libs/AutoLoader.php';
 
 $core = new Core();
-$login = new LoginSystem();
-
 $core->setStartTime();
+$login = new LoginSystem();
 $login->sec_session_start();
 $login->processLogout();
+$login->processLoginCheck();
 
 
