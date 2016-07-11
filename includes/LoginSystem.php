@@ -119,15 +119,18 @@ class LoginSystem
                     // Logged In!!!!
                     return true;
                 } else {
+                    header('Location: ../login.php?error=11');
                     // Not logged in
                     return false;
                 }
 
             } else {
+                header('Location: ../login.php?error=12');
                 // Not logged in
                 return false;
             }
         } else {
+            header('Location: ../login.php?error=13');
             // Not logged in
             return false;
         }
@@ -141,10 +144,8 @@ class LoginSystem
         //new MongoRegex('/' . strtolower($playerName) . '/i')
         if ($member = $this->data->findOne(Collection::CHARACTERS, array('player-name' => $playerName))) {
 
-
             // If the user exists we check if the account is locked
             // from too many login attempts
-
 
             /*  if (checkbrute($member['_id'], $db) == true) {
                   // Account is locked
@@ -154,6 +155,7 @@ class LoginSystem
             // Check if the password in the database matches
             // the password the user submitted. We are using
             // the hahs_equals function to avoid timing attacks.
+
             if (hash_equals($member['password']['hashed'], hash('sha512', $member['password']['salt'] . $password))) {
                 // Password is correct!
                 // Get the user-agent string of the user.
