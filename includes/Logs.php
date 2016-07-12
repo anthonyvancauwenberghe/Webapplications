@@ -19,6 +19,7 @@ class Logs
                           <th>Playername</th>
                           <th>GP Value (Mil)</th>
                           <th>DP Value ($)</th>
+                          <th>Weighted Acc Value</th>
                         </tr>
                       </thead>
                       
@@ -32,6 +33,7 @@ class Logs
                      echo '<td>' . $playerValue["name"] . '</td>';
                      echo '<td>' . $playerValue["gp"] . '</td>';
                      echo '<td>' . $playerValue["dp"] . '</td>';
+                     echo '<td>' . $playerValue["accworth"] . '</td>';
                 echo '</tr>';
             }
             $i++;

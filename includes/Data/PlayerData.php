@@ -5,6 +5,7 @@ class PlayerData extends Data
 {
     public function getAccountvalues($username = null)
     {
+        $weighting = 20000;
 
         if (isset($username)) {
             $username = (string)$username;
@@ -14,16 +15,17 @@ class PlayerData extends Data
 
             $cursor = $this->aggregate(Collection::LOGS, [$match, $sort, $project]);
         } else {
-            $weighting = 500000;
+
             $match = ['$match' => ['log-type' => 'player-value-log']];
             $sort = ['$sort' => ['time' => -1]];
             $group = ['$group' => ['_id' => '$content.user.player-name',
                 'coins' => ['$first' => '$content.value.coins'],
                 'donator-points' => ['$first' => '$content.value.donator-points']]];
             $project = ['$project'=>
-        ['total-value' => ['$sum' => ['$coins', ['$multiply'=> ['$donator-points', $weighting]]]],
-        'coins'=> 1,
-        'donator-points'=> 1]];
+                                    ['total-value' => ['$sum' => ['$coins', ['$multiply'=> ['$donator-points', $weighting]]]],
+                                        'coins'=> 1,
+                                        'donator-points'=> 1]];
+            $sort2 = ['$sort' => ['total-value'=> -1]];
 
             $cursor = $this->aggregate(Collection::LOGS, [$match, $sort, $group, $project]);
 
@@ -37,7 +39,8 @@ class PlayerData extends Data
 
                 'name' => ((string)$item['_id']),
                 'gp' => (round((int)$item['coins'] / 1000000, 2)),
-                'dp' => (round((int)$item['donator-points'] / 100, 2))
+                'dp' => (round((int)$item['donator-points'] / 100, 2)),
+                'accworth' => (round((int)$item['total-value'] / 1000, 2))
             );
 
             $i++;
