@@ -12,18 +12,20 @@ class Logs
             $this->data = new Data();
         }
 
-        if (!isset($username)) {
+
 
             $query = [
                 ['$match' => ['log-type' => 'player-value-log']],
                 ['$sort' => ['time' => -1]],
-                ['$group' => ['_id' => '$content.user.player-name', 'coins' => ['$last' => '$content.value.coins'], 'donator-points' => ['$last' => '$content.value.donator-points']]]
+                ['$group' => [  '_id' => '$content.user.player-name',
+                                'coins' => ['$last' => '$content.value.coins'],
+                                'donator-points' => ['$last' => '$content.value.donator-points']]]
             ];
 
             $cursor = $this->data->aggregate(Collection::CHARACTERS, $query);
 
             var_dump($cursor->toArray());
-            $i = 0;
+           /* $i = 0;
 
             foreach ($cursor as $item) {
 
@@ -35,12 +37,10 @@ class Logs
                 $i++;
             }
 
+*/
 
-        } else {
 
-        }
-
-        var_dump($playerArray);
+        //var_dump($playerArray);
 
     }
 
