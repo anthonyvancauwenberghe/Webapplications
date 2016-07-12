@@ -15,10 +15,5 @@ $login->sec_session_start();
 $login->processLogout();
 $login->processLoginCheck();
 
-
-$logs = new Logs();
-
-$logs->getAccountvalue();
-
 echo ' <br> Page generated in ' . $core->getPageLoadTime() . ' ms';
 
