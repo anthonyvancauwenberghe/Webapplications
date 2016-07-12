@@ -27,7 +27,7 @@ class PlayerData extends Data
                                         'donator-points'=> 1]];
             $sort2 = ['$sort' => ['total-value'=> -1]];
 
-            $cursor = $this->aggregate(Collection::LOGS, [$match, $sort, $group, $project]);
+            $cursor = $this->aggregate(Collection::LOGS, [$match, $sort, $group, $project, $sort2]);
 
         }
 
