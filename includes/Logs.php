@@ -22,7 +22,7 @@ class Logs
 
             $cursor = $this->data->aggregate(Collection::CHARACTERS, $query);
 
-            var_dump($cursor);
+            var_dump($cursor->toArray());
             $i = 0;
 
             foreach ($cursor as $item) {
