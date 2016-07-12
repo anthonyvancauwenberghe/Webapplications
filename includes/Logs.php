@@ -20,8 +20,8 @@ class Logs
                           <th>DP Value ($)</th>
                         </tr>
                       </thead>
+                      
                       <tbody>';
-        
         foreach ($playerValuesArray as $key => $playerValue) {
             echo '<tr>';
             echo '<td>' . $playerValue["name"] . '</td>';

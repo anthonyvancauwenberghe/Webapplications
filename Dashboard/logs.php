@@ -250,33 +250,10 @@ $logs = new Logs();
                                 Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.
                             </p>
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th>First name</th>
-                                    <th>Last name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                    <th>Extn.</th>
-                                    <th>E-mail</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <tr>
-                                    <td>Donna</td>
-                                    <td>Snider</td>
-                                    <td>Customer Support</td>
-                                    <td>New York</td>
-                                    <td>27</td>
-                                    <td>2011/01/25</td>
-                                    <td>$112,000</td>
-                                    <td>4226</td>
-                                    <td>d.snider@datatables.net</td>
-                                </tr>
-                                </tbody>
+                                <?php
+                                $logs->getAccountvalues();
+                                ?>
+                                
                             </table>
 
                         </div>
