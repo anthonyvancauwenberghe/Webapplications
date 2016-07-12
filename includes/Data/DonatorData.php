@@ -12,7 +12,7 @@ class DonatorData extends Data
             ['$group' => ['_id' => '$hour', 'average' => ['$sum' => '$purchase.profit']]],
             ['$sort' => ['hour' => -1]]];
 
-        $cursor = $this->getDonationsCollection()->aggregateCursor($query);
+        $cursor = $this->aggregate(Collection::DONATIONS, $query);
 
         for ($hour = 0; $hour < 24; $hour++) {
             $DonationsHourData[$hour] = 0;
@@ -22,7 +22,7 @@ class DonatorData extends Data
             $DonationsHourData[$document['_id'] - 1] = (int)round($document['average'], 2);
         }
 
-        return json_encode($DonationsHourData);
+        var_dump(json_encode($DonationsHourData));
     }
     
     function donationCountToday()
