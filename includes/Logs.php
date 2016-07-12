@@ -17,8 +17,8 @@ class Logs
 
                 $match = ['$match' => ['log-type' => 'player-value-log']];
                 $group = [  '$group' => [ '_id' => '$content.user.player-name',
-                            'coins' => ['$last' => '$content.value.coins'],
-                            'donator-points' => ['$last' => '$content.value.donator-points']]];
+                            'coins' => ['$first' => '$content.value.coins'],
+                            'donator-points' => ['$first' => '$content.value.donator-points']]];
                 $sort = ['$sort' => ['time' => -1]];
 
 
