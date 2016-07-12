@@ -13,7 +13,6 @@ class Logs
         }
 
         $playerValuesArray = $this->playerData->getAccountvalues();
-        echo '<table>';
         echo '<thead>
                         <tr>
                           <th>Playername</th>
@@ -22,6 +21,7 @@ class Logs
                         </tr>
                       </thead>
                       <tbody>';
+        
         foreach ($playerValuesArray as $key => $playerValue) {
             echo '<tr>';
             echo '<td>' . $playerValue["name"] . '</td>';
@@ -30,7 +30,7 @@ class Logs
             echo '<tr>';
         }
         echo '</tbody>';
-        echo '</table>';
+
     }
 
 
