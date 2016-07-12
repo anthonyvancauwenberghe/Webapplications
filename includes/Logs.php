@@ -9,7 +9,7 @@ class Logs
     public function getAccountvalues($username = null)
     {
         if (!isset($this->playerData)) {
-            $this->playerData = new playerData();
+            $this->playerData = new PlayerData();
         }
         
                 $accountValues = $this->playerData->getAccountvalues();
