@@ -241,11 +241,11 @@ class LoginSystem
     }
     
     public function getName(){
-        return 'PLAYERNAME';
+        return $_SESSION['username'];
     }
 
     public function getRank(){
-        return 'RANK';
+        return $_SESSION['rank'];
     }
 
 }

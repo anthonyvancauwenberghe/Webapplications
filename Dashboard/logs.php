@@ -67,7 +67,7 @@ $logs = new Logs();
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        <h2><?php $login->getName(); ?></h2>
+                        <h2><?php echo $login->getName(); ?></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -77,7 +77,7 @@ $logs = new Logs();
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3><?php ucfirst($login->getRank()); ?></h3>
+                        <h3><?php echo ucfirst($login->getRank()); ?></h3>
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                             </li>
@@ -118,7 +118,7 @@ $logs = new Logs();
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="images/img.jpg" alt=""><?php $login->getName(); ?>
+                                <img src="images/img.jpg" alt=""><?php echo $login->getName(); ?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
