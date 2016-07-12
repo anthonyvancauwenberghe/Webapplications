@@ -7,7 +7,7 @@ class PlayerData extends Data
     {
 
         if (isset($username)) {
-            $username = (string) $username;
+            $username = (string)$username;
             $match = ['$match' => ['log-type' => 'player-value-log', 'content.user.player-name' => $username]];
             $sort = ['$sort' => ['time' => -1]];
             $project = ['$project' => ['_id' => '$content.user.player-name', 'coins' => '$content.value.coins', 'donator-points' => '$content.value.donator-points']];
@@ -26,19 +26,19 @@ class PlayerData extends Data
         }
 
         $i = 0;
-        $playerArray = array();
+        $playerValuesArray = array();
         foreach ($cursor as $item) {
 
-            $playerArray[$i] = array(
+            $playerValuesArray[$i] = array(
 
                 'name' => ((string)$item['_id']),
-                'gp' => ((int)(round($item['coins'] / 1000000, 2))),
-                'dp' => ((int)(round($item['donator-points'] / 100, 2)))
+                'gp' => (round((int)$item['coins'] / 1000000, 2)),
+                'dp' => (round((int)$item['donator-points'] / 100, 2))
             );
 
             $i++;
         }
-        return json_encode($playerArray);
+        return $playerValuesArray;
 
 
     }
