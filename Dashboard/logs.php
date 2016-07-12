@@ -99,7 +99,7 @@ $logs = new Logs();
                     <a data-toggle="tooltip" data-placement="top" title="Lock">
                         <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                     </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout">
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="../index.php/?logout=true">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
                 </div>
@@ -130,7 +130,7 @@ $logs = new Logs();
                                     </a>
                                 </li>
                                 <li><a href="javascript:;">Help</a></li>
-                                <li><a href="Login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>
 
@@ -267,7 +267,7 @@ $logs = new Logs();
     <!-- footer content -->
     <footer>
         <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            All Rights Reserved by - <a href="http://deviousps.com">DeviousPs</a>
         </div>
         <div class="clearfix"></div>
     </footer>
@@ -369,5 +369,8 @@ $logs = new Logs();
     });
 </script>
 <!-- /Datatables -->
+<?php
+echo '<center><div class="loadtime"><h4>Page Generated in '.$core->getPageLoadTime().' ms.</h4></div></center>';
+?>
 </body>
 </html>
