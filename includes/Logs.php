@@ -15,6 +15,7 @@ class Logs
         $playerValuesArray = $this->playerData->getAccountvalues();
         echo '<thead>
                         <tr>
+                          <th>Rank</th>
                           <th>Playername</th>
                           <th>GP Value (Mil)</th>
                           <th>DP Value ($)</th>
@@ -22,15 +23,18 @@ class Logs
                       </thead>
                       
                       <tbody>';
+        $i=0;
         foreach ($playerValuesArray as $key => $playerValue) {
 
             if(isset($playerValue)){
                 echo '<tr>';
+                     echo '<td>' . $i . '</td>';
                      echo '<td>' . $playerValue["name"] . '</td>';
                      echo '<td>' . $playerValue["gp"] . '</td>';
                      echo '<td>' . $playerValue["dp"] . '</td>';
                 echo '</tr>';
             }
+            $i++;
         }
         echo '</tbody>';
 
