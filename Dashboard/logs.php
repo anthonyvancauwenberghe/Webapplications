@@ -16,7 +16,7 @@ $login->processLogout();
 $login->processLoginCheck();
 
 $logs = new Logs();
-
+$template = new Template();
 ?>
 
 <!DOCTYPE html>
@@ -75,17 +75,7 @@ $logs = new Logs();
                 <br />
 
                 <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <h3><?php echo ucfirst($login->getRank()); ?></h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                </div>
+                <?php $template->printSidebar($login); ?>
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
