@@ -15,9 +15,9 @@ class Logs
         $playerValuesArray = $this->playerData->getAccountvalues();
         echo '<thead>
                         <tr>
-                          <th>First name</th>
-                          <th>Last name</th>
-                          <th>Position</th>
+                          <th>Playername</th>
+                          <th>GP Value</th>
+                          <th>DP Value</th>
                           <th>Office</th>
                           <th>Age</th>
                           <th>Start date</th>
