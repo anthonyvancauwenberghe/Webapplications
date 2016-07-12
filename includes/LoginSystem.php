@@ -239,6 +239,13 @@ class LoginSystem
     {
         return false;
     }
+    
+    public function getName(){
+        return $_SESSION['username'];
+    }
 
+    public function getRank(){
+        return $_SESSION['rank'];
+    }
 
 }
