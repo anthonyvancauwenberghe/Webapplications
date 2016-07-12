@@ -16,11 +16,11 @@ class Logs
         echo '<thead>
                         <tr>
                           <th>Playername</th>
-                          <th>GP Value (Mil)</th>
-                          <th>DP Value ($)</th>
+                          <th>GPValue</th>
+                          <th>DPValue</th>
                           <th>Office</th>
                           <th>Age</th>
-                          <th>Start date</th>
+                          <th>Startdate</th>
                           <th>Salary</th>
                           <th>Extn.</th>
                           <th>E-mail</th>
