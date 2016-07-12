@@ -23,7 +23,7 @@ class Logs
                       </thead>
                       
                       <tbody>';
-        $i=0;
+        $i=1;
         foreach ($playerValuesArray as $key => $playerValue) {
 
             if(isset($playerValue)){
