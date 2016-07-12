@@ -28,7 +28,7 @@ $template = new Template();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Logs | DeviousPs</title>
+    <title>Drops | DeviousPs</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -120,7 +120,7 @@ $template = new Template();
                                     </a>
                                 </li>
                                 <li><a href="javascript:;">Help</a></li>
-                                <li><a href="login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="../index.php?logout=true"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>
 
@@ -199,7 +199,7 @@ $template = new Template();
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>DROPS</h3>
+                        <h3>LOGS</h3>
                     </div>
 
                     <div class="title_right">
@@ -217,7 +217,7 @@ $template = new Template();
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Accountvalues: <small>ALL</USER></small></h2>
+                            <h2>NPC Drops: <small>ALL</USER></small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -238,7 +238,7 @@ $template = new Template();
                         <div class="x_content">
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <?php
-                                $logs->getAccountvalues();
+                                $logs->getNPCDrops();
                                 ?>
                                 
                             </table>
