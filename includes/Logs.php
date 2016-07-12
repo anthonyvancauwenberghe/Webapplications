@@ -22,7 +22,7 @@ class Logs
                 $sort = ['$sort' => ['time' => -1]];
 
 
-            $cursor = $this->data->aggregate(Collection::LOGS, $match, $group, $sort);
+            $cursor = $this->data->aggregate(Collection::LOGS, $match, $sort, $group);
 
             var_dump($cursor->toArray());
            /* $i = 0;
