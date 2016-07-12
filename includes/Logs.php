@@ -4,43 +4,37 @@ require_once '../libs/AutoLoader.php';
 
 class Logs
 {
-    private $data;
+ private $playerData;
 
-    public function getAccountvalue($username = null)
+    public function getAccountvalues($username = null)
     {
-        if (!isset($this->data)) {
-            $this->data = new Data();
+        if (!isset($this->playerData)) {
+            $this->playerData = new playerData();
         }
+        
+                $accountValues = $this->playerData->getAccountvalues();
 
-
-
-
-                $match = ['$match' => ['log-type' => 'player-value-log']];
-                $group = [  '$group' => [ '_id' => '$content.user.player-name',
-                            'coins' => ['$first' => '$content.value.coins'],
-                            'donator-points' => ['$first' => '$content.value.donator-points']]];
-                $sort = ['$sort' => ['time' => -1]];
-
-
-            $cursor = $this->data->aggregate(Collection::LOGS, $match, $sort, $group);
-
-            //var_dump($cursor->toArray());
-            $i = 0;
-
-            foreach ($cursor as $item) {
-
-                $playerArray[$i] = array(
-
-                    0 => ((string)$item['_id']),
-                    1 => ((int)($item['coins'])/1000000),
-                    2 => ((int)($item['donator-points'])));
-                $i++;
-            }
-
-
-
-
-        return json_encode($playerArray);
+        echo '<thead>
+                        <tr>
+                          <th>player-name</th>
+                          <th>GP Value (mil)</th>
+                          <th>DP Value ($)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       
+                        <tr>
+                          <td>Donna</td>
+                          <td>Snider</td>
+                          <td>Customer Support</td>
+                          <td>New York</td>
+                          <td>27</td>
+                          <td>2011/01/25</td>
+                          <td>$112,000</td>
+                          <td>4226</td>
+                          <td>d.snider@datatables.net</td>
+                        </tr>
+                      </tbody>';
 
     }
 
