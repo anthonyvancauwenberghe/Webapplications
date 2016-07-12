@@ -16,6 +16,7 @@ class Core
 
     public function getDateof($timeUnit)
     {
+        date_default_timezone_set(date_default_timezone_get());
         $now = new \DateTime('now');
         $hour = $now->format('h');
         $day = $now->format('d');
