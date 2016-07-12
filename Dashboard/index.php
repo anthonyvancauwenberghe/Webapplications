@@ -17,9 +17,9 @@ $login->processLoginCheck();
 
 
 $logs = new Logs();
-$donatorData = new DonatorData();
+$serverData = new ServerData();
 //$logs->getAccountvalue();
-$donatorData->avgDonationsHourData();
+$serverData->avgOnlineHourData();
 
 
 echo ' <br> Page generated in ' . $core->getPageLoadTime() . ' ms';

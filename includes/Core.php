@@ -1,5 +1,7 @@
 <?php
 
+use MongoDB\BSON\UTCDatetime;
+
 require_once('../libs/AutoLoader.php');
 
 class Core
@@ -16,7 +18,7 @@ class Core
 
     public function getDateof($timeUnit)
     {
-        date_default_timezone_set(date_default_timezone_get());
+        date_default_timezone_set('Europe');
         $now = new \DateTime('now');
         $hour = $now->format('h');
         $day = $now->format('d');

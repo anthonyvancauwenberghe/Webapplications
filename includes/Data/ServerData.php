@@ -64,7 +64,7 @@ class ServerData extends Data
         return json_encode($playercountArray);
     }
 
-    function avgOnlineHourData($hours)
+    public function avgOnlineHourData($hours=24)
     {
 
         $query = [['$match' => ['log-type' => 'player-count-log']], ['$project' => ['year' => ['$year' => '$time'], 'dayOfYear' => ['$dayOfYear' => '$time'], 'hour' => ['$hour' => '$time'], 'content.amount' => 1]], ['$group' => ['_id' => ['year' => '$year', 'dayOfYear' => '$dayOfYear', 'hour' => '$hour'], 'average' => ['$avg' => '$content.amount']]], ['$sort' => ['year' => -1, 'dayOfYear' => -1, 'hour' => -1]], ['$limit' => $hours]];
@@ -74,7 +74,7 @@ class ServerData extends Data
             $avgData = array_push($avgData, round($document['average'], 0));
 
         }
-        return json_encode($avgData);
+        var_dump(json_encode($avgData));
     }
 
     /**
