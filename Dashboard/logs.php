@@ -46,7 +46,7 @@ $logs = new Logs();
         <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom Theme Style -->
-        <link href="css/custom.min.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
     </head>
 
     <body class="nav-md">
@@ -316,7 +316,7 @@ Film festivals used to be do-or-die moments for movie makers. They were where...
     <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="js/custom.min.js"></script>
+    <script src="js/custom.js"></script>
 
     <!-- Datatables -->
     <script>
