@@ -23,18 +23,20 @@ class Logs
                       
                       <tbody>';
         foreach ($playerValuesArray as $key => $playerValue) {
-            /*echo '<tr>';
-            echo '<td>' . $playerValue["name"] . '</td>';
-            echo '<td>' . $playerValue["gp"] . '</td>';
-            echo '<td>' . $playerValue["dp"] . '</td>';
-
-            echo '<tr>';
-            */
+            if(isset($playerValue)){
+                echo '<tr>';
+                     echo '<td>' . $playerValue["name"] . '</td>';
+                     echo '<td>' . $playerValue["gp"] . '</td>';
+                     echo '<td>' . $playerValue["dp"] . '</td>';
+                echo '<tr>';
+            }
+            /*
             echo '<tr>
                           <td>Donna</td>
                           <td>Snider</td>
                           <td>Customer Support</td>
                         </tr>';
+            */
         }
         echo '</tbody>';
 
