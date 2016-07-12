@@ -14,6 +14,9 @@ class Logs
         
                 $accountValues = $this->playerData->getAccountvalues();
 
+        var_dump($accountValues);
+
+        /*
         echo '<thead>
                         <tr>
                           <th>player-name</th>
@@ -35,7 +38,8 @@ class Logs
                           <td>d.snider@datatables.net</td>
                         </tr>
                       </tbody>';
-
+*/
     }
+
 
 }
