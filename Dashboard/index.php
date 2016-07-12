@@ -15,12 +15,5 @@ $login->sec_session_start();
 $login->processLogout();
 $login->processLoginCheck();
 
-
-$logs = new Logs();
-$serverData = new ServerData();
-
-var_dump($logs->getAccountvalues());
-
-
-echo ' <br> Page generated in ' . $core->getPageLoadTime() . ' ms';
+//echo ' <br> Page generated in ' . $core->getPageLoadTime() . ' ms';
 
