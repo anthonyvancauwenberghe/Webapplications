@@ -18,7 +18,7 @@ $login->processLoginCheck();
 
 $logs = new Logs();
 $serverData = new ServerData();
-$logs->getAccountvalue();
+var_dump($logs->getAccountvalue());
 //$serverData->avgOnlineHourData();
 
 

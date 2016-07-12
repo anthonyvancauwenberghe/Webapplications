@@ -24,8 +24,8 @@ class Logs
 
             $cursor = $this->data->aggregate(Collection::LOGS, $match, $sort, $group);
 
-            var_dump($cursor->toArray());
-           /* $i = 0;
+            //var_dump($cursor->toArray());
+            $i = 0;
 
             foreach ($cursor as $item) {
 
@@ -37,10 +37,10 @@ class Logs
                 $i++;
             }
 
-*/
 
 
-        //var_dump($playerArray);
+
+        return json_encode($playerArray);
 
     }
 

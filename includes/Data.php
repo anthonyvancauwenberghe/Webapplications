@@ -41,15 +41,15 @@ class Data
         return Database::getReadPreference();
     }
 
-    public function aggregate($collectionLocation, $match=null, $group=null, $sort=null, $options=null)
+    public function aggregate($collectionLocation, $pipeline1=null, $pipeline2=null, $pipeline3=null, $options=null)
     {
         $collection = $this->getCollection($collectionLocation);
 
         if(isset($options)){
-            $cursor = $collection->aggregate([$match, $group, $sort], $options);
+            $cursor = $collection->aggregate([$pipeline1, $pipeline2, $pipeline3], $options);
         }
         else{
-            $cursor = $collection->aggregate([$match, $group, $sort]);
+            $cursor = $collection->aggregate([$pipeline1, $pipeline2, $pipeline3]);
         }
 
         return $cursor;
