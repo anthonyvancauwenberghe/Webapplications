@@ -46,7 +46,7 @@ $logs = new Logs();
     <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -63,7 +63,7 @@ $logs = new Logs();
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="production/images/img.jpg" alt="..." class="img-circle profile_img">
+                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
@@ -118,7 +118,7 @@ $logs = new Logs();
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="production/images/img.jpg" alt="">John Doe
+                                <img src="images/img.jpg" alt="">John Doe
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -130,7 +130,7 @@ $logs = new Logs();
                                     </a>
                                 </li>
                                 <li><a href="javascript:;">Help</a></li>
-                                <li><a href="production/login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="Login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>
 
@@ -142,7 +142,7 @@ $logs = new Logs();
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                 <li>
                                     <a>
-                                        <span class="image"><img src="production/images/img.jpg" alt="Profile Image" /></span>
+                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -154,7 +154,7 @@ $logs = new Logs();
                                 </li>
                                 <li>
                                     <a>
-                                        <span class="image"><img src="production/images/img.jpg" alt="Profile Image" /></span>
+                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -166,7 +166,7 @@ $logs = new Logs();
                                 </li>
                                 <li>
                                     <a>
-                                        <span class="image"><img src="production/images/img.jpg" alt="Profile Image" /></span>
+                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -178,7 +178,7 @@ $logs = new Logs();
                                 </li>
                                 <li>
                                     <a>
-                                        <span class="image"><img src="production/images/img.jpg" alt="Profile Image" /></span>
+                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -301,7 +301,7 @@ $logs = new Logs();
 <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
 
 <!-- Custom Theme Scripts -->
-<script src="build/js/custom.min.js"></script>
+<script src="js/custom.js"></script>
 
 <!-- Datatables -->
 <script>
