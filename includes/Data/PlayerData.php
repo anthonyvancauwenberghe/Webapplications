@@ -40,7 +40,7 @@ class PlayerData extends Data
                 'name' => ((string)$item['_id']),
                 'gp' => (round((int)$item['coins'] / 1000000, 2)),
                 'dp' => (round((int)$item['donator-points'] / 100, 2)),
-                'accworth' => (round((int)$item['total-value'] / 1000, 2))
+                'accworth' => (round((int)$item['total-value'] / 1000000, 2))
             );
 
             $i++;
