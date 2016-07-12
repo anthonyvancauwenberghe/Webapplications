@@ -30,9 +30,9 @@ class Logs
                       <tbody>';
         foreach ($playerValuesArray as $key => $playerValue) {
             echo '<tr>';
-            echo '<td>' . $playerValue["name"] . '</td>';
+            /*echo '<td>' . $playerValue["name"] . '</td>';
             echo '<td>' . $playerValue["gp"] . '</td>';
-            echo '<td>' . $playerValue["dp"] . '</td>';
+            echo '<td>' . $playerValue["dp"] . '</td>'; */
             echo'<td>New York</td>
                           <td>27</td>
                           <td>2011/01/25</td>
