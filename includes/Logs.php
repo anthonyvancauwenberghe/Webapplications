@@ -14,15 +14,15 @@ class Logs
 
 
 
-            $query = [
-                ['$match' => ['log-type' => 'player-value-log']],
-                ['$sort' => ['time' => -1]],
-                ['$group' => [  '_id' => '$content.user.player-name',
-                                'coins' => ['$last' => '$content.value.coins'],
-                                'donator-points' => ['$last' => '$content.value.donator-points']]]
-            ];
 
-            $cursor = $this->data->aggregate(Collection::CHARACTERS, $query);
+                $match = ['$match' => ['log-type' => 'player-value-log']];
+                $group = [  '$group' => [ '_id' => '$content.user.player-name',
+                            'coins' => ['$last' => '$content.value.coins'],
+                            'donator-points' => ['$last' => '$content.value.donator-points']]];
+                $sort = ['$sort' => ['time' => -1]];
+
+
+            $cursor = $this->data->aggregate(Collection::CHARACTERS, $match, $group, $sort);
 
             var_dump($cursor->toArray());
            /* $i = 0;

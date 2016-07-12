@@ -18,8 +18,8 @@ $login->processLoginCheck();
 
 $logs = new Logs();
 $serverData = new ServerData();
-//$logs->getAccountvalue();
-$serverData->avgOnlineHourData();
+$logs->getAccountvalue();
+//$serverData->avgOnlineHourData();
 
 
 echo ' <br> Page generated in ' . $core->getPageLoadTime() . ' ms';
