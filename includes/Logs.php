@@ -61,6 +61,36 @@ class Logs
         }
     }
 
+    private function convertRaritytoID($rarity)
+    {
+        if ($rarity == 'ALWAYS') {
+            $rarityid = 0;
+        } elseif ($rarity == 'ALMOST_ALWAYS') {
+            $rarityid = 1;
+        } elseif ($rarity == 'VERY_COMMON') {
+            $rarityid = 2;
+        } elseif ($rarity == 'COMMON') {
+            $rarityid = 3;
+        } elseif ($rarity == 'UNCOMMON') {
+            $rarityid = 4;
+        } elseif ($rarity == 'NOT_THAT_RARE') {
+            $rarityid = 5;
+        } elseif ($rarity == 'RARE') {
+            $rarityid = 6;
+        } elseif ($rarity == 'LEGENDARY') {
+            $rarityid = 7;
+        } elseif ($rarity == 'LEGENDARY_2') {
+            $rarityid = 8;
+        } elseif ($rarity == 'LEGENDARY_3') {
+            $rarityid = 9;
+        } elseif ($rarity == 'LEGENDARY_4') {
+            $rarityid = 10;
+        } elseif ($rarity == 'LEGENDARY_5') {
+            $rarityid = 11;
+        }
+        return $rarityid;
+    }
+
     public function getNPCDrops()
     {
         if (!isset($this->NPCData)) {
@@ -74,13 +104,12 @@ class Logs
                           <th>Item Name</th>
                           <th>Drop Amount</th>
                           <th>Drop Rarity</th>
+                          <th class="sorting_desc">Drop Rarity Id</th>
                         </tr>
                       </thead>
-                      
                       <tbody>';
 
             $npcDropsArray = $this->NPCData->getNPCDrops($_GET['npc']);
-
 
             foreach ($npcDropsArray['drops'] as $npcDrop) {
                 echo '<tr>';
@@ -88,6 +117,7 @@ class Logs
                 echo '<td>TO DO</td>';
                 echo '<td>' . $npcDrop['amount'] . '</td>';
                 echo '<td>' . $npcDrop['dropchance'] . '</td>';
+                echo '<td>' . $this->convertRaritytoID(['dropchance']) . '</td>';
                 echo '</tr>';
             }
             echo '</tbody>';
