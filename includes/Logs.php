@@ -42,14 +42,45 @@ class Logs
         echo '</tbody>';
 
     }
-    public function getNPCDrops($npc = null)
+
+    public function getNPCSearchTerm(){
+        if(isset($_GET['npc'])){
+            return $_GET['npc'];
+        }else{
+            return 'ALL';
+        }
+    }
+
+    public function getNPCDrops()
     {
         if (!isset($this->NPCData)) {
             $this->NPCData = new NPCData();
         }
 
-        //$npcDropArray = $this->playerData->getAccountvalues();
-        echo '<thead>
+        if(isset($_GET['npc'])){
+            echo '<thead>
+                        <tr>
+                          <th>Drop ID</th>
+                          <th>Drop Name</th>
+                          <th>Drop Chance</th>
+                          <th>Drop Amount</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody>';
+
+            for($i=1; $i<5; $i++) {
+                echo '<tr>';
+                echo '<td>' . rand(0,1000) . '</td>';
+                echo '<td>Dragon Claws</td>';
+                echo '<td>' . rand(0,1000)/1000 . '</td>';
+                echo '<td>' . rand(0,10) . '</td>';
+                echo '</tr>';
+            }
+            echo '</tbody>';
+        }
+        else {
+            echo '<thead>
                         <tr>
                           <th>NPC Name</th>
                           <th>Amount of Items</th>
@@ -61,27 +92,30 @@ class Logs
                       </thead>
                       
                       <tbody>';
-
-        for($i=1; $i<100; $i++) {
-            echo '<tr>';
-            echo '<td>npc name '.$i.'</td>';
-            echo '<td>' . rand(0,10) . '</td>';
-            echo '<td>' . rand(0,1000) . '</td>';
-            echo '<td>Dragon Claws</td>';
-            echo '<td>Dragon Claws</td>';
-            echo '<td>Dragon Claws</td>';
-            echo '</tr>';
-
-            /* if(isset($npcDropArray)){
+            //$npcDropArray = $this->playerData->getAccountvalues();
+            for($i=1; $i<100; $i++) {
                 echo '<tr>';
-                echo '<td>' . $npcDrop["name"] . '</td>';
-                echo '<td>' . $npcDrop["gp"] . '</td>';
-                echo '<td>' . $npcDrop["dp"] . '</td>';
+                echo '<td><a href="/?npcname">npc name '.$i.'</a></td>';
+                echo '<td>' . rand(0,10) . '</td>';
+                echo '<td>' . rand(0,1000) . '</td>';
+                echo '<td>Dragon Claws</td>';
+                echo '<td>Dragon Claws</td>';
+                echo '<td>Dragon Claws</td>';
                 echo '</tr>';
-            } */
 
+                /* if(isset($npcDropArray)){
+                    echo '<tr>';
+                    echo '<td>' . $npcDrop["name"] . '</td>';
+                    echo '<td>' . $npcDrop["gp"] . '</td>';
+                    echo '<td>' . $npcDrop["dp"] . '</td>';
+                    echo '</tr>';
+                } */
+
+            }
+            echo '</tbody>';
         }
-        echo '</tbody>';
+
+
 
     }
 
