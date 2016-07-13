@@ -45,7 +45,7 @@ class Logs
 
     public function getNPCSearchTerm(){
         if(isset($_GET['npc'])){
-            return $_GET['npc'];
+            return filter_var($_GET['npc'], FILTER_SANITIZE_STRING);
         }else{
             return 'ALL';
         }
@@ -95,7 +95,7 @@ class Logs
             //$npcDropArray = $this->playerData->getAccountvalues();
             for($i=1; $i<100; $i++) {
                 echo '<tr>';
-                echo '<td><a href="/?npcname">npc name '.$i.'</a></td>';
+                echo '<td><a href="../drops.php?npc=npcname'.$i.'">npcname '.$i.'</a></td>';
                 echo '<td>' . rand(0,10) . '</td>';
                 echo '<td>' . rand(0,1000) . '</td>';
                 echo '<td>Dragon Claws</td>';
