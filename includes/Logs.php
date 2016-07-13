@@ -51,6 +51,14 @@ class Logs
             return 'ALL';
         }
     }
+    public function getItemSearchTerm(){
+        if(isset($_GET['item'])){
+            return filter_var($_GET['item'], FILTER_SANITIZE_STRING);
+        }
+        else{
+            return 'ALL';
+        }
+    }
 
     public function getNPCDrops()
     {

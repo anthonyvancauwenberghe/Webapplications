@@ -199,7 +199,7 @@ $template = new Template();
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>DROPS</h3>
+                        <h3>LOGS</h3>
                     </div>
 
                     <div class="title_right">
