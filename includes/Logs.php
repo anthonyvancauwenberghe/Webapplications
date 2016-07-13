@@ -25,16 +25,16 @@ class Logs
                       </thead>
                       
                       <tbody>';
-        $i=1;
+        $i = 1;
         foreach ($playerValuesArray as $key => $playerValue) {
 
-            if(isset($playerValue)){
+            if (isset($playerValue)) {
                 echo '<tr>';
-                     echo '<td>' . $i . '</td>';
-                     echo '<td>' . $playerValue["name"] . '</td>';
-                     echo '<td>' . $playerValue["gp"] . '</td>';
-                     echo '<td>' . $playerValue["dp"] . '</td>';
-                     echo '<td>' . $playerValue["accworth"] . '</td>';
+                echo '<td>' . $i . '</td>';
+                echo '<td>' . $playerValue["name"] . '</td>';
+                echo '<td>' . $playerValue["gp"] . '</td>';
+                echo '<td>' . $playerValue["dp"] . '</td>';
+                echo '<td>' . $playerValue["accworth"] . '</td>';
                 echo '</tr>';
             }
             $i++;
@@ -43,19 +43,20 @@ class Logs
 
     }
 
-    public function getNPCSearchTerm(){
-        if(isset($_GET['npc'])){
+    public function getNPCSearchTerm()
+    {
+        if (isset($_GET['npc'])) {
             return filter_var($_GET['npc'], FILTER_SANITIZE_STRING);
-        }
-        else{
+        } else {
             return 'ALL';
         }
     }
-    public function getItemSearchTerm(){
-        if(isset($_GET['item'])){
+
+    public function getItemSearchTerm()
+    {
+        if (isset($_GET['item'])) {
             return filter_var($_GET['item'], FILTER_SANITIZE_STRING);
-        }
-        else{
+        } else {
             return 'ALL';
         }
     }
@@ -69,24 +70,28 @@ class Logs
         if (isset($_GET['npc'])) {
             echo '<thead>
                         <tr>
-                          <th>Drop ID</th>
-                          <th>Drop Name</th>
-                          <th>Drop Chance</th>
+                          <th>Item ID</th>
+                          <th>Item Name</th>
                           <th>Drop Amount</th>
+                          <th>Drop Rarity</th>
                         </tr>
                       </thead>
                       
                       <tbody>';
 
-            for ($i = 1; $i < 5; $i++) {
+            $npcDropsArray = $this->NPCData->getNPCDrops($_GET['npc']);
+
+
+            foreach ($npcDropsArray['drops'] as $npcDrop) {
                 echo '<tr>';
-                echo '<td>' . rand(0, 1000) . '</td>';
-                echo '<td>Dragon Claws</td>';
-                echo '<td>' . rand(0, 1000) / 1000 . '</td>';
-                echo '<td>' . rand(0, 10) . '</td>';
+                echo '<td>' . $npcDrop['item-id'] . '</td>';
+                echo '<td>TO DO</td>';
+                echo '<td>' . $npcDrop['amount'] . '</td>';
+                echo '<td>' . $npcDrop['dropchance'] . '</td>';
                 echo '</tr>';
             }
             echo '</tbody>';
+
         } else {
             echo '<thead>
                         <tr>
@@ -104,9 +109,9 @@ class Logs
                       </thead>
                       
                       <tbody>';
-            $npcDropArray = $this->NPCData->getNPCDrops();
+            $npcDropArray = $this->NPCData->getNPCDropList();
             foreach ($npcDropArray as $npc) {
-                if(isset($npc)) {
+                if (isset($npc)) {
                     echo '<tr>';
 
                     echo '<td><a href="../drops.php?npc=' . $npc['npcname'] . '">' . $npc['npcname'] . '</a></td>';
@@ -127,13 +132,13 @@ class Logs
         }
     }
 
-        public function getItemDrops()
+    public function getItemDrops()
     {
         if (!isset($this->NPCData)) {
             $this->NPCData = new NPCData();
         }
 
-        if(isset($_GET['item'])){
+        if (isset($_GET['item'])) {
             echo '<thead>
                         <tr>
                           <th>NPC ID</th>
@@ -145,16 +150,15 @@ class Logs
                       
                       <tbody>';
 
-            for($i=1; $i<5; $i++) {
+            for ($i = 1; $i < 5; $i++) {
                 echo '<tr>';
-                echo '<td>' . rand(0,1000) . '</td>';
+                echo '<td>' . rand(0, 1000) . '</td>';
                 echo '<td><a href="../drops.php?npc=bluedragon">Blue Dragon</a></td>';
-                echo '<td>' . rand(0,10) . '</td>';
+                echo '<td>' . rand(0, 10) . '</td>';
                 echo '</tr>';
             }
             echo '</tbody>';
-        }
-        else {
+        } else {
             echo '<thead>
                         <tr>
                           <th>Item ID</th>
@@ -165,16 +169,15 @@ class Logs
                       
                       <tbody>';
 
-            for($i=1; $i<350; $i++) {
+            for ($i = 1; $i < 350; $i++) {
                 echo '<tr>';
-                echo '<td>' . rand(0,1000) . '</td>';
+                echo '<td>' . rand(0, 1000) . '</td>';
                 echo '<td><a href="../drops.php?item=dragonclaws">Dragon Claws</a></td>';
-                echo '<td>' . rand(0,10) . '</td>';
+                echo '<td>' . rand(0, 10) . '</td>';
                 echo '</tr>';
             }
             echo '</tbody>';
         }
-
 
 
     }

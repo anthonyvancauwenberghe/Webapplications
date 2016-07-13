@@ -28,7 +28,7 @@ $template = new Template();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Drops | DeviousPs</title>
+    <title>NPC Drops | DeviousPs</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -199,7 +199,7 @@ $template = new Template();
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>LOGS</h3>
+                        <h3>NPC Drops</h3>
                     </div>
 
                     <div class="title_right">
