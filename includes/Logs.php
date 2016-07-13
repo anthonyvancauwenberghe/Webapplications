@@ -118,7 +118,7 @@ class Logs
                 echo '<tr>';
                 echo '<td>' . $npcDrop['_id'] . '</td>';
                 echo '<td>' . $npcDrop['item-name'] . '</td>';
-                echo '<td>' . round($npcDrop['value']/1000,2) . ' K</td>';
+                echo '<td>' . round($npcDrop['value']/1000,2) . ' k</td>';
                 echo '<td>' . $npcDrop['amount'] . '</td>';
                 echo '<td>' . $npcDrop['rarity'] . '</td>';
                 echo '<td>' . $this->convertRaritytoID($npcDrop['rarity']) . '</td>';
