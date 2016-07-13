@@ -113,7 +113,7 @@ class Logs
                 if(isset($npc)) {
                     echo '<tr>';
 
-                    echo '<td><a href="../drops.php?npc=' . $npc['_id'] . '">' . $npc['_id'] . '</a></td>';
+                    echo '<td><a href="../drops.php?npc=' . $npc['npcname'] . '">' . $npc['npcname'] . '</a></td>';
                     echo '<td>' . $npc['item-amount'] . '</td>';
                     echo '<td>' . $npc['always'] . '</td>';
                     echo '<td>' . $npc['almost_always'] . '</td>';
