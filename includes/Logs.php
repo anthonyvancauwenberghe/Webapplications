@@ -63,6 +63,8 @@ class Logs
 
     private function convertRaritytoID($rarity)
     {
+        $rarity = (string) $rarity;
+
         if ($rarity == 'ALWAYS') {
             $rarityid = 0;
         } elseif ($rarity == 'ALMOST_ALWAYS') {
@@ -117,7 +119,7 @@ class Logs
                 echo '<td>TO DO</td>';
                 echo '<td>' . $npcDrop['amount'] . '</td>';
                 echo '<td>' . $npcDrop['dropchance'] . '</td>';
-                echo '<td>' . $this->convertRaritytoID(['dropchance']) . '</td>';
+                echo '<td>' . $this->convertRaritytoID($npcDrop['dropchance']) . '</td>';
                 echo '</tr>';
             }
             echo '</tbody>';
