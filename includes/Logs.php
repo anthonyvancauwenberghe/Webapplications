@@ -66,7 +66,7 @@ class Logs
             $this->NPCData = new NPCData();
         }
 
-        if(isset($_GET['npc'])){
+        if (isset($_GET['npc'])) {
             echo '<thead>
                         <tr>
                           <th>Drop ID</th>
@@ -78,17 +78,16 @@ class Logs
                       
                       <tbody>';
 
-            for($i=1; $i<5; $i++) {
+            for ($i = 1; $i < 5; $i++) {
                 echo '<tr>';
-                echo '<td>' . rand(0,1000) . '</td>';
+                echo '<td>' . rand(0, 1000) . '</td>';
                 echo '<td>Dragon Claws</td>';
-                echo '<td>' . rand(0,1000)/1000 . '</td>';
-                echo '<td>' . rand(0,10) . '</td>';
+                echo '<td>' . rand(0, 1000) / 1000 . '</td>';
+                echo '<td>' . rand(0, 10) . '</td>';
                 echo '</tr>';
             }
             echo '</tbody>';
-        }
-        else {
+        } else {
             echo '<thead>
                         <tr>
                           <th>NPC Name</th>
@@ -102,11 +101,11 @@ class Logs
                       
                       <tbody>';
             //$npcDropArray = $this->playerData->getAccountvalues();
-            for($i=1; $i<100; $i++) {
+            for ($i = 1; $i < 100; $i++) {
                 echo '<tr>';
-                echo '<td><a href="../drops.php?npc=npcname'.$i.'">npcname '.$i.'</a></td>';
-                echo '<td>' . rand(0,10) . '</td>';
-                echo '<td>' . rand(0,1000) . '</td>';
+                echo '<td><a href="../drops.php?npc=npcname' . $i . '">npcname ' . $i . '</a></td>';
+                echo '<td>' . rand(0, 10) . '</td>';
+                echo '<td>' . rand(0, 1000) . '</td>';
                 echo '<td>Dragon Claws</td>';
                 echo '<td>Dragon Claws</td>';
                 echo '<td>Dragon Claws</td>';
@@ -120,6 +119,55 @@ class Logs
                     echo '</tr>';
                 } */
 
+            }
+            echo '</tbody>';
+        }
+    }
+
+        public function getItemDrops()
+    {
+        if (!isset($this->NPCData)) {
+            $this->NPCData = new NPCData();
+        }
+
+        if(isset($_GET['item'])){
+            echo '<thead>
+                        <tr>
+                          <th>NPC ID</th>
+                          <th>NPC Name</th>
+                          <th>Drop Chance</th>
+                          <th>Drop Amount</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody>';
+
+            for($i=1; $i<5; $i++) {
+                echo '<tr>';
+                echo '<td>' . rand(0,1000) . '</td>';
+                echo '<td><a href="../drops.php?npc=bluedragon">Blue Dragon</a></td>';
+                echo '<td>' . rand(0,10) . '</td>';
+                echo '</tr>';
+            }
+            echo '</tbody>';
+        }
+        else {
+            echo '<thead>
+                        <tr>
+                          <th>Item ID</th>
+                          <th>Item Name</th>
+                          <th>Dropped by X NPCs</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody>';
+
+            for($i=1; $i<350; $i++) {
+                echo '<tr>';
+                echo '<td>' . rand(0,1000) . '</td>';
+                echo '<td><a href="../drops.php?item=dragonclaws">Dragon Claws</a></td>';
+                echo '<td>' . rand(0,10) . '</td>';
+                echo '</tr>';
             }
             echo '</tbody>';
         }
