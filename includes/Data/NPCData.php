@@ -77,6 +77,7 @@ class NPCData extends Data
 
             }
             $amount=$always+$almost_always+$very_common+$common+$uncommon+$not_that_rare+$rare+$legendary+$legendary2+$legendary3+$legendary4+$legendary5;
+            $legendary_amount = $legendary + $legendary2 + $legendary3 + $legendary4 + $legendary5;
             $npcDropArray[$i] = array(
                 'npcname' => ((string)$npc['_id']),
                 'item-amount' => $amount,
@@ -87,11 +88,7 @@ class NPCData extends Data
                 'uncommon' => $uncommon,
                 'not_that_rare' => $not_that_rare,
                 'rare' => $rare,
-                'legendary' => $legendary,
-                'legendary2' => $legendary2,
-                'legendary3' => $legendary3,
-                'legendary4' => $legendary4,
-                'legendary5' => $legendary5,
+                'legendary' => $legendary_amount
             );
 
             $i++;

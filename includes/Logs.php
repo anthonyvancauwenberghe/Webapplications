@@ -100,10 +100,6 @@ class Logs
                           <th>NOT THAT RARE</th>
                           <th>RARE</th>
                           <th>LEGENDARY</th>
-                          <th>LEGENDARY2</th>
-                          <th>LEGENDARY3</th>
-                          <th>LEGENDARY4</th>
-                          <th>LEGENDARY5</th>
                         </tr>
                       </thead>
                       
@@ -123,11 +119,6 @@ class Logs
                     echo '<td>' . $npc['not_that_rare'] . '</td>';
                     echo '<td>' . $npc['rare'] . '</td>';
                     echo '<td>' . $npc['legendary'] . '</td>';
-                    echo '<td>' . $npc['legendary2'] . '</td>';
-                    echo '<td>' . $npc['legendary3'] . '</td>';
-                    echo '<td>' . $npc['legendary4'] . '</td>';
-                    echo '<td>' . $npc['legendary5'] . '</td>';
-
                     echo '</tr>';
                 }
 
