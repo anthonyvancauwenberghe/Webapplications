@@ -104,6 +104,7 @@ class Logs
                         <tr>
                           <th>Item ID</th>
                           <th>Item Name</th>
+                          <th>Item value</th>
                           <th>Drop Amount</th>
                           <th>Drop Rarity</th>
                           <th class="sorting_desc">Drop Rarity Id</th>
@@ -111,15 +112,16 @@ class Logs
                       </thead>
                       <tbody>';
 
-            $npcDropsArray = $this->NPCData->getNPCDrops($_GET['npc']);
+            $cursor = $this->NPCData->getNPCDrops($_GET['npc']);
 
-            foreach ($npcDropsArray['drops'] as $npcDrop) {
+            foreach ($cursor as $npcDrop) {
                 echo '<tr>';
-                echo '<td>' . $npcDrop['item-id'] . '</td>';
-                echo '<td>TO DO</td>';
+                echo '<td>' . $npcDrop['_id'] . '</td>';
+                echo '<td>' . $npcDrop['item-name'] . '</td>';
+                echo '<td>' . round($npcDrop['value']/1000000,2) . ' Mil</td>';
                 echo '<td>' . $npcDrop['amount'] . '</td>';
-                echo '<td>' . $npcDrop['dropchance'] . '</td>';
-                echo '<td>' . $this->convertRaritytoID($npcDrop['dropchance']) . '</td>';
+                echo '<td>' . $npcDrop['rarity'] . '</td>';
+                echo '<td>' . $this->convertRaritytoID($npcDrop['rarity']) . '</td>';
                 echo '</tr>';
             }
             echo '</tbody>';

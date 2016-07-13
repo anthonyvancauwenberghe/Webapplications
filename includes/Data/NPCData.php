@@ -79,13 +79,25 @@ class NPCData extends Data
 
 
     }
-    
+
     public function getNPCDrops($npc){
         $npcName = (string) $npc;
-        $npc = $this->findOne(Collection::NPC_DROPS, ['npc-name'=>$npcName]);
+        $pipeline = [['$match' => ['npc-name' => $npc]],
+            ['$unwind' => '$drops'],
+            ['$lookup' => [
+                'from' => 'item-definitions',
+                'localField' => 'drops.item-id',
+                'foreignField' => 'item-id',
+                'as' => 'item'
+            ]
+            ],
+            ['$unwind' => '$item'],
+            ['$project' => ['_id' => '$drops.item-id', 'amount' => '$drops.amount', 'rarity' => '$drops.dropchance', 'item-name' => '$item.name', 'value' => ['$multiply' => ['$drops.amount', '$item.value']]]]];
+
+        $cursor = $this->aggregate(Collection::NPC_DROPS, $pipeline);
         
-        return $npc;
-        
+        return $cursor;
+
     }
 }
 
