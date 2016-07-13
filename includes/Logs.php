@@ -46,7 +46,8 @@ class Logs
     public function getNPCSearchTerm(){
         if(isset($_GET['npc'])){
             return filter_var($_GET['npc'], FILTER_SANITIZE_STRING);
-        }else{
+        }
+        else{
             return 'ALL';
         }
     }
@@ -86,7 +87,7 @@ class Logs
                           <th>Amount of Items</th>
                           <th>NPC Drop Value</th>
                           <th>Drop</th>
-                          <th>Drop/th>
+                          <th>Drop</th>
                           <th>Drop</th>
                         </tr>
                       </thead>
