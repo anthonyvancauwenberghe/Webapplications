@@ -92,32 +92,44 @@ class Logs
                         <tr>
                           <th>NPC Name</th>
                           <th>Amount of Items</th>
-                          <th>NPC Drop Value</th>
-                          <th>Drop</th>
-                          <th>Drop</th>
-                          <th>Drop</th>
+                          <th>ALWAYS</th>
+                          <th>ALMOST ALWAYS</th>
+                          <th>VERY COMMON</th>
+                          <th>COMMON</th>
+                          <th>UNCOMMON</th>
+                          <th>NOT THAT RARE</th>
+                          <th>RARE</th>
+                          <th>LEGENDARY</th>
+                          <th>LEGENDARY2</th>
+                          <th>LEGENDARY3</th>
+                          <th>LEGENDARY4</th>
+                          <th>LEGENDARY5</th>
                         </tr>
                       </thead>
                       
                       <tbody>';
-            //$npcDropArray = $this->playerData->getAccountvalues();
-            for ($i = 1; $i < 100; $i++) {
-                echo '<tr>';
-                echo '<td><a href="../drops.php?npc=npcname' . $i . '">npcname ' . $i . '</a></td>';
-                echo '<td>' . rand(0, 10) . '</td>';
-                echo '<td>' . rand(0, 1000) . '</td>';
-                echo '<td>Dragon Claws</td>';
-                echo '<td>Dragon Claws</td>';
-                echo '<td>Dragon Claws</td>';
-                echo '</tr>';
-
-                /* if(isset($npcDropArray)){
+            $npcDropArray = $this->NPCData->getNPCDrops();
+            foreach ($npcDropArray as $npc) {
+                if(isset($npc)) {
                     echo '<tr>';
-                    echo '<td>' . $npcDrop["name"] . '</td>';
-                    echo '<td>' . $npcDrop["gp"] . '</td>';
-                    echo '<td>' . $npcDrop["dp"] . '</td>';
+
+                    echo '<td><a href="../drops.php?npc=' . $npc['_id'] . '">' . $npc['_id'] . '</a></td>';
+                    echo '<td>' . $npc['item-amount'] . '</td>';
+                    echo '<td>' . $npc['always'] . '</td>';
+                    echo '<td>' . $npc['almost_always'] . '</td>';
+                    echo '<td>' . $npc['very_common'] . '</td>';
+                    echo '<td>' . $npc['common'] . '</td>';
+                    echo '<td>' . $npc['uncommon'] . '</td>';
+                    echo '<td>' . $npc['not_that_rare'] . '</td>';
+                    echo '<td>' . $npc['rare'] . '</td>';
+                    echo '<td>' . $npc['legendary'] . '</td>';
+                    echo '<td>' . $npc['legendary2'] . '</td>';
+                    echo '<td>' . $npc['legendary3'] . '</td>';
+                    echo '<td>' . $npc['legendary4'] . '</td>';
+                    echo '<td>' . $npc['legendary5'] . '</td>';
+
                     echo '</tr>';
-                } */
+                }
 
             }
             echo '</tbody>';
