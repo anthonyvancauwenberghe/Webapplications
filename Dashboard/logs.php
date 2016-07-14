@@ -205,55 +205,43 @@ $template = new Template();
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
+                                <input id="searchform" type="text" class="form-control" placeholder="Search for...">
 
 
                                 <span class="input-group-btn">
-                      <div class="btn-group open">
-                                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="true"> Log Type <span class="caret"></span> </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Death Logs</a>
-                                        </li>
-                                        <li><a href="#">Trade Logs</a>
-                                        </li>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
+                      <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="select2_single form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                            <option></option>
+                            <option value="AK">Alaska</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="CA">California</option>
+                            <option value="NV">Nevada</option>
+                            <option value="OR">Oregon</option>
+                            <option value="WA">Washington</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="CO">Colorado</option>
+                            <option value="ID">Idaho</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="UT">Utah</option>
+                            <option value="WY">Wyoming</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TX">Texas</option>
+                          </select><span class="select2 select2-container select2-container--default select2-container--above select2-container--focus" dir="ltr" style="width: 463px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-labelledby="select2-afhz-container"><span class="select2-selection__rendered" id="select2-afhz-container"><span class="select2-selection__placeholder">Select a state</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                        </div>
+                                    <button class="btn btn-default" type="button">Go!</button>
                     </span>
                             </div>
                         </div>
@@ -398,6 +386,14 @@ $template = new Template();
         });
 
         TableManageButtons.init();
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#pdf').change(function() {
+            var newurl = $('#searchform').val();
+            $('a.target').attr('href', newurl);
+        });
     });
 </script>
 <!-- /Datatables -->
