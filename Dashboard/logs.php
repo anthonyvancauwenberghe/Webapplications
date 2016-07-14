@@ -209,7 +209,7 @@ $template = new Template();
 
 
                                 <span class="input-group-btn">
-                      <div class="col-md-9 col-sm-9 col-xs-12">
+
                           <select class="select2_single form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
                             <option></option>
                             <option value="AK">Alaska</option>
@@ -240,7 +240,6 @@ $template = new Template();
                             <option value="SD">South Dakota</option>
                             <option value="TX">Texas</option>
                           </select><span class="select2 select2-container select2-container--default select2-container--above select2-container--focus" dir="ltr" style="width: 463px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-labelledby="select2-afhz-container"><span class="select2-selection__rendered" id="select2-afhz-container"><span class="select2-selection__placeholder">Select a state</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                        </div>
                                     <button class="btn btn-default" type="button">Go!</button>
                     </span>
                             </div>
