@@ -207,19 +207,22 @@ $template = new Template();
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search for...">
 
-                                <div class="btn-group open">
+
+                                <span class="input-group-btn">
+                      <div class="btn-group open">
                                     <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="true"> Dropdown <span class="caret"></span> </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Dropdown link 1</a>
                                         </li>
                                         <li><a href="#">Dropdown link 2</a>
                                         </li>
+                                        </li>
                                         <li><a href="#">Dropdown link 3</a>
                                         </li>
                                     </ul>
                                 </div>
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span></div>
+                    </span>
+                            </div>
                         </div>
                     </div>
 
