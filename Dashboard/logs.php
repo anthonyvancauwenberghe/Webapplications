@@ -210,15 +210,48 @@ $template = new Template();
 
                                 <span class="input-group-btn">
                       <div class="btn-group open">
-                                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="true"> Dropdown <span class="caret"></span> </button>
+                                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="true"> Log Type <span class="caret"></span> </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Dropdown link 1</a>
+                                        <li><a href="#">Death Logs</a>
                                         </li>
-                                        <li><a href="#">Dropdown link 2</a>
+                                        <li><a href="#">Trade Logs</a>
                                         </li>
                                         </li>
-                                        <li><a href="#">Dropdown link 3</a>
+                                        <li><a href="#">Test Log</a>
                                         </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+
                                     </ul>
                                 </div>
                     </span>
