@@ -218,39 +218,6 @@ $template = new Template();
                                         </li>
                                         <li id="accountvalues"><a>Accountvalue Logs</a>
                                         </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-                                        <li><a href="#">Test Log</a>
-                                        </li>
-
                                     </ul>
                                 </div>
                                   <button id="searchButton" class="btn btn-default" type="button">Search</button>

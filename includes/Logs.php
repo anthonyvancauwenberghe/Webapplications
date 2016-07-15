@@ -53,19 +53,22 @@ class Logs
 
     private function getName()
     {
-        $this->initCore();
-        return (string)$this->core->normalizeUsername($_GET["name"]);
+        if (isset($_GET["name"])) {
+            $this->initCore();
+            return (string)$this->core->normalizeUsername($_GET["name"]);
+        } else {
+            return null;
+        }
     }
 
     private function getLogType()
     {
-        if(isset($_GET["logtype"])){
+        if (isset($_GET["logtype"])) {
             return (string)$_GET["logtype"];
-        }
-        else {
+        } else {
             return null;
         }
-        
+
     }
 
 
