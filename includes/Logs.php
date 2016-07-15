@@ -14,12 +14,23 @@ class Logs
         $logType = $this->getLogType();
         $name = $this->getName();
         $id = $this->getID();
-        if ( $logType == "accountvalues") {
+        if ($logType == "accountvalues") {
             $this->printAccountValueLogs();
         }
         elseif ($logType == "trade" ) {
             if(isset($name)){
                 $this->printTradeLogs();
+            }
+            elseif(isset($id)){
+                echo '<h1>TODO</h1>';
+            }
+            else{
+                $this->enterName();
+            }
+        }
+        elseif ($logType == "death" ) {
+            if(isset($name)){
+                $this->printDeathLogs();
             }
             elseif(isset($id)){
                 echo '<h1>TODO</h1>';
@@ -195,5 +206,11 @@ class Logs
                 </div>';
     }
 
+    private function printDeathLogs(){
+        echo $this->TODO();
+    }
 
+    private function TODO(){
+        return '<h1> Still got to code this shit</h1>';
+    }
 }

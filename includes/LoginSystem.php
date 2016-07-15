@@ -11,10 +11,14 @@ class LoginSystem
         if (!isset($this->core)) {
             $this->core = new Core();
         }
-
         return $this->core;
     }
-
+    public function ownerPermission(){
+        if($this->getRank()!='owner'){
+            echo 'You need to be Owner to get access to this page';
+            die();
+        }
+    }
     public function processLogout()
     {
         if (isset($_GET['logout'])) {

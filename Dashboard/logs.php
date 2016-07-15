@@ -17,6 +17,7 @@ $login->processLoginCheck();
 
 $logs = new Logs();
 $template = new Template();
+$login->ownerPermission();
 ?>
 
 <!DOCTYPE html>
