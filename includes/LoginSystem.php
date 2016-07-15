@@ -14,7 +14,7 @@ class LoginSystem
         return $this->core;
     }
     public function ownerPermission(){
-        if($this->getRank()!='owner'){
+        if($this->getRank()!='OWNER'){
             echo 'You need to be Owner to get access to this page';
             die();
         }
