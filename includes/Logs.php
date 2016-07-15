@@ -11,11 +11,22 @@ class Logs
 
     public function printLogs()
     {
-        if ($this->getLogType() == "accountvalues") {
+        $logType = $this->getLogType();
+        $name = $this->getName();
+        $id = $this->getID();
+        if ( $logType == "accountvalues") {
             $this->printAccountValueLogs();
         }
-        if ($this->getLogType() == "trade") {
-            $this->printTradeLogs();
+        elseif ($logType == "trade" ) {
+            if(isset($name)){
+                $this->printTradeLogs();
+            }
+            elseif(isset($id)){
+                echo '<h1>TODO</h1>';
+            }
+            else{
+                $this->enterName();
+            }
         }
     }
 
@@ -40,7 +51,11 @@ class Logs
         }
     }
 
-    private function getTitle($ip = null, $mac = null)
+    private function enterName(){
+        echo '<h2>Please Enter A Playername</h2>';
+    }
+
+    private function getTitle($ip = 'Here Comes IP', $mac = 'Here Comes MAC')
     {
         $name = $this->getName();
 
@@ -65,6 +80,15 @@ class Logs
     {
         if (isset($_GET["logtype"])) {
             return (string)$_GET["logtype"];
+        } else {
+            return null;
+        }
+
+    }
+    private function getID()
+    {
+        if (isset($_GET["id"])) {
+            return (string)$_GET["id"];
         } else {
             return null;
         }
@@ -151,7 +175,7 @@ class Logs
             }
             if (isset($trade)) {
                 echo '<tr>';
-                echo '<td>' . $trade["_id"] . '</td>';
+                echo '<td><a href="../logs.php?logtype=trade?id=' . $trade["_id"] . '">' . $trade["_id"] . '</a></td>';
                 echo '<td>' . $this->core->convertToTime($trade['time']) . '</td>';
                 echo '<td>' . $name . '</td>';
                 echo '<td>TODO</td>';
