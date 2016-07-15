@@ -18,7 +18,7 @@ class Core
     public function convertToTime($time)
     {
         $this->setTimezone();
-        return date('h:i:s d-M-Y', $time->toString());
+        return date('h:i:s d-M-Y', (string) $time);
     }
 
     public function getDateof($timeUnit)
