@@ -421,6 +421,7 @@ $template = new Template();
         $("#searchButton").click(function(){
             window.location = window.location.href.split(/[?#]/)[0] + "?logtype=" + $("#logTypeButton span").attr('id');
         });
+        $('#loglist').click()
     });
 
 </script>
