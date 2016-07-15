@@ -11,8 +11,13 @@ class Core
     private $config;
     private $data;
 
+    private function setTimezone(){
+        date_default_timezone_set('America/Los_Angeles');
+    }
+
     public function convertToTime($time)
     {
+        $this->setTimezone();
         return date('h:i:s d-M-Y', $time->sec);
     }
 
