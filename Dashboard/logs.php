@@ -209,38 +209,51 @@ $template = new Template();
 
 
                                 <span class="input-group-btn">
+                      <div class="btn-group open">
+                                    <button id="logTypeButton" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="true"> <span id="type">Log Type</span> </button>
+                                    <ul id="loglist" class="dropdown-menu">
+                                        <li id="death"><a>Death Logs</a>
+                                        </li>
+                                        <li id="trade"><a href="#">Trade Logs</a>
+                                        </li>
+                                        <li id="test"><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
+                                        <li><a href="#">Test Log</a>
+                                        </li>
 
-                          <select class="select2_single form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
-                            <option></option>
-                            <option value="AK">Alaska</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="CA">California</option>
-                            <option value="NV">Nevada</option>
-                            <option value="OR">Oregon</option>
-                            <option value="WA">Washington</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="CO">Colorado</option>
-                            <option value="ID">Idaho</option>
-                            <option value="MT">Montana</option>
-                            <option value="NE">Nebraska</option>
-                            <option value="NM">New Mexico</option>
-                            <option value="ND">North Dakota</option>
-                            <option value="UT">Utah</option>
-                            <option value="WY">Wyoming</option>
-                            <option value="AR">Arkansas</option>
-                            <option value="IL">Illinois</option>
-                            <option value="IA">Iowa</option>
-                            <option value="KS">Kansas</option>
-                            <option value="KY">Kentucky</option>
-                            <option value="LA">Louisiana</option>
-                            <option value="MN">Minnesota</option>
-                            <option value="MS">Mississippi</option>
-                            <option value="MO">Missouri</option>
-                            <option value="OK">Oklahoma</option>
-                            <option value="SD">South Dakota</option>
-                            <option value="TX">Texas</option>
-                          </select><span class="select2 select2-container select2-container--default select2-container--above select2-container--focus" dir="ltr" style="width: 463px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-labelledby="select2-afhz-container"><span class="select2-selection__rendered" id="select2-afhz-container"><span class="select2-selection__placeholder">Select a state</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    <button class="btn btn-default" type="button">Go!</button>
+                                    </ul>
+                                </div>
+                                  <button id="searchButton" class="btn btn-default" type="button">Go!</button>
                     </span>
                             </div>
                         </div>
@@ -396,6 +409,22 @@ $template = new Template();
     });
 </script>
 <!-- /Datatables -->
+
+<script>
+
+    $("#loglist li").on('click', function() {
+        $("#logTypeButton span").text($(this).text());
+        $("#logTypeButton span").attr('id',$(this).attr('id'));
+    });
+
+    $(document).ready(function() {
+        $("#searchButton").click(function(){
+            window.location = window.location.href.split(/[?#]/)[0] + "?logtype=" + $("#logTypeButton span").attr('id');
+        });
+    });
+
+</script>
+
 <?php
 echo '<center><div class="loadtime"><h4>Page Generated in '.$core->getPageLoadTime().' ms.</h4></div></center>';
 ?>
