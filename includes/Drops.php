@@ -71,7 +71,7 @@ class Drops
                           <th>Item value</th>
                           <th>Drop Amount</th>
                           <th>Drop Rarity</th>
-                          <th id="dropRarity">Drop Rarity Id</th>
+                          <th id="dropRarity" style="display: none"; >Drop Rarity Id</th>
                         </tr>
                       </thead>
                       <tbody>';
@@ -85,7 +85,7 @@ class Drops
                 echo '<td>' . round($npcDrop['value']/1000,2) . ' k</td>';
                 echo '<td>' . $npcDrop['amount'] . '</td>';
                 echo '<td>' . $npcDrop['rarity'] . '</td>';
-                echo '<td>' . $this->convertRaritytoID($npcDrop['rarity']) . '</td>';
+                echo '<td style="display: none";>' . $this->convertRaritytoID($npcDrop['rarity']) . '</td>';
                 echo '</tr>';
             }
             echo '</tbody>';
