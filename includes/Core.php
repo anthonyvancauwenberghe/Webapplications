@@ -20,7 +20,7 @@ class Core
         $this->setTimezone();
         $time = (string) $time;
         $time = round((int)($time)/1000);
-        return date('h:i:s d-M-Y', (string) $time);
+        return date('d-M-Y h:i:s ', (string) $time);
     }
 
     public function getDateof($timeUnit)
