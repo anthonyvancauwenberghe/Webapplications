@@ -12,13 +12,13 @@ class Core
     private $data;
 
     private function setTimezone(){
-        date_default_timezone_set('America/Los_Angeles');
+        date_default_timezone_set('Europe/Brussels');
     }
 
     public function convertToTime($time)
     {
         $this->setTimezone();
-        return date('h:i:s d-M-Y', $time->sec);
+        return date('h:i:s d-M-Y', $time->toDateTime());
     }
 
     public function getDateof($timeUnit)
