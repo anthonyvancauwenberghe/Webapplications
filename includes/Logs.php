@@ -175,7 +175,7 @@ class Logs
             }
             if (isset($trade)) {
                 echo '<tr>';
-                echo '<td><a href="../logs.php?logtype=trade?id=' . $trade["_id"] . '">' . $trade["_id"] . '</a></td>';
+                echo '<td><a href="../logs.php?logtype=trade&id=' . $trade["_id"] . '">' . $trade["_id"] . '</a></td>';
                 echo '<td>' . $this->core->convertToTime($trade['time']) . '</td>';
                 echo '<td>' . $name . '</td>';
                 echo '<td>TODO</td>';
