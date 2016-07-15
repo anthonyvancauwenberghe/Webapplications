@@ -55,7 +55,7 @@ class Logs
         echo '<h2>Please Enter A Playername</h2>';
     }
 
-    private function getTitle($ip = 'Here Comes IP', $mac = 'Here Comes MAC')
+    private function getLookupTitle($ip = 'Here Comes IP', $mac = 'Here Comes MAC')
     {
         $name = $this->getName();
 
@@ -64,6 +64,10 @@ class Logs
         } else {
             return ucfirst($this->getLogType()) . '<small>ALL</small>';
         }
+    }
+    public function printPageTitle()
+    {
+        echo ucwords($this->getLogType()).' Logs';
     }
 
     private function getName()
@@ -104,7 +108,7 @@ class Logs
 
         echo '<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title"><h2>' . $this->getTitle() . '</h2>
+                    <div class="x_title"><h2>' . $this->getLookupTitle() . '</h2>
                         <div class="clearfix"></div>
                     </div>
                         <div class="x_content">
@@ -150,7 +154,7 @@ class Logs
 
         echo '<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title"><h2>' . $this->getTitle() . '</h2>
+                    <div class="x_title"><h2>' . $this->getLookupTitle() . '</h2>
                         <div class="clearfix"></div>
                     </div>
                         <div class="x_content">
