@@ -18,6 +18,8 @@ class Core
     public function convertToTime($time)
     {
         $this->setTimezone();
+        $time = (string) $time;
+        $time = round((int)($time)/1000);
         return date('h:i:s d-M-Y', (string) $time);
     }
 
