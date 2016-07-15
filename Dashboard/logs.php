@@ -214,9 +214,9 @@ $template = new Template();
                                     <ul id="loglist" class="dropdown-menu">
                                         <li id="death"><a>Death Logs</a>
                                         </li>
-                                        <li id="trade"><a href="#">Trade Logs</a>
+                                        <li id="trade"><a>Trade Logs</a>
                                         </li>
-                                        <li id="accountvalues"><a href="#">Accountvalue Logs</a>
+                                        <li id="accountvalues"><a>Accountvalue Logs</a>
                                         </li>
                                         <li><a href="#">Test Log</a>
                                         </li>

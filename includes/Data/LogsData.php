@@ -5,7 +5,7 @@ class LogsData extends Data
 {
     public function getTradeLogsData($name = null)
     {
-        $query = array(array('log-type' => 'trade-log'), array('$or' => array(array('content.user.player-name' => $name), array('content.user-2.player-name' => $name))));
+        $query = array(array('$and' =>array('log-type' => 'trade-log'), array('$or' => array(array('content.user.player-name' => $name), array('content.user-2.player-name' => $name)))));
 
         $cursor = $this->find(Collection::LOGS, $query);
         return $cursor;

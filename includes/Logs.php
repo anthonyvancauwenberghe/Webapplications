@@ -59,7 +59,13 @@ class Logs
 
     private function getLogType()
     {
-        return (string)$_GET["logtype"];
+        if(isset($_GET["logtype"])){
+            return (string)$_GET["logtype"];
+        }
+        else {
+            return null;
+        }
+        
     }
 
 
