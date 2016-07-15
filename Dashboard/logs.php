@@ -216,7 +216,7 @@ $template = new Template();
                                         </li>
                                         <li id="trade"><a href="#">Trade Logs</a>
                                         </li>
-                                        <li id="accountvalues"><a href="#">AccountValue Logs</a>
+                                        <li id="accountvalues"><a href="#">Accountvalue Logs</a>
                                         </li>
                                         <li><a href="#">Test Log</a>
                                         </li>
@@ -253,16 +253,14 @@ $template = new Template();
 
                                     </ul>
                                 </div>
-                                  <button id="searchButton" class="btn btn-default" type="button">Go!</button>
+                                  <button id="searchButton" class="btn btn-default" type="button">Search</button>
                     </span>
                             </div>
                         </div>
                     </div>
                                 <!-- Logs get outputted here -->
                                 <?php
-                                if($_GET['logtype']=='accountvalues'){
-                                    $logs->getAccountvalues();
-                                }
+                                    $logs->printLogs();
                                 ?>
 
             </div>
