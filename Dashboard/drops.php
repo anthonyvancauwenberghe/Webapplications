@@ -345,6 +345,23 @@ $template = new Template();
     });
 </script>
 <!-- /Datatables -->
+
+<script>
+    var $_GET = {};
+
+    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+        function decode(s) {
+            return decodeURIComponent(s.split("+").join(" "));
+        }
+
+        $_GET[decode(arguments[1])] = decode(arguments[2]);
+    });
+    var npc = $_GET["npc"];
+    if(npc != ''){
+        $('#dropRarity').click();
+        $('#dropRarity').click();
+    }
+</script>
 <?php
 echo '<center><div class="loadtime"><h4>Page Generated in '.$core->getPageLoadTime().' ms.</h4></div></center>';
 ?>

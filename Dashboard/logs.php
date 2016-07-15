@@ -417,11 +417,42 @@ $template = new Template();
         $("#logTypeButton span").attr('id',$(this).attr('id'));
     });
 
+
     $(document).ready(function() {
         $("#searchButton").click(function(){
-            window.location = window.location.href.split(/[?#]/)[0] + "?logtype=" + $("#logTypeButton span").attr('id');
+            var searchValue = $('#searchform').val();
+
+            if (searchValue != ''){
+                window.location = window.location.href.split(/[?#]/)[0] + "?logtype=" + $("#logTypeButton span").attr('id') + "&name=" + searchValue;
+            }
+            else {
+                window.location = window.location.href.split(/[?#]/)[0] + "?logtype=" + $("#logTypeButton span").attr('id');
+            }
         });
-        $('#loglist').click()
+
+        var $_GET = {};
+
+        document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+            function decode(s) {
+                return decodeURIComponent(s.split("+").join(" "));
+            }
+
+            $_GET[decode(arguments[1])] = decode(arguments[2]);
+        });
+
+        var logType = $("#"+$_GET["logtype"]).text();
+        var searchValue = $_GET["name"];
+        if (logType != ''){
+            $("#logTypeButton span").attr('id',$("#"+$_GET["logtype"]).attr('id'));
+            $("#logTypeButton span").text(logType);
+        }
+
+        if(searchValue != ''){
+
+            $('#searchform').val(searchValue);
+        }
+
+        $('#loglist').click();
     });
 
 </script>

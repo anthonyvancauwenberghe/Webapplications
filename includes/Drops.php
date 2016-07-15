@@ -71,7 +71,7 @@ class Drops
                           <th>Item value</th>
                           <th>Drop Amount</th>
                           <th>Drop Rarity</th>
-                          <th class="sorting_desc">Drop Rarity Id</th>
+                          <th id="dropRarity">Drop Rarity Id</th>
                         </tr>
                       </thead>
                       <tbody>';
