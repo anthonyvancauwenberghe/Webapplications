@@ -13,9 +13,11 @@ class LoginSystem
         if ($rank != null) {
             $this->processLoginCheck();
 
+            /*
             if ($this->login_check()) {
                 $this->redirectNoPermission($rank);
             }
+            */
 
         }
 
@@ -29,19 +31,13 @@ class LoginSystem
         return $this->core;
     }
 
-    public function ownerPermission()
-    {
-        if ($this->getRank() != 'OWNER') {
-            echo 'You need to be Owner to get access to this page';
-            die();
-        }
-    }
 
     public function redirectNoPermission($rank)
     {
         if (!$this->hasPermission($rank)) {
+            header("Location: ../login.php");
             echo 'You do not have the necessary permissions to get access to this page';
-            //die();
+            die();
         }
     }
 
@@ -297,7 +293,13 @@ class LoginSystem
 
     public function getName()
     {
-        return $_SESSION['username'];
+        if(isset($_SESSION['username'])) {
+            return $_SESSION['username'];
+        }
+        else {
+            return null;
+        }
+        
     }
 
     public function getRank()
