@@ -16,8 +16,9 @@ class LoginSystem
             if ($this->login_check()) {
                 $this->redirectNoPermission($rank);
             }
+            $this->processLogout();
         }
-        $this->processLogout();
+
     }
 
     private function getCore()
@@ -40,6 +41,11 @@ class LoginSystem
     {
         if (!$this->hasPermission($rank) || $rank==null) {
             echo 'You do not have the necessary permissions to get access to this page';
+            echo $_SESSION['user_id'];
+            echo $_SESSION['username'];
+            echo $_SESSION['login_string'];
+            echo $_SESSION['rank'];
+
             die();
         }
     }
