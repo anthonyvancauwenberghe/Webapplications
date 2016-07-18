@@ -10,7 +10,7 @@ require_once '../libs/AutoLoader.php';
 
 $core = new Core();
 $core->setStartTime();
-$login = new LoginSystem(Rank::MODERATOR);
+$login = new LoginSystem(Rank::PLAYER);
 
 $logs = new Logs();
 $template = new Template($login);

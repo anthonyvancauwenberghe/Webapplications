@@ -8,21 +8,21 @@
  */
 class Rank
 {
-    const PLAYER=0;
-    const HERO=1;
-    const LEGEND =2;
-    const VETERAN = 3;
-    const DONATOR = 4;
-    const SUPER_DONATOR = 5;
-    const EXTREME_DONATOR = 6;
-    const LEGENDARY_DONATOR = 7;
-    const MYTHICAL_DONATOR = 8;
-    const HELPER = 9;
-    const MODERATOR = 10;
-    const GLOBAL_MODERATOR = 11;
-    const COMMUNITY_MANAGER = 12;
-    const HEAD_MODERATOR = 13;
-    const ADMINISTRATOR = 14;
-    const DEVELOPER = 15;
-    const OWNER = 16;
+    const PLAYER=1;
+    const HERO=2;
+    const LEGEND =3;
+    const VETERAN = 4;
+    const DONATOR = 5;
+    const SUPER_DONATOR = 6;
+    const EXTREME_DONATOR = 7;
+    const LEGENDARY_DONATOR = 8;
+    const MYTHICAL_DONATOR = 9;
+    const HELPER = 10;
+    const MODERATOR = 11;
+    const GLOBAL_MODERATOR = 12;
+    const COMMUNITY_MANAGER = 13;
+    const HEAD_MODERATOR = 14;
+    const ADMINISTRATOR = 15;
+    const DEVELOPER = 16;
+    const OWNER = 17;
 }
