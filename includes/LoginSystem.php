@@ -180,10 +180,10 @@ class LoginSystem
         if (!isset($this->data)) {
             $this->data = new Data();
         }
-
+            echo "inside login check";
         // Check if all session variables are set
         if (isset($_SESSION['user_id'], $_SESSION['username'], $_SESSION['login_string'], $_SESSION['rank'])) {
-
+            echo "you got logged in!";
             $user_id = $_SESSION['user_id'];
             $login_string = $_SESSION['login_string'];
             $username = $_SESSION['username'];
@@ -212,8 +212,7 @@ class LoginSystem
                 return false;
             }
         } else {
-
-           $this->logout();
+            echo "login Failed";
             return false;
         }
     }
