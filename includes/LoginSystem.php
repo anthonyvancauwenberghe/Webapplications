@@ -40,7 +40,7 @@ class LoginSystem
         if (!$this->hasPermission($rank)) {
             //header("Location: ../login.php");
             echo 'You do not have the necessary permissions to get access to this page';
-            echo '<br> because: '. $this->getRank().'<'.$this->rank();
+            echo '<br> because: '. $this->getRank().'<'.$this->rank;
             die();
         }
     }
