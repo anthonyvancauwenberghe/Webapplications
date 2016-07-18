@@ -7,6 +7,7 @@ class Template
     public function __construct($login) {
         $this->login=$login;
     }
+
     public function printSidebar()
     {
         echo '<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
@@ -177,7 +178,7 @@ class Template
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        <h2><?php echo $login->getName(); ?></h2>
+                        <h2>' . ucfirst($this->login->getName()) . '</h2>
                     </div>
                 </div>';
     }

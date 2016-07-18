@@ -11,12 +11,9 @@ require_once '../libs/AutoLoader.php';
 $core = new Core();
 $core->setStartTime();
 $login = new LoginSystem();
-$login->sec_session_start();
-$login->processLogout();
-$login->processLoginCheck();
 
 $drops = new Drops();
-$template = new Template();
+$template = new Template($login);
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +72,7 @@ $template = new Template();
                 <br />
 
                 <!-- sidebar menu -->
-                <?php $template->printSidebar($login); ?>
+                <?php $template->printSidebar(); ?>
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
