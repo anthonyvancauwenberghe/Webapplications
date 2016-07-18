@@ -45,17 +45,16 @@ class LoginSystem
             echo $_SESSION['username'];
             echo $_SESSION['login_string'];
             echo $_SESSION['rank'];
-
             die();
         }
     }
 
     public function hasPermission($rank)
     {
-        if ($this->getRank() < $rank || $rank==null) {
-            return false;
-        } else {
+        if ($this->getRank()>= $rank && $rank!=null) {
             return true;
+        } else {
+            return false;
         }
     }
 
