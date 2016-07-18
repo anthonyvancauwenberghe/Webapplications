@@ -49,5 +49,17 @@ class PlayerData extends Data
 
 
     }
+
+    public function getPlayerIP($username){
+        $playerDocument = $this->findOne(Collection::CHARACTERS,['player-name'=>$username]);
+
+        return $playerDocument['last-ip']['ip-address'];
+    }
+
+    public function getPlayerMAC($username){
+        $playerDocument = $this->findOne(Collection::CHARACTERS,['player-name'=>$username]);
+
+        return $playerDocument['last-mac']['ip-address'];
+    }
 }
 

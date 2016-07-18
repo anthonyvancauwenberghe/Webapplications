@@ -41,34 +41,40 @@ class Logs
         }
     }
 
-    private function initPlayerData()
+    private function getPlayerData()
     {
         if (!isset($this->playerData)) {
             $this->playerData = new PlayerData();
         }
+        return $this->playerData;
     }
 
-    private function initLogsData()
+    private function getLogsData()
     {
         if (!isset($this->logsData)) {
             $this->logsData = new LogsData();
         }
+        return $this->logsData;
     }
 
-    private function initCore()
+    private function getCore()
     {
         if (!isset($this->core)) {
             $this->core = new Core();
         }
+        return $this->core;
     }
 
     private function enterName(){
         echo '<h2>Please Enter A Playername</h2>';
     }
 
-    private function getLookupTitle($ip = 'Here Comes IP', $mac = 'Here Comes MAC')
+
+    private function getLookupTitle()
     {
         $name = $this->getName();
+        $ip = $this->getPlayerData()->getPlayerIP($name);
+        $mac = $this->getPlayerData()->getPlayerMAC($name);
 
         if (isset($name)) {
             return ucfirst($this->getLogType()) . '<small>' . $name . '</small> | ' . $ip . ' | ' . $mac;
@@ -84,8 +90,7 @@ class Logs
     private function getName()
     {
         if (isset($_GET["name"])) {
-            $this->initCore();
-            return (string)$this->core->normalizeUsername($_GET["name"]);
+            return (string)$this->getCore()->normalizeUsername($_GET["name"]);
         } else {
             return null;
         }
@@ -113,9 +118,9 @@ class Logs
 
     private function printAccountValueLogs()
     {
-        $this->initPlayerData();
+        $this->getPlayerData();
 
-        $playerValuesArray = $this->playerData->getAccountvalues();
+        $playerValuesArray = $this->getPlayerData()->getAccountvalues();
 
         echo '<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -158,10 +163,9 @@ class Logs
 
     private function printTradeLogs()
     {
-        $this->initLogsData();
-        $this->initCore();
 
-        $cursor = $this->logsData->getTradeLogsData($this->getName());
+
+        $cursor = $this->getLogsData()->getTradeLogsData($this->getName());
 
         echo '<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -191,7 +195,7 @@ class Logs
             if (isset($trade)) {
                 echo '<tr>';
                 echo '<td><a href="../logs.php?logtype=trade&id=' . $trade["_id"] . '">' . $trade["_id"] . '</a></td>';
-                echo '<td>' . $this->core->convertToTime($trade['time']) . '</td>';
+                echo '<td>' . $this->getCore()->convertToTime($trade['time']) . '</td>';
                 echo '<td>' . $name . '</td>';
                 echo '<td>TODO</td>';
                 echo '<td>TODO</td>';
@@ -207,7 +211,45 @@ class Logs
     }
 
     private function printDeathLogs(){
-        echo $this->TODO();
+        $cursor = $this->getLogsData()->getDeathLogsData($this->getName());
+
+        echo '<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title"><h2>' . $this->getLookupTitle() . '</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                        <div class="x_content">
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%"><thead>
+                        <tr>
+                          <th>DeathID</th>
+                          <th>TimeStamp</th>
+                          <th>Killed By</th>
+                          <th>Items Lost</th>
+                          <th>Items Kept</th>
+                          <th>Weighted AccountValue Lost (Mil)</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody>';
+
+        foreach ($cursor as $death) {
+
+            if (isset($death)) {
+                echo '<tr>';
+                echo '<td><a href="../logs.php?logtype=death&id=' . $death["_id"] . '">' . $death["_id"] . '</a></td>';
+                echo '<td>' . $this->getCore()->convertToTime($death['time']) . '</td>';
+                echo '<td>' . $death['content']['killer'] . '</td>';
+                echo '<td>' . count($death['content']['items-lost']) . '</td>';
+                echo '<td>' . count($death['content']['items-kept']) . '</td>';
+                echo '<td>TODO</td>';
+                echo '</tr>';
+            }
+        }
+        echo '</tbody></table>
+
+                        </div>
+                    </div>
+                </div>';
     }
 
     private function TODO(){
