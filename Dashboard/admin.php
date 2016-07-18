@@ -10,7 +10,7 @@ require_once '../libs/AutoLoader.php';
 
 $core = new Core();
 $core->setStartTime();
-$login = new LoginSystem(Rank::MODERATOR);
+$login = new LoginSystem(Rank::ADMINISTRATOR);
 
 $logs = new Logs();
 $template = new Template($login);
@@ -26,7 +26,7 @@ $template = new Template($login);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Logs | DeviousPs</title>
+    <title>Admin Panel | DeviousPs</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -81,17 +81,7 @@ $template = new Template($login);
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
-                <div class="page-title">
-                    <!-- Page Title -->
-                    <?php $template->printPageTitle($logs->getPageTitle()); ?>
 
-                    <!-- Search Bar -->
-                    <?php $template->printLogsSearchBar(); ?>
-
-                    <!-- Logs Content -->
-                    <?php $logs->printLogs(); ?>
-
-                </div>
             </div>
         </div>
         <!-- /page content -->

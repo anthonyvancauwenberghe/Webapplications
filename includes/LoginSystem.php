@@ -6,10 +6,17 @@ class LoginSystem
     private $core;
     private $data;
     
-    public function __construct() {
+    public function __construct($rank) {
         $this->sec_session_start();
         $this->processLogout();
-        $this->processLoginCheck();
+        if($rank!=null){
+            $this->processLoginCheck();
+
+            if ($this->login_check()) {
+                $this->redirectNoPermission($rank);
+            } 
+        }
+        
     }
     
     private function getCore()

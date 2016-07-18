@@ -14,16 +14,23 @@ class Template
                     <div class="menu_section">
                         <h3>' . ucfirst($this->login->getRankName()) . '</h3>
                                 <ul class="nav side-menu">
+                                
                                     <li><a href="../index.php"><i class="fa fa-home"></i> Home</a>
-                                    </li>
-                                    <li><a href="../logs.php"><i class="fa fa-bar-chart-o"></i> Logs</a>
-                                    </li>
-                                    <li><a href="../drops.php"><i class="fa fa-bug"></i> Drops</a>
                                     </li>';
+                                    
+                                    if( $this->login->hasPermission(Rank::MODERATOR)){
+                                        echo '<li><a href="../logs.php"><i class="fa fa-bar-chart-o"></i> Logs</a>
+                                    </li>';
+                                    }
+        
+                                    echo '<li><a href="../drops.php"><i class="fa fa-bug"></i> Drops</a>
+                                    </li>';
+        
                                     if( $this->login->hasPermission(Rank::HEAD_MODERATOR)){
                                         echo '<li><a href="../admin.php"><i class="fa fa-desktop"></i> Admin Panel</a>
                                     </li>';
                                     }
+        
                                     echo'</ul>
                     </div>
               </div>';
