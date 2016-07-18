@@ -39,7 +39,7 @@ class LoginSystem
 
     public function redirectNoPermission($rank)
     {
-        if (!$this->hasPermission($rank) || $rank==null) {
+        if (!$this->hasPermission($rank)) {
             echo 'You do not have the necessary permissions to get access to this page';
             echo $_SESSION['user_id'];
             echo $_SESSION['username'];
@@ -180,10 +180,10 @@ class LoginSystem
         if (!isset($this->data)) {
             $this->data = new Data();
         }
-            echo "inside login check";
+
         // Check if all session variables are set
         if (isset($_SESSION['user_id'], $_SESSION['username'], $_SESSION['login_string'], $_SESSION['rank'])) {
-            echo "you got logged in!";
+
             $user_id = $_SESSION['user_id'];
             $login_string = $_SESSION['login_string'];
             $username = $_SESSION['username'];
@@ -212,7 +212,7 @@ class LoginSystem
                 return false;
             }
         } else {
-            echo "login Failed";
+
             return false;
         }
     }
