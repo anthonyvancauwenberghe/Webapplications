@@ -11,13 +11,10 @@ require_once '../libs/AutoLoader.php';
 $core = new Core();
 $core->setStartTime();
 $login = new LoginSystem();
-$login->sec_session_start();
-$login->processLogout();
-$login->processLoginCheck();
 
 $logs = new Logs();
-$template = new Template();
-$login->ownerPermission();
+$template = new Template($login);
+$login->redirectNoPermission(Rank::MODERATOR);
 ?>
 
 <!DOCTYPE html>
@@ -62,191 +59,52 @@ $login->ownerPermission();
                 <div class="clearfix"></div>
 
                 <!-- menu profile quick info -->
-                <div class="profile">
-                    <div class="profile_pic">
-                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2><?php echo $login->getName(); ?></h2>
-                    </div>
-                </div>
+                <?php $template->printMenuProfile(); ?>
                 <!-- /menu profile quick info -->
 
-                <br />
+                <br/>
 
                 <!-- sidebar menu -->
-                <?php $template->printSidebar($login); ?>
+                <?php $template->printSidebar(); ?>
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="../index.php/?logout=true">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
+                <?php $template->printFooterButtons(); ?>
                 <!-- /menu footer buttons -->
             </div>
         </div>
 
         <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <nav>
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="images/img.jpg" alt=""><?php echo $login->getName(); ?>
-                                <span class=" fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;"> Profile</a></li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                </li>
-                                <li><a href="javascript:;">Help</a></li>
-                                <li><a href="login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                            </ul>
-                        </li>
-
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
-                            </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="text-center">
-                                        <a>
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <?php $template->printTopNavigation(); ?>
         <!-- /top navigation -->
 
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
-                    <div class="title_left">
-                        <h3><?php
-                            $logs->printPageTitle();
-                            ?></h3>
-                    </div>
+                    <!-- Page Title -->
+                    <?php $template->printPageTitle($logs->getPageTitle()); ?>
 
-                    <div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input id="searchform" type="text" class="form-control" placeholder="Search for...">
+                    <!-- Search Bar -->
+                    <?php $template->printLogsSearchBar(); ?>
 
+                    <!-- Logs Content -->
+                    <?php $logs->printLogs(); ?>
 
-                                <span class="input-group-btn">
-                      <div class="btn-group open">
-                                    <button id="logTypeButton" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="true"> <span id="type">Log Type</span> </button>
-                                    <ul id="loglist" class="dropdown-menu">
-                                        <li id="death"><a>Death Logs</a>
-                                        </li>
-                                        <li id="trade"><a>Trade Logs</a>
-                                        </li>
-                                        <li id="accountvalues"><a>Accountvalue Logs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                  <button id="searchButton" class="btn btn-default" type="button">Search</button>
-                    </span>
-                            </div>
-                        </div>
-                    </div>
-                                <!-- Logs get outputted here -->
-                                <?php
-                                    $logs->printLogs();
-                                ?>
-
+                </div>
             </div>
         </div>
-    </div>
-    <!-- /page content -->
+        <!-- /page content -->
 
-    <!-- footer content -->
-    <footer>
-        <div class="pull-right">
-            All Rights Reserved by - <a href="http://deviousps.com">DeviousPs</a>
-        </div>
-        <div class="clearfix"></div>
-    </footer>
-    <!-- /footer content -->
-</div>
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                All Rights Reserved by - <a href="http://deviousps.com">DeviousPs</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
 </div>
 
 <!-- jQuery -->
@@ -279,8 +137,8 @@ $login->ownerPermission();
 
 <!-- Datatables -->
 <script>
-    $(document).ready(function() {
-        var handleDataTableButtons = function() {
+    $(document).ready(function () {
+        var handleDataTableButtons = function () {
             if ($("#datatable-buttons").length) {
                 $("#datatable-buttons").DataTable({
                     dom: "Bfrtip",
@@ -311,10 +169,10 @@ $login->ownerPermission();
             }
         };
 
-        TableManageButtons = function() {
+        TableManageButtons = function () {
             "use strict";
             return {
-                init: function() {
+                init: function () {
                     handleDataTableButtons();
                 }
             };
@@ -343,8 +201,8 @@ $login->ownerPermission();
     });
 </script>
 <script>
-    $(document).ready(function() {
-        $('#pdf').change(function() {
+    $(document).ready(function () {
+        $('#pdf').change(function () {
             var newurl = $('#searchform').val();
             $('a.target').attr('href', newurl);
         });
@@ -354,17 +212,17 @@ $login->ownerPermission();
 
 <script>
 
-    $("#loglist li").on('click', function() {
+    $("#loglist li").on('click', function () {
         $("#logTypeButton span").text($(this).text());
-        $("#logTypeButton span").attr('id',$(this).attr('id'));
+        $("#logTypeButton span").attr('id', $(this).attr('id'));
     });
 
 
-    $(document).ready(function() {
-        $("#searchButton").click(function(){
+    $(document).ready(function () {
+        $("#searchButton").click(function () {
             var searchValue = $('#searchform').val();
 
-            if (searchValue != ''){
+            if (searchValue != '') {
                 window.location = window.location.href.split(/[?#]/)[0] + "?logtype=" + $("#logTypeButton span").attr('id') + "&name=" + searchValue;
             }
             else {
@@ -382,14 +240,14 @@ $login->ownerPermission();
             $_GET[decode(arguments[1])] = decode(arguments[2]);
         });
 
-        var logType = $("#"+$_GET["logtype"]).text();
+        var logType = $("#" + $_GET["logtype"]).text();
         var searchValue = $_GET["name"];
-        if (logType != ''){
-            $("#logTypeButton span").attr('id',$("#"+$_GET["logtype"]).attr('id'));
+        if (logType != '') {
+            $("#logTypeButton span").attr('id', $("#" + $_GET["logtype"]).attr('id'));
             $("#logTypeButton span").text(logType);
         }
 
-        if(searchValue != ''){
+        if (searchValue != '') {
 
             $('#searchform').val(searchValue);
         }
@@ -400,7 +258,7 @@ $login->ownerPermission();
 </script>
 
 <?php
-echo '<center><div class="loadtime"><h4>Page Generated in '.$core->getPageLoadTime().' ms.</h4></div></center>';
+echo '<center><div class="loadtime"><h4>Page Generated in ' . $core->getPageLoadTime() . ' ms.</h4></div></center>';
 ?>
 </body>
 </html>

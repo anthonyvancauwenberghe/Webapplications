@@ -5,7 +5,13 @@ class LoginSystem
 {
     private $core;
     private $data;
-
+    
+    public function __construct() {
+        $this->sec_session_start();
+        $this->processLogout();
+        $this->processLoginCheck();
+    }
+    
     private function getCore()
     {
         if (!isset($this->core)) {
@@ -17,6 +23,22 @@ class LoginSystem
         if($this->getRank()!='OWNER'){
             echo 'You need to be Owner to get access to this page';
             die();
+        }
+    }
+    
+    public function redirectNoPermission($rank){
+        if(!$this->hasPermission($rank)){
+            echo 'You do not have the necessary permissions to get access to this page';
+            die();
+        }
+    }
+
+    public function hasPermission($rank){
+        if($this->getRank()<$rank){
+            return false;
+        }
+        else{
+            return true;
         }
     }
     public function processLogout()
@@ -249,7 +271,66 @@ class LoginSystem
     }
 
     public function getRank(){
+        switch ($_SESSION['rank']){
+            case 'PLAYER':
+                return Rank::PLAYER;
+                break;
+            case 'HERO':
+                return Rank::HERO;
+                break;
+            case 'LEGEND':
+                return Rank::LEGEND;
+                break;
+            case 'VETERAN':
+                return Rank::VETERAN;
+                break;
+            case 'DONATOR':
+                return Rank::DONATOR;
+                break;
+            case 'SUPER_DONATOR':
+                return Rank::SUPER_DONATOR;
+                break;
+            case 'EXTREME_DONATOR':
+                return Rank::EXTREME_DONATOR;
+                break;
+            case 'LEGENDARY_DONATOR':
+                return Rank::LEGENDARY_DONATOR;
+                break;
+            case 'MYTHICAL_DONATOR':
+                return Rank::MYTHICAL_DONATOR;
+                break;
+            case 'HELPER':
+                return Rank::HELPER;
+                break;
+            case 'MODERATOR':
+                return Rank::MODERATOR;
+                break;
+            case 'GLOBAL_MODERATOR':
+                return Rank::GLOBAL_MODERATOR;
+                break;
+            case 'COMMUNITY_MANAGER':
+                return Rank::COMMUNITY_MANAGER;
+                break;
+            case 'HEAD_MODERATOR':
+                return Rank::HEAD_MODERATOR;
+                break;
+            case 'ADMINISTRATOR':
+                return Rank::ADMINISTRATOR;
+                break;
+            case 'DEVELOPER':
+                return Rank::DEVELOPER;
+                break;
+            case 'OWNER':
+                return Rank::OWNER;
+                break;
+
+        }
         return $_SESSION['rank'];
     }
+
+    public function getRankName(){
+        return $_SESSION['rank'];
+    }
+
 
 }

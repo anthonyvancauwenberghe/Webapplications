@@ -76,9 +76,9 @@ class Logs
             return ucfirst($this->getLogType()) . '<small>ALL</small>';
         }
     }
-    public function printPageTitle()
+    public function getPageTitle()
     {
-        echo ucwords($this->getLogType()).' Logs';
+        return ucwords($this->getLogType()).' Logs';
     }
 
     private function getName()
