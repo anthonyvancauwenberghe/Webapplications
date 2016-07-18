@@ -47,7 +47,7 @@ class LoginSystem
 
     public function hasPermission($rank)
     {
-        if ($this->getRank()>= $rank && $rank!=null) {
+        if ($this->getRank()>= $rank) {
             return true;
         } else {
             return false;
