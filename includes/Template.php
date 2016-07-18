@@ -19,7 +19,12 @@ class Template
                                     <li><a href="../logs.php"><i class="fa fa-bar-chart-o"></i> Logs</a>
                                     </li>
                                     <li><a href="../drops.php"><i class="fa fa-bug"></i> Drops</a>
-                                    </li></ul>
+                                    </li>';
+                                    if( $this->login->hasPermission(Rank::HEAD_MODERATOR)){
+                                        echo '<li><a href="../admin.php"><i class="fa fa-desktop"></i> Admin Panel</a>
+                                    </li>';
+                                    }
+                                    echo'</ul>
                     </div>
               </div>';
     }
