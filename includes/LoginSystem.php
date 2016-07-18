@@ -9,14 +9,14 @@ class LoginSystem
     public function __construct($rank)
     {
         $this->sec_session_start();
-
+        $this->processLogout();
         if ($rank != null) {
             $this->processLoginCheck();
 
             if ($this->login_check()) {
                 $this->redirectNoPermission($rank);
             }
-            $this->processLogout();
+
         }
 
     }
@@ -41,7 +41,7 @@ class LoginSystem
     {
         if (!$this->hasPermission($rank)) {
             echo 'You do not have the necessary permissions to get access to this page';
-            die();
+            //die();
         }
     }
 
