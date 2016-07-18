@@ -5,20 +5,23 @@ class LoginSystem
 {
     private $core;
     private $data;
+    private $rank;
 
     public function __construct($rank)
     {
         $this->sec_session_start();
-        $this->processLogout();
-        if ($rank == -1) {
+        $this->rank = rank;
 
-        }
-        else {
+        if ($this->rank != -1) {
+            $this->processLogout();
             $this->processLoginCheck();
 
             if ($this->login_check()) {
                 $this->redirectNoPermission($rank);
             }
+        }
+        else {
+            $this->processLoginCheckLoginPage();
         }
 
     }
@@ -35,8 +38,9 @@ class LoginSystem
     public function redirectNoPermission($rank)
     {
         if (!$this->hasPermission($rank)) {
-            header("Location: ../login.php");
+            //header("Location: ../login.php");
             echo 'You do not have the necessary permissions to get access to this page';
+            echo '<br> because: '. $this->getRank().'<'.$this->rank();
             die();
         }
     }
