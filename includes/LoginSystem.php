@@ -5,20 +5,21 @@ class LoginSystem
 {
     private $core;
     private $data;
-    
-    public function __construct($rank) {
+
+    public function __construct($rank)
+    {
         $this->sec_session_start();
-        $this->processLogout();
-        if($rank!=null){
+
+        if ($rank != null) {
             $this->processLoginCheck();
 
             if ($this->login_check()) {
                 $this->redirectNoPermission($rank);
-            } 
+            }
         }
-        
+        $this->processLogout();
     }
-    
+
     private function getCore()
     {
         if (!isset($this->core)) {
@@ -26,28 +27,32 @@ class LoginSystem
         }
         return $this->core;
     }
-    public function ownerPermission(){
-        if($this->getRank()!='OWNER'){
+
+    public function ownerPermission()
+    {
+        if ($this->getRank() != 'OWNER') {
             echo 'You need to be Owner to get access to this page';
             die();
         }
     }
-    
-    public function redirectNoPermission($rank){
-        if(!$this->hasPermission($rank)){
+
+    public function redirectNoPermission($rank)
+    {
+        if (!$this->hasPermission($rank)) {
             echo 'You do not have the necessary permissions to get access to this page';
             die();
         }
     }
 
-    public function hasPermission($rank){
-        if($this->getRank()<$rank){
+    public function hasPermission($rank)
+    {
+        if ($this->getRank() < $rank) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
+
     public function processLogout()
     {
         if (isset($_GET['logout'])) {
@@ -67,6 +72,23 @@ class LoginSystem
             exit();
         }
 
+    }
+
+    public function logout()
+    {
+        // Unset all session values
+        $_SESSION = array();
+
+        // get session parameters
+        $params = session_get_cookie_params();
+
+        // Delete the actual cookie.
+        setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+
+        // Destroy session
+        session_destroy();
+        header("Location: ../index.php");
+        exit();
     }
 
     public function sec_session_start()
@@ -185,7 +207,7 @@ class LoginSystem
             }
         } else {
 
-            // Not logged in
+           $this->logout();
             return false;
         }
     }
@@ -272,13 +294,15 @@ class LoginSystem
     {
         return false;
     }
-    
-    public function getName(){
+
+    public function getName()
+    {
         return $_SESSION['username'];
     }
 
-    public function getRank(){
-        switch ($_SESSION['rank']){
+    public function getRank()
+    {
+        switch ($_SESSION['rank']) {
             case 'PLAYER':
                 return Rank::PLAYER;
                 break;
@@ -335,7 +359,8 @@ class LoginSystem
         return $_SESSION['rank'];
     }
 
-    public function getRankName(){
+    public function getRankName()
+    {
         return $_SESSION['rank'];
     }
 
