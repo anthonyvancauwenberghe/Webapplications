@@ -49,7 +49,7 @@ class Logs
                 break;
             
             default:
-                $this->TODO();
+                echo $this->TODO();
         }
     }
 
@@ -265,7 +265,7 @@ class Logs
     }
     
     public function printDuelLogs(){
-        $this->TODO();
+        echo $this->TODO();
     }
 
     private function TODO(){
