@@ -10,7 +10,7 @@ class LoginSystem
     public function __construct($rank)
     {
         $this->sec_session_start();
-        $this->rank = rank;
+        $this->rank = $rank;
 
         if ($this->rank != -1) {
             $this->processLogout();
