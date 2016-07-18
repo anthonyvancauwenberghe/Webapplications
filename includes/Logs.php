@@ -14,30 +14,42 @@ class Logs
         $logType = $this->getLogType();
         $name = $this->getName();
         $id = $this->getID();
-        if ($logType == "accountvalues") {
-            $this->printAccountValueLogs();
-        }
-        elseif ($logType == "trade" ) {
-            if(isset($name)){
-                $this->printTradeLogs();
-            }
-            elseif(isset($id)){
-                echo '<h1>TODO</h1>';
-            }
-            else{
-                $this->enterName();
-            }
-        }
-        elseif ($logType == "death" ) {
-            if(isset($name)){
-                $this->printDeathLogs();
-            }
-            elseif(isset($id)){
-                echo '<h1>TODO</h1>';
-            }
-            else{
-                $this->enterName();
-            }
+        
+        switch ($logType){
+            case 'accountvalues':
+                $this->printAccountValueLogs();
+                break;
+            
+            case 'trade':
+                if(isset($name)){
+                    $this->printTradeLogs();
+                }
+                elseif(isset($id)){
+                    echo '<h1>TODO</h1>';
+                }
+                else{
+                    $this->enterName();
+                }
+                break;
+            
+            case 'death':
+                if(isset($name)){
+                    $this->printDeathLogs();
+                }
+                elseif(isset($id)){
+                    echo '<h1>TODO</h1>';
+                }
+                else{
+                    $this->enterName();
+                }
+                break;
+            
+            case 'duel':
+                $this->printDuelLogs();
+                break;
+            
+            default:
+                $this->TODO();
         }
     }
 
@@ -251,8 +263,13 @@ class Logs
                     </div>
                 </div>';
     }
+    
+    public function printDuelLogs(){
+        $this->TODO();
+    }
 
     private function TODO(){
         return '<h1> Still got to code this shit</h1>';
     }
+    
 }

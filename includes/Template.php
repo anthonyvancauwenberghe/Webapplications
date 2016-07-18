@@ -171,6 +171,20 @@ class Template
                                         </li>
                                         <li id="trade"><a>Trade Logs</a>
                                         </li>
+                                        <li id="duel"><a>Duel Logs</a>
+                                        </li>
+                                        <li id="pickup-item"><a>Pickup-Item Logs</a>
+                                        </li>
+                                        <li id="kill"><a>Kill Logs</a>
+                                        </li>
+                                        <li id="drop-item"><a>Drop-Item Logs</a>
+                                        </li>
+                                        <li id="public-chat"><a>Public Chat Logs</a>
+                                        </li>
+                                        <li id="private-chat"><a>Private Chat Logs</a>
+                                        </li>
+                                        <li id="clan-chat"><a>Clan Chat Logs</a>
+                                        </li>
                                         <li id="accountvalues"><a>Accountvalue Logs</a>
                                         </li>
                                     </ul>
@@ -181,6 +195,7 @@ class Template
                         </div>
                     </div>';
     }
+
     
     public function printMenuProfile(){
         echo '<div class="profile">
