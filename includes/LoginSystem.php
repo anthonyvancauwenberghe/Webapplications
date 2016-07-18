@@ -10,15 +10,15 @@ class LoginSystem
     {
         $this->sec_session_start();
         $this->processLogout();
-        if ($rank != null) {
+        if ($rank == -1) {
+
+        }
+        else {
             $this->processLoginCheck();
 
-            /*
             if ($this->login_check()) {
                 $this->redirectNoPermission($rank);
             }
-            */
-
         }
 
     }

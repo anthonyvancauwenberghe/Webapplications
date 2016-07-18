@@ -18,7 +18,7 @@
 
 require_once '../libs/AutoLoader.php';
 
-$login = new LoginSystem(null);
+$login = new LoginSystem(-1);
 $login->processLoginCheckLoginPage();
 
 ?>
