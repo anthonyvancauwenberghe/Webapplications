@@ -16,6 +16,10 @@ class Logs
         $id = $this->getID();
         
         switch ($logType){
+            
+            case null:
+                break;
+
             case 'accountvalues':
                 $this->printAccountValueLogs();
                 break;
