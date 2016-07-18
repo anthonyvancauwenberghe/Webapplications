@@ -20,7 +20,7 @@ class Template
                                     </li>
                                     <li><a href="../drops.php"><i class="fa fa-bug"></i> Drops</a>
                                     </li>'.
-                                    $this->login->hasRank(Rank::HEAD_MODERATOR) ?
+                                    $this->login->hasPermission(Rank::HEAD_MODERATOR) ?
                                     '<li><a href="../admin.php"><i class="fa fa-desktop"></i> Admin</a>
                                     </li>'  : ''.
                                     '</ul>
