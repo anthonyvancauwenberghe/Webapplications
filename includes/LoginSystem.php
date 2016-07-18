@@ -40,14 +40,7 @@ class LoginSystem
     public function redirectNoPermission($rank)
     {
         if (!$this->hasPermission($rank)) {
-            echo $rank;
-            echo $this->getRankName();
-            echo $this->getRank();
             echo 'You do not have the necessary permissions to get access to this page';
-            echo $_SESSION['user_id'];
-            echo $_SESSION['username'];
-            echo $_SESSION['login_string'];
-            echo $_SESSION['rank'];
             die();
         }
     }

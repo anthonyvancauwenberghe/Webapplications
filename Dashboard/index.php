@@ -14,7 +14,6 @@ $login = new LoginSystem(Rank::PLAYER);
 
 $logs = new Logs();
 $template = new Template($login);
-$login->redirectNoPermission(Rank::PLAYER);
 ?>
 
 <!DOCTYPE html>
