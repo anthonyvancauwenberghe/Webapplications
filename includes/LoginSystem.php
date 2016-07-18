@@ -38,7 +38,7 @@ class LoginSystem
 
     public function redirectNoPermission($rank)
     {
-        if (!$this->hasPermission($rank)) {
+        if (!$this->hasPermission($rank) || $rank==null) {
             echo 'You do not have the necessary permissions to get access to this page';
             die();
         }
@@ -46,7 +46,7 @@ class LoginSystem
 
     public function hasPermission($rank)
     {
-        if ($this->getRank() < $rank) {
+        if ($this->getRank() < $rank || $rank==null) {
             return false;
         } else {
             return true;
@@ -302,7 +302,7 @@ class LoginSystem
 
     public function getRank()
     {
-        switch ($_SESSION['rank']) {
+        switch ($this->getRankName()) {
             case 'PLAYER':
                 return Rank::PLAYER;
                 break;
@@ -354,14 +354,20 @@ class LoginSystem
             case 'OWNER':
                 return Rank::OWNER;
                 break;
-
+            case null:
+                return Rank::PLAYER;
+                break;
         }
-        return $_SESSION['rank'];
     }
 
     public function getRankName()
     {
-        return $_SESSION['rank'];
+        if(isset($_SESSION['rank'])) {
+            return $_SESSION['rank'];
+        }
+        else {
+            return null;
+        }
     }
 
 
