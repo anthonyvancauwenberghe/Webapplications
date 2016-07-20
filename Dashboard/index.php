@@ -12,7 +12,6 @@ $core = new Core();
 $core->setStartTime();
 $login = new LoginSystem(Rank::PLAYER);
 
-$logs = new Logs();
 $template = new Template($login);
 ?>
 
@@ -83,6 +82,7 @@ $template = new Template($login);
 
             </div>
         </div>
+        
         <!-- /page content -->
         <?php $template->printPlayerDashboard(); ?>
 

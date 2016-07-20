@@ -12,7 +12,6 @@ $core = new Core();
 $core->setStartTime();
 $login = new LoginSystem(Rank::ADMINISTRATOR);
 
-$logs = new Logs();
 $template = new Template($login);
 
 ?>
