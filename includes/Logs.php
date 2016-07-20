@@ -7,7 +7,11 @@ class Logs
     private $playerData;
     private $logsData;
     private $core;
+    private $login;
 
+    public function __construct($login) {
+        $this->login=$login;
+    }
 
     public function printLogs()
     {
@@ -86,14 +90,31 @@ class Logs
     }
 
 
-    private function getLookupTitle()
+    private function getAdminLookupTitle()
     {
         $name = $this->getName();
         $ip = $this->getPlayerData()->getPlayerIP($name);
         $mac = $this->getPlayerData()->getPlayerMAC($name);
 
+        if(!isset($ip))
+            $ip='unable to retrieve ip';
+
+        if(!isset($mac))
+            $mac='unable to retrieve mac';
+
         if (isset($name)) {
             return ucfirst($this->getLogType()) . '<small>' . $name . '</small> | ' . $ip . ' | ' . $mac;
+        } else {
+            return ucfirst($this->getLogType()) . '<small>ALL</small>';
+        }
+    }
+    private function getLookupTitle()
+    {
+        $name = $this->getName();
+
+
+        if (isset($name)) {
+            return ucfirst($this->getLogType()) . '<small>' . $name . '</small>';
         } else {
             return ucfirst($this->getLogType()) . '<small>ALL</small>';
         }
@@ -231,7 +252,7 @@ class Logs
 
         echo '<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title"><h2>' . $this->getLookupTitle() . '</h2>
+                    <div class="x_title"><h2>' . $this->login->hasPermission(Rank::ADMINISTRATOR) ? $this->getAdminLookupTitle() : $this->getLookupTitle() . '</h2>
                         <div class="clearfix"></div>
                     </div>
                         <div class="x_content">

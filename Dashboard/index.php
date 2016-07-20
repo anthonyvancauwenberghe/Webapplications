@@ -84,6 +84,8 @@ $template = new Template($login);
             </div>
         </div>
         <!-- /page content -->
+        <?php $template->printPlayerDashboard(); ?>
+
 
         <!-- footer content -->
         <footer>
