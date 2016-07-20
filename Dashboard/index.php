@@ -77,14 +77,9 @@ $template = new Template($login);
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="">
-
-            </div>
-        </div>
-        
-        <!-- /page content -->
         <?php $template->printPlayerDashboard(); ?>
+        <!-- /page content -->
+
 
 
         <!-- footer content -->
