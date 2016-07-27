@@ -110,7 +110,7 @@ class PlayerData extends Data
 
         $playTime = $cursor->toarray();
 
-        foreach($playTime as item){
+        foreach($playTime as $item){
 
         if(isset($item)){
             $playTimeThisWeek = $item['playTimeThisWeek'];
