@@ -82,7 +82,7 @@ class PlayerData extends Data
 
         $timeSpent =$time->toArray();
 
-        return $timeSpent;
+        return var_dump($timeSpent);
     }
     public function getPlaytimeThisWeekInHours($name)
     {
@@ -107,7 +107,7 @@ class PlayerData extends Data
 
         $time = $this->aggregate(Collection::LOGS, $pipeline);
         $timeSpent =$time->toArray();
-        return $timeSpent;
+        return var_dump($timeSpent);
     }
 }
 
