@@ -109,9 +109,9 @@ class PlayerData extends Data
         $cursor = $this->aggregate(Collection::LOGS, $pipeline);
 
         $playTime = $cursor->toarray();
-        $playTime = $playTime[0]['playTime'];
+        $playTime = $playTime[0]['playTimeThisWeek'];
 
-        return round($playTime/(1000*60*60*24),2);
+        return round($playTime/(1000*60*60),2);
     }
 }
 
