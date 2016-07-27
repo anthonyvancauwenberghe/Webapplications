@@ -3,6 +3,7 @@ require_once('../libs/AutoLoader.php');
 
 class PlayerData extends Data
 {
+
     public function getAccountvalues($username = null)
     {
         $weighting = 20000;
@@ -84,17 +85,17 @@ class PlayerData extends Data
                 'hour' => ['$hour' => '$time'],
                 'minute' => ['$minute' => '$time']
             ]],
-            ['$match' => ['week' => date("W", strtotime(date("Y-m-d")))]],
+            ['$match' => ['week' => $this->getCoreFunctions()->getWeekNumber()]],
             ['$sort' => ['year' => -1, 'month' => -1, 'day' => -1, 'hour' => -1, 'minute' => -1]],
             ['$group' => ['_id' => 'playTime', 'firstLogin' => ['$first' => '$playTime'], 'lastLogin' => ['$last' => '$playTime']]],
             ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
         ];
 
-        $cursor = $this->aggregate(Collection::LOGS, $pipeline);
+        $time = $this->aggregate(Collection::LOGS, $pipeline);
 
-        return $cursor;
+        return $time;
     }
-    public function getPlaytimeThisWeek($name)
+    public function getPlaytimeThisWeekInHours($name)
     {
 
         $pipeline = [
@@ -109,15 +110,15 @@ class PlayerData extends Data
                 'hour' => ['$hour' => '$time'],
                 'minute' => ['$minute' => '$time']
             ]],
-            ['$match' => ['week' => date("W", strtotime(date("Y-m-d")))]],
+            ['$match' => ['week' => $this->getCoreFunctions()->getWeekNumber() ]],
             ['$sort' => ['year' => 1, 'month' => 1, 'day' => 1, 'hour' => 1, 'minute' => 1]],
             ['$group' => ['_id' => 'playTime', 'firstLogin' => ['$first' => '$playTime'], 'lastLogin' => ['$last' => '$playTime']]],
             ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
         ];
 
-        $cursor = $this->aggregate(Collection::LOGS, $pipeline);
+        $time = $this->aggregate(Collection::LOGS, $pipeline);
 
-        return $cursor;
+        return $time;
     }
 }
 

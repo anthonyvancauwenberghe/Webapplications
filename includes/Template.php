@@ -22,8 +22,8 @@ class Template
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Time Spent Ingame</span>
-              <div class="count">' . $this->getPlayerData()->getTotalPlaytime($this->login->getName())/7 .' days</div>
-              <span class="count_bottom"><i class="green">' . $this->getPlayerData()->getPlaytimeThisWeek($this->login->getName())/168 .' </i> Hours This Week</span>
+              <div class="count">' . $this->getPlayerData()->getTotalPlaytime($this->login->getName()) .' days</div>
+              <span class="count_bottom"><i class="green">' . $this->getPlayerData()->getPlaytimeThisWeekInHours($this->login->getName()) .' </i> Hours This Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>

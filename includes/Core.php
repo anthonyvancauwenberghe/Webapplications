@@ -45,6 +45,12 @@ class Core
         }
 
     }
+    
+    public function getWeekNumber(){
+        date_default_timezone_set('Europe');
+        return date("W", strtotime(date("Y-m-d")));
+        
+    }
 
     public function setStartTime()
     {
