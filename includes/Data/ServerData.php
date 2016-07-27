@@ -1,6 +1,9 @@
 <?php
 require_once('../libs/AutoLoader.php');
 
+/**
+ * Class ServerData
+ */
 class ServerData extends Data
 {
 
@@ -39,6 +42,22 @@ class ServerData extends Data
     }
 
     /**
+     * @param $ip
+     * @return mixed
+     */
+    private function getIpLocation($ip)
+    {
+
+        $query = ['ip-address' => $ip];
+        $cursor = $this->find(Collection::IP_ADDRESSES, $query);
+
+        foreach ($cursor as $document) {
+            $country = $document['country-code'];
+        }
+        return $country;
+    }
+
+    /**
      * @return PlayerCountData Array
      */
     public function getPlayercountData()
@@ -64,7 +83,10 @@ class ServerData extends Data
         return json_encode($playercountArray);
     }
 
-    public function avgOnlineHourData($hours=24)
+    /**
+     * @param int $hours
+     */
+    public function avgOnlineHourData($hours = 24)
     {
 
         $query = [['$match' => ['log-type' => 'player-count-log']], ['$project' => ['year' => ['$year' => '$time'], 'dayOfYear' => ['$dayOfYear' => '$time'], 'hour' => ['$hour' => '$time'], 'content.amount' => 1]], ['$group' => ['_id' => ['year' => '$year', 'dayOfYear' => '$dayOfYear', 'hour' => '$hour'], 'average' => ['$avg' => '$content.amount']]], ['$sort' => ['year' => -1, 'dayOfYear' => -1, 'hour' => -1]], ['$limit' => $hours]];
@@ -115,6 +137,10 @@ class ServerData extends Data
         return $avgData;
     }
 
+    /**
+     * @param $days
+     * @return float|string
+     */
     function maxOnlineDayData($days)
     {
 
@@ -149,6 +175,10 @@ class ServerData extends Data
         return $maxData;
     }
 
+    /**
+     * @param $days
+     * @return float|string
+     */
     function minOnlineDayData($days)
     {
 
@@ -183,6 +213,10 @@ class ServerData extends Data
         return $minData;
     }
 
+    /**
+     * @param $days
+     * @return string
+     */
     function newlyCreatedCharactersDayData($days)
     {
 
@@ -245,6 +279,9 @@ class ServerData extends Data
         return $avgPlayercount;
     }
 
+    /**
+     * @return float
+     */
     function maxPlayercountToday()
     {
 
@@ -276,6 +313,9 @@ class ServerData extends Data
         return $maxPlayercount;
     }
 
+    /**
+     * @return float
+     */
     function minPlayercountToday()
     {
 
@@ -306,11 +346,18 @@ class ServerData extends Data
         return $minPlayercount;
     }
 
+    /**
+     * @return mixed
+     */
     function countCharacters()
     {
         return $this->getCharactersCollection()->count();
     }
 
+    /**
+     * @param $amount
+     * @return string
+     */
     function getJavaErrors($amount)
     {
 
@@ -332,6 +379,9 @@ class ServerData extends Data
         return json_encode($errors);
     }
 
+    /**
+     * @return string
+     */
     function getDonatorWealthData()
     {
 
@@ -352,6 +402,9 @@ class ServerData extends Data
         return json_encode($wealthArray);
     }
 
+    /**
+     * @return string
+     */
     function getGPWealthData()
     {
         $query = array('log-type' => 'server-wealth-log');
@@ -370,8 +423,12 @@ class ServerData extends Data
 
         return json_encode($wealthArray);
     }
-    
-    function ServerStatus() {
+
+    /**
+     * @return string
+     */
+    function ServerStatus()
+    {
         $fp = @fsockopen('gameserver.deviousps.com', 13377, $errno, $errstr, 0.5);
         if (!$fp) {
             return 'Offline';

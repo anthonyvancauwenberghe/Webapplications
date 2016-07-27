@@ -21,11 +21,11 @@ class PlayerData extends Data
             $group = ['$group' => ['_id' => '$content.user.player-name',
                 'coins' => ['$first' => '$content.value.coins'],
                 'donator-points' => ['$first' => '$content.value.donator-points']]];
-            $project = ['$project'=>
-                                    ['total-value' => ['$sum' => ['$coins', ['$multiply'=> ['$donator-points', $weighting]]]],
-                                        'coins'=> 1,
-                                        'donator-points'=> 1]];
-            $sort2 = ['$sort' => ['total-value'=> -1]];
+            $project = ['$project' =>
+                ['total-value' => ['$sum' => ['$coins', ['$multiply' => ['$donator-points', $weighting]]]],
+                    'coins' => 1,
+                    'donator-points' => 1]];
+            $sort2 = ['$sort' => ['total-value' => -1]];
 
             $cursor = $this->aggregate(Collection::LOGS, [$match, $sort, $group, $project, $sort2]);
 
@@ -50,20 +50,74 @@ class PlayerData extends Data
 
     }
 
-    public function getPlayerIP($username){
-        $playerDocument = $this->findOne(Collection::CHARACTERS,['player-name'=>$username]);
+    public function getPlayerIP($username)
+    {
+        $playerDocument = $this->findOne(Collection::CHARACTERS, ['player-name' => $username]);
 
         return $playerDocument['last-ip']['ip-address'];
     }
 
-    public function getPlayerMAC($username){
-        $playerDocument = $this->findOne(Collection::CHARACTERS,['player-name'=>$username]);
+    public function getPlayerMAC($username)
+    {
+        $playerDocument = $this->findOne(Collection::CHARACTERS, ['player-name' => $username]);
 
         return $playerDocument['last-mac']['ip-address'];
     }
-    
-    public function TODO($parameter=null){
+
+    public function TODO($parameter = null)
+    {
         return "TODO THIS SHIT";
+    }
+
+    public function getTotalPlaytime($name)
+    {
+
+        $pipeline = [
+            ['$match' => ['log-type' => 'login-log']],
+            ['$match' => ['content.user.player-name' => $name]],
+            ['$project' => [
+                'playTime' => '$content.playTime',
+                'day' => ['$dayOfMonth' => '$time'],
+                'week' => ['$week' => '$time'],
+                'month' => ['$month' => '$time'],
+                'year' => ['$year' => '$time'],
+                'hour' => ['$hour' => '$time'],
+                'minute' => ['$minute' => '$time']
+            ]],
+            ['$match' => ['week' => date("W", strtotime(date("Y-m-d")))]],
+            ['$sort' => ['year' => -1, 'month' => -1, 'day' => -1, 'hour' => -1, 'minute' => -1]],
+            ['$group' => ['_id' => 'playTime', 'firstLogin' => ['$first' => '$playTime'], 'lastLogin' => ['$last' => '$playTime']]],
+            ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
+        ];
+
+        $cursor = $this->aggregate(Collection::LOGS, $pipeline);
+
+        return $cursor;
+    }
+    public function getPlaytimeThisWeek($name)
+    {
+
+        $pipeline = [
+            ['$match' => ['log-type' => 'login-log']],
+            ['$match' => ['content.user.player-name' => $name]],
+            ['$project' => [
+                'playTime' => '$content.playTime',
+                'day' => ['$dayOfMonth' => '$time'],
+                'week' => ['$week' => '$time'],
+                'month' => ['$month' => '$time'],
+                'year' => ['$year' => '$time'],
+                'hour' => ['$hour' => '$time'],
+                'minute' => ['$minute' => '$time']
+            ]],
+            ['$match' => ['week' => date("W", strtotime(date("Y-m-d")))]],
+            ['$sort' => ['year' => 1, 'month' => 1, 'day' => 1, 'hour' => 1, 'minute' => 1]],
+            ['$group' => ['_id' => 'playTime', 'firstLogin' => ['$first' => '$playTime'], 'lastLogin' => ['$last' => '$playTime']]],
+            ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
+        ];
+
+        $cursor = $this->aggregate(Collection::LOGS, $pipeline);
+
+        return $cursor;
     }
 }
 
