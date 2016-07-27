@@ -197,6 +197,10 @@ autoloader(array(
     '',
     'includes',
     'includes/Data',
+    'includes/Display',
+    'includes/Enums',
+    'includes/RSS',
+    'includes/Marketing',
 	'includes/Callbacks',
     'includes/Callbacks/Donations',
     'includes/Callbacks/Voting'
