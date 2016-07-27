@@ -100,7 +100,7 @@ class DonatorData extends Data
     
     public function getDonatorInfo($name)
     {
-        $name = string($name);
+        $name = (string)($name);
 
         $query = ['game.player-name' => $name];
         $cursor = $this->find(Collection::DONATIONS, $query);
