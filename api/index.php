@@ -10,9 +10,13 @@ if (isset($_GET['request'])){
 	$core = new Core();
 	$core->errorReporting();
 	$playerData = new ServerData();
+	$objectsData = new ObjectsData();
 	
 	if($_GET['request']=="playercount"){
 		echo $playerData->getPlayersOnline();
+	}
+	elseif($_GET['request']=="objects"){
+		echo $objectsData->getAllObjects();
 	}
 	elseif($_GET['request']=="playercountbycountry"){
 		echo $playerData->getPlayercountByCountry();

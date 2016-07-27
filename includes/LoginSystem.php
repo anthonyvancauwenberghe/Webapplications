@@ -298,7 +298,7 @@ class LoginSystem
     public function getName()
     {
         if(isset($_SESSION['username'])) {
-            return $_SESSION['username'];
+            return ucfirst($this->getCore()->normalizeUsername($_SESSION['username'])) ;
         }
         else {
             return null;

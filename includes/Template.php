@@ -3,9 +3,17 @@
 class Template
 {
     private $login;
+    private $playerData;
     
     public function __construct($login) {
         $this->login=$login;
+    }
+
+    private function getPlayerData(){
+        if(!isset($this->playerData)){
+            $this->playerData=new PlayerData();
+        }
+        return $this->playerData;
     }
     
     public function printPlayerDashboard(){
@@ -13,9 +21,9 @@ class Template
           <!-- top tiles -->
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-user"></i> Total Time Spent Ingame</span>
+              <div class="count">' . $this->getPlayerData()->TODO($this->login->getName()) .' days</div>
+              <span class="count_bottom"><i class="green">' . $this->getPlayerData()->TODO($this->login->getName()) .' </i> Hours Spent This Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>

@@ -31,9 +31,9 @@ class Data
         return Database::connect();
     }
 
-    public function getConfig()
+    public function getDatabaseInfo()
     {
-        return Database::getConfig();
+        return Database::getDatabaseInfoConfig();
     }
 
     private function getReadPreference()
@@ -107,7 +107,7 @@ class Data
 
     private function extractDatabaseName($collectionLocation)
     {
-        $config = $this->getConfig();
+        $config = $this->getDatabaseInfo();
         $collection = $config[$collectionLocation];
         $dbName = current(explode(".", $collection));
         return $dbName;
@@ -115,7 +115,7 @@ class Data
 
     private function extractCollectionName($collectionLocation)
     {
-        $config = $this->getConfig();
+        $config = $this->getDatabaseInfo();
         $collection = $config[$collectionLocation];
         $collectionName = substr($collection, strpos($collection, ".") + 1);
         return $collectionName;

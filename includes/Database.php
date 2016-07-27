@@ -10,6 +10,7 @@ class Database
 
     /* Config File */
     private static $config;
+    private static $DBInfoConfig;
     
     public static function connect()
     {
@@ -39,6 +40,15 @@ class Database
         }
 
         return self::$config;
+    }
+
+    public static function getDatabaseInfoConfig()
+    {
+        if (self::$DBInfoConfig == null) {
+            self::$DBInfoConfig = parse_ini_file('DBInfo.ini');
+        }
+
+        return self::$DBInfoConfig;
     }
 
     

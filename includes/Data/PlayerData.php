@@ -61,5 +61,9 @@ class PlayerData extends Data
 
         return $playerDocument['last-mac']['ip-address'];
     }
+    
+    public function TODO($parameter=null){
+        return "TODO THIS SHIT";
+    }
 }
 
