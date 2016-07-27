@@ -6,7 +6,7 @@ class ObjectsData extends Data
 
 
     public function getAllObjects(){
-        $cursor = $this->find(Collection::OBJECT_DEFINITIONS, null);
+        $cursor = $this->find(Collection::OBJECT_DEFINITIONS, array());
         return json_encode($cursor->toArray());
     }
 }
