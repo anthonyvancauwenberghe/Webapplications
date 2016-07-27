@@ -22,7 +22,7 @@ class Donations
     
     public function printDonationTables($name)
     {
-        
+        $name=$this->getCore()->normalizeUsername($name);
 
         echo '<thead>
                         <tr>
@@ -57,6 +57,7 @@ class Donations
     }
     
     public function printDonationsAmount($name){
+        $name=$this->getCore()->normalizeUsername($name);
         echo $this->getDonatorData()->getAmountDonations($name);
     }
 }
