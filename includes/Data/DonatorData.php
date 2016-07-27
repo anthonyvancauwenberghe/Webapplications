@@ -3,7 +3,6 @@ require_once('../libs/AutoLoader.php');
 
 class DonatorData extends Data
 {
-
     function avgDonationsHourData()
     {
 
@@ -98,6 +97,27 @@ class DonatorData extends Data
 
         return $profit;
     }
+    
+    public function getDonatorInfo($name)
+    {
+        $name = string($name);
+
+        $query = ['game.player-name' => $name];
+        $cursor = $this->find(Collection::DONATIONS, $query);
+
+        return $cursor;
+    }
+
+    public function getAmountDonations($name)
+    {
+        $name = string($name);
+
+        $query = ['game.player-name' => $name];
+        $cursor = $this->find(Collection::DONATIONS, $query);
+
+        return count($cursor->toArray());
+    }
+    
 }
 
 

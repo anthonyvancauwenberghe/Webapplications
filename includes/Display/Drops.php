@@ -57,7 +57,7 @@ class Drops
         return $rarityid;
     }
 
-    public function getNPCDrops()
+    public function printNPCDrops()
     {
         if (!isset($this->NPCData)) {
             $this->NPCData = new NPCData();

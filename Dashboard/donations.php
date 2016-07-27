@@ -12,7 +12,7 @@ $core = new Core();
 $core->setStartTime();
 $login = new LoginSystem(Rank::PLAYER);
 
-$drops = new Drops();
+$donations = new Donations();
 $template = new Template($login);
 ?>
 
@@ -25,7 +25,7 @@ $template = new Template($login);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>NPC Drops | DeviousPs</title>
+    <title>Donations | DeviousPs</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -89,7 +89,7 @@ $template = new Template($login);
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>NPC: <small><?php echo $drops->getNPCSearchTerm(); ?></USER></small></h2>
+                            <h2>Donations: <small><?php $donations->printDonationsAmount($login->getName()); ?></USER></small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -110,7 +110,7 @@ $template = new Template($login);
                         <div class="x_content">
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <?php
-                                $drops->printNPCDrops();
+                                $donations->printDonationTables($login->getName());
                                 ?>
                                 
                             </table>
@@ -229,24 +229,6 @@ $template = new Template($login);
 </script>
 <!-- /Datatables -->
 
-<script>
-    $(document).ready(function() {
-        var $_GET = {};
-
-        document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-            function decode(s) {
-                return decodeURIComponent(s.split("+").join(" "));
-            }
-
-            $_GET[decode(arguments[1])] = decode(arguments[2]);
-        });
-        var npc = $_GET["npc"];
-        if (npc != '') {
-            $('#dropRarity').click();
-            $('#dropRarity').click();
-        }
-    });
-</script>
 <?php
 echo '<center><div class="loadtime"><h4>Page Generated in '.$core->getPageLoadTime().' ms.</h4></div></center>';
 ?>

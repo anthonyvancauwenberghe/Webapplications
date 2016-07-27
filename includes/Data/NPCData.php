@@ -82,7 +82,7 @@ class NPCData extends Data
 
     public function getNPCDrops($npc){
         $npcName = (string) $npc;
-        $pipeline = [['$match' => ['npc-name' => $npc]],
+        $pipeline = [['$match' => ['npc-name' => $npcName]],
             ['$unwind' => '$drops'],
             ['$lookup' => [
                 'from' => 'item-definitions',
