@@ -34,7 +34,6 @@ class Donations
                           <th>Points</th>
                           <th>Received</th>
                           <th>Payment Method</th>
-                          <th>Mail</th>
                         </tr>
                       </thead>
                       <tbody>';
@@ -51,7 +50,6 @@ class Donations
             echo '<td>' . $donation['game']['points-amount'] . ' DP</td>';
             echo '<td>' . $donation['game']['processed'] . '</td>';
             echo '<td>' . $donation['purchase']['payment-method'] . '</td>';
-            echo '<td>' . $donation['customer']['mail-address'] . '</td>';
             echo '</tr>';
         }
         echo '</tbody>';
