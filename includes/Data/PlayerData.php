@@ -78,7 +78,7 @@ class PlayerData extends Data
             ['$project'=> ['_id'=> 0, 'playTime'=> '$play-time.time']]
         ];
 
-        $cursor = $this->aggregate(Collection::LOGS, $pipeline);
+        $cursor = $this->aggregate(Collection::CHARACTERS, $pipeline);
 
         var_dump($cursor);
 
