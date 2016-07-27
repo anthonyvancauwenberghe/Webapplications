@@ -80,10 +80,10 @@ class PlayerData extends Data
 
         $cursor = $this->aggregate(Collection::LOGS, $pipeline);
 
-        foreach($cursor as $item){
-            $playtime=$item['playTime'];
-        }
-        return round($playtime/(1000*60*60*24),2);
+        $playTime = $cursor->toarray();
+        $playTime = $playTime['playTime'];
+
+        return round($playTime/(1000*60*60*24),2);
     }
     public function getPlaytimeThisWeekInHours($name)
     {
