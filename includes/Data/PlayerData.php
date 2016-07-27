@@ -80,7 +80,10 @@ class PlayerData extends Data
 
         $cursor = $this->aggregate(Collection::LOGS, $pipeline);
 
+        var_dump($cursor);
+
         $playTime = $cursor->toarray();
+        print_r($playTime);
         $playTime = $playTime['playTime'];
 
         return round($playTime/(1000*60*60*24),2);
