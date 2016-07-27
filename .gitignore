@@ -20,5 +20,5 @@
 /fuel/app/cache/*/*
 /fuel/app/config/crypt.php
 
-*.ini
+config.ini
 /.idea/*
