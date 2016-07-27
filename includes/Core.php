@@ -25,7 +25,7 @@ class Core
 
     public function getDateof($timeUnit)
     {
-        date_default_timezone_set('Europe');
+        date_default_timezone_set('Europe/Brussels');
         $now = new \DateTime('now');
         $hour = $now->format('h');
         $day = $now->format('d');
@@ -47,7 +47,7 @@ class Core
     }
     
     public function getWeekNumber(){
-        date_default_timezone_set('Europe');
+        date_default_timezone_set('Europe/Brussels');
         return date("W", strtotime(date("Y-m-d")));
         
     }

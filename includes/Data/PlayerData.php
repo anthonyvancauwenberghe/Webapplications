@@ -74,51 +74,40 @@ class PlayerData extends Data
     {
 
         $pipeline = [
-            ['$match' => ['log-type' => 'login-log']],
-            ['$match' => ['content.user.player-name' => $name]],
-            ['$project' => [
-                'playTime' => '$content.playTime',
-                'day' => ['$dayOfMonth' => '$time'],
-                'week' => ['$week' => '$time'],
-                'month' => ['$month' => '$time'],
-                'year' => ['$year' => '$time'],
-                'hour' => ['$hour' => '$time'],
-                'minute' => ['$minute' => '$time']
-            ]],
-            ['$match' => ['week' => $this->getCoreFunctions()->getWeekNumber()]],
-            ['$sort' => ['year' => -1, 'month' => -1, 'day' => -1, 'hour' => -1, 'minute' => -1]],
-            ['$group' => ['_id' => 'playTime', 'firstLogin' => ['$first' => '$playTime'], 'lastLogin' => ['$last' => '$playTime']]],
-            ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
+            ['$match'=> ['player-name'=> $name]],
+            ['$project'=> ['_id'=> 0, 'playTime'=> '$play-time.time']]
         ];
 
         $time = $this->aggregate(Collection::LOGS, $pipeline);
 
-        return $time;
+        $timeSpent =$time->toArray();
+        
+        return $timeSpent[0];
     }
     public function getPlaytimeThisWeekInHours($name)
     {
 
         $pipeline = [
-            ['$match' => ['log-type' => 'login-log']],
-            ['$match' => ['content.user.player-name' => $name]],
-            ['$project' => [
-                'playTime' => '$content.playTime',
-                'day' => ['$dayOfMonth' => '$time'],
-                'week' => ['$week' => '$time'],
-                'month' => ['$month' => '$time'],
-                'year' => ['$year' => '$time'],
-                'hour' => ['$hour' => '$time'],
-                'minute' => ['$minute' => '$time']
-            ]],
-            ['$match' => ['week' => $this->getCoreFunctions()->getWeekNumber() ]],
-            ['$sort' => ['year' => 1, 'month' => 1, 'day' => 1, 'hour' => 1, 'minute' => 1]],
-            ['$group' => ['_id' => 'playTime', 'firstLogin' => ['$first' => '$playTime'], 'lastLogin' => ['$last' => '$playTime']]],
-            ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
-        ];
+        ['$match' => ['log-type' => 'login-log']],
+        ['$match' => ['content.user.player-name' => $name]],
+        ['$project' => [
+            'playTime' => '$content.playTime',
+            'day' => ['$dayOfMonth' => '$time'],
+            'week' => ['$week' => '$time'],
+            'month' => ['$month' => '$time'],
+            'year' => ['$year' => '$time'],
+            'hour' => ['$hour' => '$time'],
+            'minute' => ['$minute' => '$time']
+        ]],
+        ['$match' => ['week' => $this->getCoreFunctions()->getWeekNumber() ]],
+        ['$sort' => ['year' => 1, 'month' => 1, 'day' => 1, 'hour' => 1, 'minute' => 1]],
+        ['$group' => ['_id' => 'playTime', 'firstLogin' => ['$first' => '$playTime'], 'lastLogin' => ['$last' => '$playTime']]],
+        ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
+    ];
 
         $time = $this->aggregate(Collection::LOGS, $pipeline);
-
-        return $time;
+        $timeSpent =$time->toArray();
+        return $timeSpent[0];
     }
 }
 
