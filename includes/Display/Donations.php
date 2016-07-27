@@ -31,7 +31,7 @@ class Donations
                           <th>Product Name</th>
                           <th>Price</th>
                           <th>Quantity</th>
-                          <th>Amount</th>
+                          <th>Points</th>
                           <th>Received</th>
                           <th>Payment Method</th>
                           <th>Mail</th>
@@ -48,7 +48,7 @@ class Donations
             echo '<td>' . $donation['purchase']['product-name'] . '</td>';
             echo '<td>' . $donation['game']['points-amount']/100 . ' $</td>';
             echo '<td>' . $donation['purchase']['quantity'] . '</td>';
-            echo '<td>' . $donation['game']['points-amount'] . '</td>';
+            echo '<td>' . $donation['game']['points-amount'] . ' DP</td>';
             echo '<td>' . $donation['game']['processed'] . '</td>';
             echo '<td>' . $donation['purchase']['payment-method'] . '</td>';
             echo '<td>' . $donation['customer']['mail-address'] . '</td>';
