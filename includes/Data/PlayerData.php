@@ -80,11 +80,8 @@ class PlayerData extends Data
 
         $cursor = $this->aggregate(Collection::CHARACTERS, $pipeline);
 
-        var_dump($cursor);
-
         $playTime = $cursor->toarray();
-        print_r($playTime);
-        $playTime = $playTime['playTime'];
+        $playTime = $playTime[0]['playTime'];
 
         return round($playTime/(1000*60*60*24),2);
     }
@@ -110,10 +107,11 @@ class PlayerData extends Data
     ];
 
         $cursor = $this->aggregate(Collection::LOGS, $pipeline);
-        foreach($cursor as $item){
-            $playtime=$item['playTimeThisWeek'];
-        }
-        return round($playtime/(1000*60*60),2);
+
+        $playTime = $cursor->toarray();
+        $playTime = $playTime[0]['playTime'];
+
+        return round($playTime/(1000*60*60*24),2);
     }
 }
 
