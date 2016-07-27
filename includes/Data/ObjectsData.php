@@ -3,10 +3,9 @@ require_once('../libs/AutoLoader.php');
 
 class ObjectsData extends Data
 {
-
-
     public function getAllObjects(){
-        $cursor = $this->find(Collection::OBJECT_DEFINITIONS, array());
+        $pipeline = [['$project' => ["_id"=> 0, "objectId"=> 1, "position"=> 1, "orientation"=> 1, "objectType"=> 1]]];
+        $cursor = $this->aggregate(Collection::OBJECT_DEFINITIONS, $pipeline);
         return json_encode($cursor->toArray());
     }
 }

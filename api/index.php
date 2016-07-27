@@ -6,31 +6,43 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if (isset($_GET['request'])){
-	
+	$request = $_GET['request'];
 	$core = new Core();
 	$core->errorReporting();
 	$playerData = new ServerData();
 	$objectsData = new ObjectsData();
 	
-	if($_GET['request']=="playercount"){
-		echo $playerData->getPlayersOnline();
+	
+	switch($request){
+		
+		case "playercount":
+			echo $playerData->getPlayersOnline();
+			break;
+		
+		case "objects":
+			echo $playerData->getPlayercountByCountry();
+			break;
+		
+		case "playercountbycountry":
+			echo $playerData->getPlayercountByCountry();
+			break;
+		
+		case "npcdroplist":
+			if(isset($_GET['npcname'])){
+				echo $NPCData->getNpcDropList($_GET['npcname']);
+			}
+			else{
+				echo "specify npc name";
+			}
+			break;
+		
+		default:
+			break;
+		
+			
+			
+
 	}
-	elseif($_GET['request']=="objects"){
-		echo $objectsData->getAllObjects();
-	}
-	elseif($_GET['request']=="playercountbycountry"){
-		echo $playerData->getPlayercountByCountry();
-	}
-	elseif($_GET['request']=="npcdroplist"){
-		if(isset($_GET['npcname'])){
-			echo $NPCData->getNpcDropList($_GET['npcname']);
-		}
-		else{
-			echo "specify npc name";
-		}
-	}
-	die();
-}
-else {
+
 	die();
 }
