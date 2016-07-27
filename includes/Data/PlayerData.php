@@ -78,11 +78,12 @@ class PlayerData extends Data
             ['$project'=> ['_id'=> 0, 'playTime'=> '$play-time.time']]
         ];
 
-        $time = $this->aggregate(Collection::LOGS, $pipeline);
+        $cursor = $this->aggregate(Collection::LOGS, $pipeline);
 
-        $timeSpent =$time->toArray();
-
-        return var_dump($timeSpent);
+        foreach($cursor as $item){
+            $playtime=$item['playTime'];
+        }
+        return round($playtime/(1000*60*60*24),2);
     }
     public function getPlaytimeThisWeekInHours($name)
     {
@@ -105,9 +106,11 @@ class PlayerData extends Data
         ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
     ];
 
-        $time = $this->aggregate(Collection::LOGS, $pipeline);
-        $timeSpent =$time->toArray();
-        return var_dump($timeSpent);
+        $cursor = $this->aggregate(Collection::LOGS, $pipeline);
+        foreach($cursor as $item){
+            $playtime=$item['playTimeThisWeek'];
+        }
+        return round($playtime/(1000*60*60),2);
     }
 }
 
