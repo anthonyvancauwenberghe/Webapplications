@@ -21,33 +21,33 @@ class Template
           <!-- top tiles -->
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Time Spent Ingame</span>
+              <span class="count_top"><i class="fa fa-clock-o"></i> Total Time Played</span>
               <div class="count">' . $this->getPlayerData()->getTotalPlaytime($this->login->getName()) .' days</div>
-              <span class="count_bottom"><i class="green">' . $this->getPlayerData()->getPlaytimeThisWeekInHours($this->login->getName()) .' </i> Hours This Week</span>
+              <span class="count_bottom"><i class="green">' . $this->getPlayerData()->getPlaytimeThisWeekInHours($this->login->getName()) .' </i>  Hours This Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
-              <div class="count">123.50</div>
+              <span class="count_top"><i class="fa fa-money"></i> GP Wealth</span>
+              <div class="count">620 mil</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
-              <div class="count green">2,500</div>
+              <span class="count_top"><i class="fa fa-usd"></i> DP Wealth</span>
+              <div class="count green">25.45 $</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
+              <span class="count_top"><i class="fa fa-bullseye"></i> KDR</span>
               <div class="count">4,567</div>
               <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
-              <div class="count">2,315</div>
+              <span class="count_top"><i class="fa fa-bar-chart"></i> Total Level</span>
+              <div class="count">1050</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-              <div class="count">7,325</div>
+              <span class="count_top"><i class="fa fa-bar-chart"></i> Combat Level</span>
+              <div class="count">128</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
           </div>
