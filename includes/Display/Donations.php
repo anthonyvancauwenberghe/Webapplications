@@ -29,6 +29,7 @@ class Donations
                           <th>Order ID</th>
                           <th>Order Date</th>
                           <th>Product Name</th>
+                          <th>Price</th>
                           <th>Quantity</th>
                           <th>Amount</th>
                           <th>Received</th>
@@ -44,7 +45,8 @@ class Donations
             echo '<tr>';
             echo '<td>' . $donation['purchase']['order-id'] . '</td>';
             echo '<td>' . $this->getCore()->convertToTime($donation['purchase']['order-date']) . '</td>';
-            echo '<td>' . $donation['purchase']['product-name'] . ' k</td>';
+            echo '<td>' . $donation['purchase']['product-name'] . '</td>';
+            echo '<td>' . $donation['game']['points-amount']/100 . ' $</td>';
             echo '<td>' . $donation['purchase']['quantity'] . '</td>';
             echo '<td>' . $donation['game']['points-amount'] . '</td>';
             echo '<td>' . $donation['game']['processed'] . '</td>';
