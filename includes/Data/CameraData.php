@@ -36,8 +36,7 @@ class CameraData extends Data
     }
     
     public function getLicensePlateImage($id){
-        $data = $this->findOne(Collection::CAMERAS, array('_id'=> $id));
-        print_r($data);
+        $data = $this->findOne(Collection::CAMERAS, array('_id'=>new MongoDB\BSON\ObjectID($id)));
         return $data['content']['SnapshotList']['Snapshot']['Image'];
     }
 }
