@@ -8,9 +8,6 @@ class CameraData extends Data
     private function getXML()
     {
         $postText = file_get_contents('php://input');
-        //$datetime = $this->getCoreFunctions()->getTime();
-        //$xmlfile = "Camera" . $datetime . ".xml";
-        //file_put_contents($xmlfile, $postText);
         return $postText;
     }
 
@@ -18,19 +15,7 @@ class CameraData extends Data
         $xmldata = $this->getXML();
         $xml = simplexml_load_string($xmldata, 'SimpleXMLElement', LIBXML_NOCDATA) or die("Error: Cannot create object");
         $data = json_decode(json_encode((array)$xml), TRUE);
-
-        $timestamp = $data['AnalyticsEvent']['EventHeader']['Timestamp'];
-        $source = $data['AnalyticsEvent']['EventHeader']['Source']['name'];
-        $plate = $data['AnalyticsEvent']['ObjectList']['Object']['Value'];
-        $confidence = $data['AnalyticsEvent']['ObjectList']['Object']['Confidence'];
-        $height = $data['AnalyticsEvent']['SnapshotList']['Snapshot']['Height'];
-        $width = $data['AnalyticsEvent']['SnapshotList']['Snapshot']['Width'];
-        $image = $data['AnalyticsEvent']['SnapshotList']['Snapshot']['Image'];
-
-        $document = array('timestamp' => $timestamp, 'data'=>$data,
-            'content' => array('plate' => $plate, 'confidence' => $confidence, 'source' => $source,
-                'image' => array('height' => $height, 'width' => $width, 'image' => $image)));
-
+        $document = array('timestamp' => new MongoDB\BSON\UTCDateTime(time() * 1000), 'content'=>$data);
         return $document;
     }
 
