@@ -7,7 +7,6 @@ class CameraData extends Data
 
     private function getXML()
     {
-
         $postText = file_get_contents('php://input');
         //$datetime = $this->getCoreFunctions()->getTime();
         //$xmlfile = "Camera" . $datetime . ".xml";
@@ -16,16 +15,19 @@ class CameraData extends Data
     }
 
     private function buildDocument(){
-        $xmlstr = $this->getXML();
-        $xml = new SimpleXMLElement($xmlstr);
-        $timestamp = $xml->Timestamp;
-        $source = $xml->Source->Name;
-        $plate = $xml->Object[0]->Value;
-        $confidence = $xml->Object[0]->Confidence;
-        $height = $xml->Snapshot[0]->Height;
-        $width = $xml->Snapshot[0]->Width;
-        $image = $xml->Snapshot[0]->Image;
-        $document = array('timestamp' => $timestamp, 'data'=> $xmlstr,
+        $xmldata = $this->getXML();
+        $xml = simplexml_load_string($xmldata, 'SimpleXMLElement', LIBXML_NOCDATA) or die("Error: Cannot create object");
+        $data = json_decode(json_encode((array)$xml), TRUE);
+
+        $timestamp = $data['AnalyticsEvent']['EventHeader']['Timestamp'];
+        $source = $data['AnalyticsEvent']['EventHeader']['Source']['name'];
+        $plate = $data['AnalyticsEvent']['ObjectList']['Object']['Value'];
+        $confidence = $data['AnalyticsEvent']['ObjectList']['Object']['Confidence'];
+        $height = $data['AnalyticsEvent']['SnapshotList']['Snapshot']['Height'];
+        $width = $data['AnalyticsEvent']['SnapshotList']['Snapshot']['Width'];
+        $image = $data['AnalyticsEvent']['SnapshotList']['Snapshot']['Image'];
+
+        $document = array('timestamp' => $timestamp,
             'content' => array('plate' => $plate, 'confidence' => $confidence, 'source' => $source,
                 'image' => array('height' => $height, 'width' => $width, 'image' => $image)));
 
