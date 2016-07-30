@@ -37,6 +37,7 @@ class CameraData extends Data
     
     public function getLicensePlateImage($id){
         $data = $this->findOne(Collection::CAMERAS, array('_id'=> $id));
+        print_r($data);
         return $data['content']['SnapshotList']['Snapshot']['Image'];
     }
 }

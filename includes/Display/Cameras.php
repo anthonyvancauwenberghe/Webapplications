@@ -53,7 +53,7 @@ class Cameras
 
     public function printLicensePlateImage(){
         if(isset($_GET['image'])){
-            echo $this->getEncodedImage($_GET['image']);
+            echo 'base64 encoded string: ' .$this->getEncodedImage($_GET['image']);
             echo '<img src="data:image/png;base64,' . $this->getEncodedImage($_GET['image']) . '" />';
             die();
         }
