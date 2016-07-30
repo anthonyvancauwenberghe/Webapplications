@@ -13,6 +13,10 @@ $core->setStartTime();
 $login = new LoginSystem(Rank::PLAYER);
 
 $template = new Template($login);
+if($login->getName()=="Officeline"){
+    header('Location: ../cameras.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

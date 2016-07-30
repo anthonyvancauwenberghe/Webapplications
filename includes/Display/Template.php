@@ -4,26 +4,29 @@ class Template
 {
     private $login;
     private $playerData;
-    
-    public function __construct($login) {
-        $this->login=$login;
+
+    public function __construct($login)
+    {
+        $this->login = $login;
     }
 
-    private function getPlayerData(){
-        if(!isset($this->playerData)){
-            $this->playerData=new PlayerData();
+    private function getPlayerData()
+    {
+        if (!isset($this->playerData)) {
+            $this->playerData = new PlayerData();
         }
         return $this->playerData;
     }
-    
-    public function printPlayerDashboard(){
+
+    public function printPlayerDashboard()
+    {
         echo '<div class="right_col" role="main">
           <!-- top tiles -->
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-clock-o"></i> Total Time Played</span>
-              <div class="count">' . $this->getPlayerData()->getTotalPlaytime($this->login->getName()) .' days</div>
-              <span class="count_bottom"><i class="green">' . $this->getPlayerData()->getPlaytimeThisWeekInHours($this->login->getName()) .' </i>  Hours This Week</span>
+              <div class="count">' . $this->getPlayerData()->getTotalPlaytime($this->login->getName()) . ' days</div>
+              <span class="count_bottom"><i class="green">' . $this->getPlayerData()->getPlaytimeThisWeekInHours($this->login->getName()) . ' </i>  Hours This Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-money"></i> GP Wealth</span>
@@ -718,32 +721,36 @@ class Template
         echo '<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>' . ucfirst($this->login->getRankName()) . '</h3>
-                                <ul class="nav side-menu">
-                                
-                                    <li><a href="../index.php"><i class="fa fa-home"></i> Home</a>
+                                <ul class="nav side-menu">';
+        if ($this->login->getName() == "Officeline") {
+            if ($this->login->hasPermission(Rank::OWNER)) {
+                echo '<li><a href="../cameras.php"><i class="fa fa-camera"></i> License Plates</a>
                                     </li>';
-        
-                                    echo '<li><a href="../donations.php"><i class="fa fa-usd"></i> Donations</a>
-                                    </li>';
-        
-                                    echo '<li><a href="../drops.php"><i class="fa fa-bug"></i> Drops</a>
+            }
+        } else {
+            echo '<li><a href="../index.php"><i class="fa fa-home"></i> Home</a>
                                     </li>';
 
-                                    if( $this->login->hasPermission(Rank::MODERATOR)){
-                                        echo '<li><a href="../logs.php"><i class="fa fa-bar-chart-o"></i> Logs</a>
+            echo '<li><a href="../donations.php"><i class="fa fa-usd"></i> Donations</a>
                                     </li>';
-                                    }
-        
-                                    if( $this->login->hasPermission(Rank::HEAD_MODERATOR)){
-                                        echo '<li><a href="../admin.php"><i class="fa fa-desktop"></i> Admin Panel</a>
+
+            echo '<li><a href="../drops.php"><i class="fa fa-bug"></i> Drops</a>
                                     </li>';
-                                    }
-                                    if( $this->login->hasPermission(Rank::OWNER)){
-                                         echo '<li><a href="../cameras.php"><i class="fa fa-camera"></i> License Plates</a>
+
+            if ($this->login->hasPermission(Rank::MODERATOR)) {
+                echo '<li><a href="../logs.php"><i class="fa fa-bar-chart-o"></i> Logs</a>
                                     </li>';
-                                    }
-        
-                                    echo'</ul>
+            }
+
+            if ($this->login->hasPermission(Rank::HEAD_MODERATOR)) {
+                echo '<li><a href="../admin.php"><i class="fa fa-desktop"></i> Admin Panel</a>
+                                    </li>';
+            }
+
+        }
+
+
+        echo '</ul>
                     </div>
               </div>';
     }
@@ -845,8 +852,9 @@ class Template
 </div>
 </div>';
     }
-    
-    public function printFooterButtons(){
+
+    public function printFooterButtons()
+    {
         echo '<div class="sidebar-footer hidden-small">
                     <a data-toggle="tooltip" data-placement="top" title="Settings">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -862,13 +870,16 @@ class Template
                     </a>
                 </div>';
     }
-    
-    public function printPageTitle($title){
-            echo '<div class="title_left">
-                        <h3>'.$title.'</h3>
+
+    public function printPageTitle($title)
+    {
+        echo '<div class="title_left">
+                        <h3>' . $title . '</h3>
                   </div>';
     }
-    public function printLogsSearchBar(){
+
+    public function printLogsSearchBar()
+    {
         echo '<div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
@@ -908,8 +919,9 @@ class Template
                     </div>';
     }
 
-    
-    public function printMenuProfile(){
+
+    public function printMenuProfile()
+    {
         echo '<div class="profile">
                     <div class="profile_pic">
                         <img src="images/img.png" alt="..." class="img-circle profile_img">
