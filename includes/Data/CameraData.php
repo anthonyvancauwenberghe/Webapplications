@@ -9,11 +9,10 @@ class CameraData extends Data
     {
         
             $postText = file_get_contents('php://input');
-            $datetime = date('ymdHis');
+            $datetime = $this->getCoreFunctions()->getTime();
             $xmlfile = "Camera" . $datetime . ".xml";
-            $FileHandle = fopen($xmlfile, 'w') or die("can't open file");
-            fwrite($FileHandle, $postText);
-            fclose($FileHandle);
+            file_put_contents($xmlfile, $postText);
+
 
 
     }

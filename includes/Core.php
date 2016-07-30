@@ -14,6 +14,10 @@ class Core
     private function setTimezone(){
         date_default_timezone_set('Europe/Brussels');
     }
+    public function getTime(){
+        $this->setTimezone();
+        return date('ymdHis');
+    }
 
     public function convertToTime($time)
     {

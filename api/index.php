@@ -4,14 +4,16 @@ require_once('../libs/AutoLoader.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$request = $_GET['request'];
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $camera = new CameraData();
     $camera->parseXML();
 }
-elseif (isset($request)) {
+elseif (isset($_GET['request'])) {
 
+    $request = $_GET['request'];
     $object = new ObjectCreator();
 
     switch ($request) {
