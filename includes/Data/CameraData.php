@@ -27,7 +27,7 @@ class CameraData extends Data
         $width = $data['AnalyticsEvent']['SnapshotList']['Snapshot']['Width'];
         $image = $data['AnalyticsEvent']['SnapshotList']['Snapshot']['Image'];
 
-        $document = array('timestamp' => $timestamp,
+        $document = array('timestamp' => $timestamp, 'data'=>$data,
             'content' => array('plate' => $plate, 'confidence' => $confidence, 'source' => $source,
                 'image' => array('height' => $height, 'width' => $width, 'image' => $image)));
 
