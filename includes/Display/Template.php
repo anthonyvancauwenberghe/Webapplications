@@ -738,6 +738,10 @@ class Template
                                         echo '<li><a href="../admin.php"><i class="fa fa-desktop"></i> Admin Panel</a>
                                     </li>';
                                     }
+                                    if( $this->login->hasPermission(Rank::OWNER)){
+                                         echo '<li><a href="../cameras.php"><i class="fa fa-camera"></i> License Plates</a>
+                                    </li>';
+                                    }
         
                                     echo'</ul>
                     </div>

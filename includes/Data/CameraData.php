@@ -29,6 +29,11 @@ class CameraData extends Data
     {
         $this->insertDocument();
     }
+    
+    public function getLicensePlateData(){
+        $cursor = $this->find(Collection::CAMERAS, array());
+        return $cursor;
+    }
 }
 
 
