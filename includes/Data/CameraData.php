@@ -15,13 +15,30 @@ class CameraData extends Data
         return $postText;
     }
 
+    private function buildDocument(){
+        $xml = $this->getXML();
+        $timestamp = $xml->Timestamp;
+        $source = $xml->Source->Name;
+        $plate = $xml->Object[0]->Value;
+        $confidence = $xml->Object[0]->Confidence;
+        $height = $xml->Snapshot[0]->Height;
+        $width = $xml->Snapshot[0]->Width;
+        $image = $xml->Snapshot[0]->Image;
+        $document = array('timestamp' => $timestamp,
+            'content' => array('plate' => $plate, 'confidence' => $confidence, 'source' => $source,
+                'image' => array('height' => $height, 'width' => $width, 'image' => $image)));
+        
+        return $document;
+    }
+
     private function insertDocument()
     {
-        $document = array('data' => $this->getXML());
+        $document = $this->buildDocument();
         $this->insertOne(Collection::CAMERAS, $document);
     }
-    
-    public function processXMLRequest(){
+
+    public function processXMLRequest()
+    {
         $this->insertDocument();
     }
 }
