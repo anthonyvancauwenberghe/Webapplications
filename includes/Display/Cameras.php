@@ -38,16 +38,27 @@ class Cameras
 
         foreach ($cursor as $document) {
             echo '<tr>';
-            echo '<td>' . $document['_id']. '</td>';
+            echo '<td><a href="../cameras.php?image=' . $document['_id'] . '">' . $document['_id'] . '</a></td>';
             echo '<td>' . $this->getCore()->convertToTime($document['timestamp']) . '</td>';
             echo '<td>' . $document['content']['ObjectList']['Object']['Value'] . '</td>';
             echo '<td>' . $document['content']['ObjectList']['Object']['Confidence']*100 . ' %</td>';
             echo '<td>' . $document['content']['EventHeader']['Source']['Name'] . '</td>';
-            echo '<td>' . round($document['content']['SnapshotList']['Snapshot']['SizeInBytes']/(1024)) . ' Kb</td>';
+            echo '<td>' . round($document['content']['SnapshotList']['Snapshot']['SizeInBytes']/(1024),2) . ' Kb</td>';
             
             echo '</tr>';
         }
         echo '</tbody>';
 
+    }
+
+    public function printLicensePlateImage(){
+        if(isset($_GET['image'])){
+            echo '<img src="data:image/png;base64,' . $this->getEncodedImage($_GET['image']) . '" />';
+            die();
+        }
+    }
+    private function getEncodedImage($id){
+        $image = $this->getCameraData()->getLicensePlateImage($id);
+        return $image;
     }
 }

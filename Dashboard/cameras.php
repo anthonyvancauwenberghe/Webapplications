@@ -14,6 +14,7 @@ $login = new LoginSystem(Rank::PLAYER);
 
 $cameras = new Cameras();
 $template = new Template($login);
+$cameras->printLicensePlateImage();
 ?>
 
 <!DOCTYPE html>
