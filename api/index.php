@@ -6,7 +6,11 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $request = $_GET['request'];
 
-if (isset($request)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $camera = new CameraData();
+    $camera->parseXML();
+}
+elseif (isset($request)) {
 
     $object = new ObjectCreator();
 
@@ -31,10 +35,16 @@ if (isset($request)) {
                 echo "specify npc name";
             }
             break;
+        case "camera":
+            break;
+        
 
         default:
             break;
     }
 
+    die();
+}
+else {
     die();
 }
