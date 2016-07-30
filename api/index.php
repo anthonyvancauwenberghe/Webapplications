@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $camera = new CameraData();
-    $camera->parseXML();
+    $camera->processXMLRequest();
 }
 elseif (isset($_GET['request'])) {
 

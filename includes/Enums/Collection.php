@@ -20,4 +20,5 @@ const OBJECT_DEFINITIONS = 'objectDefinitionsCollection';
 const ITEM_DEFINITIONS = 'itemDefinitionsCollection';
 const NPC_DEFINITIONS = 'npcDefinitionsCollection';
 const NPC_WORLD = 'worldNpcsCollection';
+const CAMERAS = 'lprCollection';   
 }
