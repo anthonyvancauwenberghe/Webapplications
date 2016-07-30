@@ -47,22 +47,28 @@ class PlayerData extends Data
             $i++;
         }
         return $playerValuesArray;
-
-
     }
 
     public function getPlayerIP($username)
     {
         $playerDocument = $this->findOne(Collection::CHARACTERS, ['player-name' => $username]);
 
-        return $playerDocument['last-ip']['ip-address'];
+        if (isset($playerDocument['last-ip']['ip-address'])) {
+            return $playerDocument['last-ip']['ip-address'];
+        } else {
+            return null;
+        }
     }
 
     public function getPlayerMAC($username)
     {
         $playerDocument = $this->findOne(Collection::CHARACTERS, ['player-name' => $username]);
 
-        return $playerDocument['last-mac']['ip-address'];
+        if (isset($playerDocument['last-mac']['ip-address'])) {
+            return $playerDocument['last-mac']['ip-address'];
+        } else {
+            return null;
+        }
     }
 
     public function TODO($parameter = null)
@@ -74,8 +80,8 @@ class PlayerData extends Data
     {
 
         $pipeline = [
-            ['$match'=> ['player-name'=> $name]],
-            ['$project'=> ['_id'=> 0, 'playTime'=> '$play-time.time']]
+            ['$match' => ['player-name' => $name]],
+            ['$project' => ['_id' => 0, 'playTime' => '$play-time.time']]
         ];
 
         $cursor = $this->aggregate(Collection::CHARACTERS, $pipeline);
@@ -83,44 +89,45 @@ class PlayerData extends Data
         $playTime = $cursor->toarray();
         $playTime = $playTime[0]['playTime'];
 
-        return round($playTime/(1000*60*60*24),2);
+        return round($playTime / (1000 * 60 * 60 * 24), 2);
     }
+
     public function getPlaytimeThisWeekInHours($name)
     {
 
         $pipeline = [
-        ['$match' => ['log-type' => 'login-log']],
-        ['$match' => ['content.user.player-name' => $name]],
-        ['$project' => [
-            'playTime' => '$content.playTime',
-            'day' => ['$dayOfMonth' => '$time'],
-            'week' => ['$week' => '$time'],
-            'month' => ['$month' => '$time'],
-            'year' => ['$year' => '$time'],
-            'hour' => ['$hour' => '$time'],
-            'minute' => ['$minute' => '$time']
-        ]],
-        ['$match' => ['week' => $this->getCoreFunctions()->getWeekNumber() ]],
-        ['$sort' => ['year' => 1, 'month' => 1, 'day' => 1, 'hour' => 1, 'minute' => 1]],
-        ['$group' => ['_id' => 'playTime', 'firstLogin' => ['$first' => '$playTime'], 'lastLogin' => ['$last' => '$playTime']]],
-        ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
-    ];
+            ['$match' => ['log-type' => 'login-log']],
+            ['$match' => ['content.user.player-name' => $name]],
+            ['$project' => [
+                'playTime' => '$content.playTime',
+                'day' => ['$dayOfMonth' => '$time'],
+                'week' => ['$week' => '$time'],
+                'month' => ['$month' => '$time'],
+                'year' => ['$year' => '$time'],
+                'hour' => ['$hour' => '$time'],
+                'minute' => ['$minute' => '$time']
+            ]],
+            ['$match' => ['week' => $this->getCoreFunctions()->getWeekNumber()]],
+            ['$sort' => ['year' => 1, 'month' => 1, 'day' => 1, 'hour' => 1, 'minute' => 1]],
+            ['$group' => ['_id' => 'playTime', 'firstLogin' => ['$first' => '$playTime'], 'lastLogin' => ['$last' => '$playTime']]],
+            ['$project' => ['_id' => 0, 'playTimeThisWeek' => ['$subtract' => ['$lastLogin', '$firstLogin']]]]
+        ];
 
         $cursor = $this->aggregate(Collection::LOGS, $pipeline);
 
         $playTime = $cursor->toarray();
 
-        foreach($playTime as $item){
+        foreach ($playTime as $item) {
 
-        if(isset($item)){
-            $playTimeThisWeek = $item['playTimeThisWeek'];
+            if (isset($item)) {
+                $playTimeThisWeek = $item['playTimeThisWeek'];
+            }
         }
-    }
-        if(!isset($playTimeThisWeek)){
-            $playTimeThisWeek=0;
+        if (!isset($playTimeThisWeek)) {
+            $playTimeThisWeek = 0;
         }
 
-        return round($playTimeThisWeek/(1000*60*60),2);
+        return round($playTimeThisWeek / (1000 * 60 * 60), 2);
     }
 }
 

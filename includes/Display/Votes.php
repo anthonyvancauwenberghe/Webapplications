@@ -26,7 +26,6 @@ class Votes
 
         echo '<thead>
                         <tr>
-                          <th>Vote ID</th>
                           <th>Timestamp</th>
                           <th>Website</th>
                           <th>Received</th>
@@ -38,7 +37,6 @@ class Votes
 
         foreach ($cursor as $vote) {
             echo '<tr>';
-            echo '<td>' . $vote['_id'] . '</td>';
             echo '<td>' . $this->getCore()->convertToTime($vote['time']) . '</td>';
             echo '<td>' . $vote['content']['website'] . '</td>';
             echo '<td>' . $vote['processed']. '</td>';
