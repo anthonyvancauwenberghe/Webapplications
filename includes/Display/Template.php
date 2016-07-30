@@ -728,6 +728,7 @@ class Template
                                     </li>';
             }
         } else {
+            
             echo '<li><a href="../index.php"><i class="fa fa-home"></i> Home</a>
                                     </li>';
 
@@ -735,6 +736,9 @@ class Template
                                     </li>';
 
             echo '<li><a href="../drops.php"><i class="fa fa-bug"></i> Drops</a>
+                                    </li>';
+
+            echo '<li><a href="../votes.php"><i class="fa fa-bug"></i> Drops</a>
                                     </li>';
 
             if ($this->login->hasPermission(Rank::MODERATOR)) {
