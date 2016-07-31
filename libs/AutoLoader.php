@@ -63,6 +63,7 @@ function autoloader($class_paths = NULL, $use_base_dir = true)
 {
     static $is_init = false;
 
+    
     static $conf = [
         'basepath' => '/var/www/html/',
         'debug' => false,
