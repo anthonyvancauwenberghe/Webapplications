@@ -19,7 +19,7 @@ class Votes
         }
         return $this->voteData;
     }
-    
+
     public function printVoteTables($name)
     {
         $name=$this->getCore()->normalizeUsername($name);
@@ -39,7 +39,7 @@ class Votes
             echo '<tr>';
             echo '<td>' . $this->getCore()->convertToTime($vote['time']) . '</td>';
             echo '<td>' . $vote['content']['website'] . '</td>';
-            echo '<td>' . $vote['processed']. '</td>';
+            echo '<td>' . $this->getCore()->convertTrueFalseToString($vote['processed']). '</td>';
             echo '</tr>';
         }
         echo '</tbody>';

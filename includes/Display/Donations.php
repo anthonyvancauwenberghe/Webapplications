@@ -48,7 +48,7 @@ class Donations
             echo '<td>' . $donation['game']['points-amount']/100 . ' $</td>';
             echo '<td>' . $donation['purchase']['quantity'] . '</td>';
             echo '<td>' . $donation['game']['points-amount'] . ' DP</td>';
-            echo '<td>' . $donation['game']['processed'] . '</td>';
+            echo '<td>' . $this->getCore()->convertTrueFalseToString($donation['game']['processed']) . '</td>';
             echo '<td>' . $donation['purchase']['payment-method'] . '</td>';
             echo '</tr>';
         }

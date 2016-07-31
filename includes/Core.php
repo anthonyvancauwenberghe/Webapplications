@@ -11,20 +11,32 @@ class Core
     private $config;
     private $data;
 
-    private function setTimezone(){
+    private function setTimezone()
+    {
         date_default_timezone_set('Europe/Brussels');
     }
-    public function getTime(){
+
+    public function getTime()
+    {
         $this->setTimezone();
         return date('ymdHis');
+    }
+
+    public function convertTrueFalseToString($boolean)
+    {
+        if ($boolean) {
+            return 'Yes';
+        } else {
+            return 'No';
+        }
     }
 
     public function convertToTime($time)
     {
         $this->setTimezone();
-        $time = (string) $time;
-        $time = round((int)($time)/1000);
-        return date('d-M-Y h:i:s ', (string) $time);
+        $time = (string)$time;
+        $time = round((int)($time) / 1000);
+        return date('d-M-Y H:i:s ', (string)$time);
     }
 
     public function getDateof($timeUnit)
@@ -49,11 +61,12 @@ class Core
         }
 
     }
-    
-    public function getWeekNumber(){
+
+    public function getWeekNumber()
+    {
         date_default_timezone_set('Europe/Brussels');
         return date("W", strtotime(date("Y-m-d")));
-        
+
     }
 
     public function setStartTime()
