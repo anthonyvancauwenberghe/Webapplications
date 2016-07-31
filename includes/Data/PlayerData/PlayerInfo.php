@@ -92,18 +92,18 @@ class PlayerInfo extends PlayerData
     private function setSkillsKDRInfo()
     {
         $query = [['$match' => ['log-type' => 'login-log']],
-            ['$match' => ['content.user.player-name' => 'Thomas']],
+            ['$match' => ['content.user.player-name' => $this->playerName]],
             ['$sort' => ['time' => -1]],
             ['$limit' => 1],
             ['$project' => ['_id' => 0, 'kills' => '$content.kills', 'deaths' => '$content.deaths', 'playTime' => '$content.playTime', 'skills' => '$content.skills']]];
 
         $playerInfo = $this->aggregate(Collection::LOGS, $query)->toArray();
 
-        $this->kills = $playerInfo['kills'];
-        $this->deaths = $playerInfo['deaths'];
+        $this->kills = $playerInfo[0]['kills'];
+        $this->deaths = $playerInfo[0]['deaths'];
         $this->kdr = round($this->kills/$this->deaths,2);
-        $this->playTime = $playerInfo['playTime'];
-        $this->skills = $playerInfo['skills'];
+        $this->playTime = $playerInfo[0]['playTime'];
+        $this->skills = $playerInfo[0]['skills'];
 
         $this->setSumLevels();
     }
