@@ -92,7 +92,7 @@ class PlayerInfo extends PlayerData
     private function setSkillsKDRInfo()
     {
         $query = [['$match' => ['log-type' => 'login-log']],
-            ['$match' => ['content.user.player-name' => $this->playerName]],
+            ['$match' => ['content.user.player-name' => 'Thomas']],
             ['$sort' => ['time' => -1]],
             ['$limit' => 1],
             ['$project' => ['_id' => 0, 'kills' => '$content.kills', 'deaths' => '$content.deaths', 'playTime' => '$content.playTime', 'skills' => '$content.skills']]];

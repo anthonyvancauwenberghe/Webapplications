@@ -747,7 +747,7 @@ class Template
             }
 
             if ($this->login->hasPermission(Rank::HEAD_MODERATOR)) {
-                echo '<li><a href="../admin.php"><i class="fa fa-desktop"></i> Admin Panel</a>
+                echo '<li><a href="../admin/index.php"><i class="fa fa-desktop"></i> Admin Panel</a>
                                     </li>';
             }
 
