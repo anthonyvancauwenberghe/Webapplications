@@ -3,7 +3,7 @@
 class Template
 {
     private $login;
-    private $playerData;
+    private $playerInfo;
 
     public function __construct($login)
     {
@@ -12,10 +12,10 @@ class Template
 
     private function getPlayerData()
     {
-        if (!isset($this->playerData)) {
-            $this->playerData = new PlayerData();
+        if (!isset($this->playerInfo)) {
+            $this->playerInfo = new PlayerInfo($this->login->getname());
         }
-        return $this->playerData;
+        return $this->playerInfo;
     }
 
     public function printPlayerDashboard()
@@ -25,7 +25,7 @@ class Template
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-clock-o"></i> Total Time Played</span>
-              <div class="count">' . $this->getPlayerData()->getTotalPlaytime($this->login->getName()) . ' days</div>
+              <div class="count">' . $this->getPlayerData()->getPlayTime() . ' days</div>
               <span class="count_bottom"><i class="green">' . $this->getPlayerData()->getPlaytimeThisWeekInHours($this->login->getName()) . ' </i>  Hours This Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -40,18 +40,18 @@ class Template
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-bullseye"></i> KDR</span>
-              <div class="count">4,567</div>
+              <div class="count">' . $this->getPlayerData()->getKdr() . '</div>
               <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-bar-chart"></i> Total Level</span>
-              <div class="count">1050</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <div class="count">' . $this->getPlayerData()->getTotalLevel() . '</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>32 Levels </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-bar-chart"></i> Combat Level</span>
-              <div class="count">128</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <div class="count">' . $this->getPlayerData()->getCombatLevel() . '</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>5 Levels </i> From last Week</span>
             </div>
           </div>
           <!-- /top tiles -->

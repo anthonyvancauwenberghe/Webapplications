@@ -197,6 +197,7 @@ autoloader(array(
     '',
     'includes',
     'includes/Data',
+    'includes/Data/PlayerInfo',
     'includes/Display',
     'includes/Enums',
     'includes/RSS',

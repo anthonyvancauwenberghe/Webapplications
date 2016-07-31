@@ -60,6 +60,8 @@ class PlayerData extends Data
         }
     }
 
+    
+
     public function getPlayerMAC($username)
     {
         $playerDocument = $this->findOne(Collection::CHARACTERS, ['player-name' => $username]);
