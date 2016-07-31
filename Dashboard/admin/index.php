@@ -6,7 +6,7 @@
  * Time: 19:00
  */
 
-require_once '/var/www/html/libs/AutoLoader.php';
+require_once '../AutoLoadClasses.php';
 
 $core = new Core();
 $core->setStartTime();

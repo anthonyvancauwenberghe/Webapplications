@@ -1,5 +1,7 @@
 <?php
 
+require_once '../AutoLoadClasses.php';
+
 class Donations
 {
     private $donatorData;

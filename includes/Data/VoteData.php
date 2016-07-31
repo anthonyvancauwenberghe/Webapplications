@@ -1,5 +1,5 @@
 <?php
-require_once('../libs/AutoLoader.php');
+require_once '../AutoLoadClasses.php';
 
 class VoteData extends Data
 {

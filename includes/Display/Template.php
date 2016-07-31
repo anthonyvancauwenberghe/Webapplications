@@ -1,4 +1,5 @@
 <?php
+require_once '../AutoLoadClasses.php';
 
 class Template
 {

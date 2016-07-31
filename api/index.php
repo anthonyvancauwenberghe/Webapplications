@@ -1,5 +1,5 @@
 <?php
-require_once('../libs/AutoLoader.php');
+require_once '../AutoLoadClasses.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
