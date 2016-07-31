@@ -9,7 +9,7 @@ class PlayerInfo extends PlayerData
     private $kills;
     private $kdr;
     private $playTime;
-    
+
     private $totalLevel;
     private $totalExperience;
     private $combatLevel;
@@ -18,10 +18,10 @@ class PlayerInfo extends PlayerData
 
     public function __construct($name)
     {
-        $this->playerName=$name;
+        $this->playerName = $name;
         $this->setSkillsKDRInfo();
     }
-    
+
 
     /**
      * @return mixed
@@ -70,8 +70,7 @@ class PlayerInfo extends PlayerData
     {
         return $this->combatLevel;
     }
-    
-    
+
 
     /**
      * @return mixed
@@ -101,7 +100,7 @@ class PlayerInfo extends PlayerData
 
         $this->kills = $playerInfo[0]['kills'];
         $this->deaths = $playerInfo[0]['deaths'];
-        $this->kdr = round($this->kills/$this->deaths,2);
+        $this->deaths > 0 ? $this->kdr = round($this->kills / $this->deaths, 2) : $this->kdr = 0;
         $this->playTime = $playerInfo[0]['playTime'];
         $this->skills = $playerInfo[0]['skills'];
 
@@ -122,10 +121,14 @@ class PlayerInfo extends PlayerData
     private function getMaxSkillLevel($skillName)
     {
         $a = 0;
-        for ($x = 1; $x < $this->skills[$skillName]['experience']; $x++) {
+        for ($x = 1; $x < 100; $x++) {
             $a += floor($x + 300 * pow(2, ($x / 7)));
+            if (floor($a / 4) >= $this->skills[$skillName]['experience']) {
+                break;
+            }
+
         }
-        return floor($a / 4);
+        return $x;
     }
 
 
@@ -141,7 +144,7 @@ class PlayerInfo extends PlayerData
         $range = 0.325 * (floor($this->getMaxSkillLevel('RANGE') / 2) + $this->getMaxSkillLevel('RANGE'));
         $mage = 0.325 * (floor($this->getMaxSkillLevel('MAGIC') / 2) + $this->getMaxSkillLevel('MAGIC'));
         $combatLevel = floor($base + max([$melee, $range, $mage]));
-        return (int) $combatLevel;
+        return (int)$combatLevel;
     }
 
 }
