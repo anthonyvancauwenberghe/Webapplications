@@ -177,14 +177,14 @@ function autoloader($class_paths = NULL, $use_base_dir = true)
 
 autoloader(array(
     '',
-    '/var/www/html/includes',
-    '/var/www/html/includes/Data',
-    '/var/www/html/includes/Data/PlayerData',
-    '/var/www/html/includes/Display',
-    '/var/www/html/includes/Enums',
-    '/var/www/html/includes/RSS',
-    '/var/www/html/includes/Marketing',
-    '/var/www/html/includes/Callbacks',
-    '/var/www/html/includes/Callbacks/Donations',
-    '/var/www/html/includes/Callbacks/Voting'
+    'includes',
+    'includes/Data',
+    'includes/Data/PlayerData',
+    'includes/Display',
+    'includes/Enums',
+    'includes/RSS',
+    'includes/Marketing',
+    'includes/Callbacks',
+    'includes/Callbacks/Donations',
+    'includes/Callbacks/Voting'
 ));
