@@ -1,13 +1,14 @@
 <?php
 require_once('../libs/AutoLoader.php');
 
-class BmtMicro implements Donations
+class BmtMicro extends Donating
 {
     private $ingame_name;
     private $order_id;
     private $product_id;
     private $mail;
     private $profit;
+    private $price;
     private $quantity;
     private $productName;
     private $ip;
@@ -55,7 +56,7 @@ class BmtMicro implements Donations
     }
 
     private function extractData($bmtparser){
-        $core = new Core();
+        $core = $this->getCore();
 
         $this->ingame_name = ucfirst($bmtparser->getElement('orderparameters'));
         $this->ingame_name = $core->normalizeUsername($this->ingame_name);
@@ -64,6 +65,7 @@ class BmtMicro implements Donations
         $this->mail = $bmtparser->getElement('billing.email');
         $this->profit = (double)$bmtparser->getElement('vendorroyalty');
         $this->quantity = (int)$bmtparser->getElement('quantity');
+        $this->price = (int) $bmtparser->getElement ('productprice');
         $this->productName = $bmtparser->getElement('productname');
         $this->ip = $bmtparser->getElement('ipaddress');
         $this->phone = $bmtparser->getElement('billing.phone');
@@ -79,7 +81,7 @@ class BmtMicro implements Donations
     {
         
 
-        $data = new Data();
+        $data = $this->getData();
 
         
         $document = array("time" => new MongoDB\BSON\UTCDateTime(time() * 1000),
@@ -98,13 +100,15 @@ class BmtMicro implements Donations
                 "product-name" => $this->productName,
                 "product-id" => $this->product_id,
                 "quantity" => $this->quantity,
+                "multiplier" => $this->getDonationMultiplier(),
                 "profit" => $this->profit,
+                "price" => $this->price,
                 "order-currency" => $this->currency,
                 "payment-method" => "BMTMICRO"
             ),
             "game" => array(
                 "player-name" => $this->ingame_name,
-                "points-amount" => $this->amount,
+                "points-amount" => round($this->amount*$this->getDonationMultiplier()),
                 "processed" => false
             )
         );

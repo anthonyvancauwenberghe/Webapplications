@@ -2,7 +2,7 @@
 
 require_once('../libs/AutoLoader.php');
 
-class HiPay implements Donations
+class HiPay extends Donating
 {
     public $code;
     public $message;
@@ -18,11 +18,12 @@ class HiPay implements Donations
     private $amount;
     private $currency;
     private $orderDate;
+    private $price;
 
     private function extractData()
     {
         $secretKey = 'c14dd20de7d0db42627fa3aae73d4c19';
-        $core = new Core();
+        $core = $this->getCore();
 
         $this->parameters = $_GET;
         $signature = $this->parameters['api_sig'];
@@ -52,6 +53,7 @@ class HiPay implements Donations
 
         $this->SMSCode = $this->parameters['code'];
         $this->order_id = $this->parameters['transaction_id'];
+        $this->price = $this->parameters['paid'];
         $this->currency = $this->parameters['currency'];
         $this->country = $this->parameters['customer_country'];
         $this->productName = $this->parameters['product_name'];
@@ -62,7 +64,7 @@ class HiPay implements Donations
 
     private function insertDonation()
     {
-        $data = new Data();
+        $data = $this->getData();
 
         $document = array("time" => new MongoDB\BSON\UTCDateTime(time() * 1000),
 
@@ -75,13 +77,15 @@ class HiPay implements Donations
                 "order-date" => new MongoDate(strtotime($this->orderDate)),
                 "product-name" => $this->productName,
                 "quantity" => 1,
+                "price" => $this->price,
+                "multiplier" => $this->getDonationMultiplier(),
                 "profit" => $this->profit,
                 "order-currency" => $this->currency,
                 "payment-method" => "HIPAY"
             ),
             "game" => array(
                 "player-name" => $this->ingame_name,
-                "points-amount" => $this->amount,
+                "points-amount" => ($this->amount * $this->getDonationMultiplier()),
                 "processed" => false
             )
         );

@@ -8,17 +8,18 @@
  */
 class Collection
 {
-const LOGS='logsCollection';
-const DONATIONS='donationsCollection';
-const VOTES ='votesCollection';
-const PUNISHMENTS = 'punishmentCollection';
-const CHARACTERS = 'charactersCollection';
-const IP_ADDRESSES = 'ipCollection';
-const NPC_DROPS = 'npcDropsCollection';
-const SHOPS = 'shopsCollection';
-const OBJECT_DEFINITIONS = 'objectDefinitionsCollection';    
-const ITEM_DEFINITIONS = 'itemDefinitionsCollection';
-const NPC_DEFINITIONS = 'npcDefinitionsCollection';
-const NPC_WORLD = 'worldNpcsCollection';
-const CAMERAS = 'lprCollection';   
+    const LOGS = 'logsCollection';
+    const DONATIONS = 'donationsCollection';
+    const VOTES = 'votesCollection';
+    const PUNISHMENTS = 'punishmentCollection';
+    const CHARACTERS = 'charactersCollection';
+    const IP_ADDRESSES = 'ipCollection';
+    const NPC_DROPS = 'npcDropsCollection';
+    const SHOPS = 'shopsCollection';
+    const OBJECT_DEFINITIONS = 'objectDefinitionsCollection';
+    const ITEM_DEFINITIONS = 'itemDefinitionsCollection';
+    const NPC_DEFINITIONS = 'npcDefinitionsCollection';
+    const NPC_WORLD = 'worldNpcsCollection';
+    const CAMERAS = 'lprCollection';
+    const CONFIG = 'configCollection';
 }
