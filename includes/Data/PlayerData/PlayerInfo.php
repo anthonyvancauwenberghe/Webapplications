@@ -132,8 +132,8 @@ class PlayerInfo extends PlayerData
         $this->deaths > 0 ? $this->kdr = round($this->kills / $this->deaths, 2) : $this->kdr = 0;
         $this->playTime = $playerInfo[0]['playTime'];
         $this->skills = $playerInfo[0]['skills'];
-        $this->GPWealth = $wealthInfo[0]['coins'];
-        $this->DPWealth = $wealthInfo[0]['donatorPoints'];
+        $this->GPWealth = isset($wealthInfo[0]['coins']) ? $wealthInfo[0]['coins'] : 0 ;
+        $this->DPWealth = isset($wealthInfo[0]['donatorPoints']) ? $wealthInfo[0]['donatorPoints'] : 0;
         $this->setSumLevels();
     }
 
