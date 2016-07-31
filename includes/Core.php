@@ -1,6 +1,8 @@
 <?php
 
-require_once '../AutoLoadClasses.php';
+use MongoDB\BSON\UTCDatetime;
+
+require_once('../libs/AutoLoader.php');
 
 class Core
 {

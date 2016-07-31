@@ -1,7 +1,5 @@
 <?php
 
-require_once '../AutoLoadClasses.php';
-
 class Votes
 {
     private $voteData;

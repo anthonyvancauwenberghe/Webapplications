@@ -1,6 +1,6 @@
 <?php
 
-require_once '../AutoLoadClasses.php';
+require_once '../libs/AutoLoader.php';
 
 class Drops
 {

@@ -186,6 +186,5 @@ autoloader(array(
     'includes/Marketing',
     'includes/Callbacks',
     'includes/Callbacks/Donations',
-    'includes/Callbacks/Voting',
-    'vendor/'
+    'includes/Callbacks/Voting'
 ));
