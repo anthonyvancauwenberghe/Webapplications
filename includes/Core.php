@@ -30,6 +30,15 @@ class Core
             return 'No';
         }
     }
+    
+    public function checkIfNull($input){
+        if(isset($input)){
+            return $input;
+        }
+        else{
+            return '';
+        }
+    }
 
     public function convertToTime($time)
     {
