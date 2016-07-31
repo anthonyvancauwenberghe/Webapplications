@@ -105,8 +105,7 @@ class PlayerInfo extends PlayerData
     {
         return $this->DPWealth;
     }
-    
-    
+
 
     private function setPlayerInfo()
     {
@@ -119,29 +118,31 @@ class PlayerInfo extends PlayerData
         $playerInfo = $this->aggregate(Collection::LOGS, $query)->toArray();
 
         $query = [
-            ['$match'=> ['log-type'=> 'player-value-log']],
-            ['$match'=> ['content.user.player-name'=> $this->playerName]],
-            ['$sort'=> ['time'=> -1]],
-            ['$limit'=> 1],
-            ['$project'=> ['_id'=> 0, 'coins'=> '$content.value.coins', 'donatorPoints'=> '$content.value.donator-points']]];
+            ['$match' => ['log-type' => 'player-value-log']],
+            ['$match' => ['content.user.player-name' => $this->playerName]],
+            ['$sort' => ['time' => -1]],
+            ['$limit' => 1],
+            ['$project' => ['_id' => 0, 'coins' => '$content.value.coins', 'donatorPoints' => '$content.value.donator-points']]];
 
         $wealthInfo = $this->aggregate(Collection::LOGS, $query)->toArray();
-        
+
         $this->kills = $playerInfo[0]['kills'];
         $this->deaths = $playerInfo[0]['deaths'];
         $this->deaths > 0 ? $this->kdr = round($this->kills / $this->deaths, 2) : $this->kdr = 0;
         $this->playTime = $playerInfo[0]['playTime'];
         $this->skills = $playerInfo[0]['skills'];
-        $this->GPWealth = isset($wealthInfo[0]['coins']) ? $wealthInfo[0]['coins'] : 0 ;
+        $this->GPWealth = isset($wealthInfo[0]['coins']) ? $wealthInfo[0]['coins'] : 0;
         $this->DPWealth = isset($wealthInfo[0]['donatorPoints']) ? $wealthInfo[0]['donatorPoints'] : 0;
         $this->setSumLevels();
     }
 
     private function setSumLevels()
     {
+        $totalLevel=0;
+        $totalExperience=0;
         foreach ($this->skills as $skill) {
-            $totalLevel = +$skill['level'];
-            $totalExperience = +$skill['experience'];
+            $totalLevel = $totalLevel +$skill['level'];
+            $totalExperience = $totalLevel +$skill['experience'];
         }
         $this->totalLevel = $totalLevel;
         $this->totalExperience = $totalExperience;
@@ -166,7 +167,7 @@ class PlayerInfo extends PlayerData
     {
         return $this->skills[$skillName]['experience'];
     }
-    
+
 
     private function calculateCombatLevel()
     {
