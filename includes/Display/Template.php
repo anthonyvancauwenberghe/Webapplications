@@ -30,7 +30,7 @@ class Template
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-money"></i> GP Wealth</span>
-              <div class="count">' . $this->getPlayerData()->getGPWealth() . ' mil GP</div>
+              <div class="count">' . $this->getPlayerData()->getGPWealth()/1000000 . ' mil GP</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
