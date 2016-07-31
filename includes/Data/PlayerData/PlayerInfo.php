@@ -141,7 +141,7 @@ class PlayerInfo extends PlayerData
         $totalLevel=0;
         $totalExperience=0;
         foreach ($this->skills as $skill) {
-            $totalLevel = $totalLevel +$this->getMaxSkillLevel($skill['experience']);
+            $totalLevel = $totalLevel +$this->getMaxSkillLevel($skill['name']);
             $totalExperience = $totalExperience + $skill['experience'];
         }
         $this->totalLevel = $totalLevel;
