@@ -42,7 +42,7 @@ class Votes
             echo '<td>' . $this->getCore()->convertToTime($vote['time']) . '</td>';
             echo '<td>' . $vote['content']['website'] . '</td>';
             echo '<td>' . $this->getCore()->checkIfNull((isset($vote['content']['pointsAmount'])) ? $vote['content']['pointsAmount'] : null) . '</td>';
-            echo '<td>' . $this->getCore()->checkIfNull((isset($vote['content']['multiplier'])) ? $vote['content']['multiplier'] : null) . '</td>';
+            echo '<td>' . $this->getCore()->checkIfNull((isset($vote['content']['multiplier'])) ? $vote['content']['multiplier'] : null) . 'X</td>';
             echo '<td>' . $this->getCore()->convertTrueFalseToString($vote['processed']). '</td>';
             echo '</tr>';
         }

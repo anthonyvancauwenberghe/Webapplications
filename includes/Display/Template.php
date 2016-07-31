@@ -30,12 +30,12 @@ class Template
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-money"></i> GP Wealth</span>
-              <div class="count">' . $this->getPlayerData()->getGPWealth()/1000000 . ' mil GP</div>
+              <div class="count">' . round($this->getPlayerData()->getGPWealth()/1000000,2) . ' mil GP</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-usd"></i> DP Wealth</span>
-              <div class="count green">' . round($this->getPlayerData()->getDPWealth(),2) . ' DP</div>
+              <div class="count green">' . round($this->getPlayerData()->getDPWealth()/100,2) . ' $</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -62,7 +62,7 @@ class Template
 
                 <div class="row x_title">
                   <div class="col-md-6">
-                    <h3>Network Activities <small>Graph title sub-title</small></h3>
+                    <h3>Wealth Graph <small>Graph title sub-title</small></h3>
                   </div>
                   <div class="col-md-6">
                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
