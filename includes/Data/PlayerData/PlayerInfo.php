@@ -152,12 +152,11 @@ class PlayerInfo extends PlayerData
     private function getMaxSkillLevel($skillName)
     {
         $a = 0;
-        for ($x = 1; $x < 100; $x++) {
+        for ($x = 1; $x < 99; $x++) {
             $a += floor($x + 300 * pow(2, ($x / 7)));
-            if (floor($a / 4) >= $this->skills[$skillName]['experience']) {
+            if (floor($a / 4) > $this->skills[$skillName]['experience']) {
                 break;
             }
-
         }
         return $x;
     }
