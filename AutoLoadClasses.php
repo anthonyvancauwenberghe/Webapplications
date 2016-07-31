@@ -1,5 +1,5 @@
 <?php
-$config = parse_ini_file('config.ini');
+$config = parse_ini_file('../includes/config.ini');
 $path = $config['path'];
 
 require_once($path.'libs/AutoLoader.php');
