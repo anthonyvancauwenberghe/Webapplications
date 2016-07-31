@@ -141,7 +141,7 @@ class PlayerInfo extends PlayerData
     {
         $base = 0.25 * ($this->getMaxSkillLevel('DEFENCE') + $this->getMaxSkillLevel('CONSTITUTION') + floor($this->getMaxSkillLevel('PRAYER') / 2)) + floor($this->getMaxSkillLevel('SUMMONING') / 2);
         $melee = 0.325 * ($this->getMaxSkillLevel('ATTACK') + $this->getMaxSkillLevel('STRENGTH'));
-        $range = 0.325 * (floor($this->getMaxSkillLevel('RANGE') / 2) + $this->getMaxSkillLevel('RANGE'));
+        $range = 0.325 * (floor($this->getMaxSkillLevel('RANGED') / 2) + $this->getMaxSkillLevel('RANGED'));
         $mage = 0.325 * (floor($this->getMaxSkillLevel('MAGIC') / 2) + $this->getMaxSkillLevel('MAGIC'));
         $combatLevel = floor($base + max([$melee, $range, $mage]));
         return (int)$combatLevel;
