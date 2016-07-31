@@ -4,6 +4,7 @@ require_once('../libs/AutoLoader.php');
 
 class PlayerInfo extends PlayerData
 {
+    private $playerName;
     private $deaths;
     private $kills;
     private $kdr;
@@ -17,6 +18,7 @@ class PlayerInfo extends PlayerData
 
     public function __construct($name)
     {
+        $this->playerName=$name;
         $this->setSkillsKDRInfo();
     }
     
@@ -90,7 +92,7 @@ class PlayerInfo extends PlayerData
     private function setSkillsKDRInfo()
     {
         $query = [['$match' => ['log-type' => 'login-log']],
-            ['$match' => ['content.user.player-name' => 'X360']],
+            ['$match' => ['content.user.player-name' => $this->playerName]],
             ['$sort' => ['time' => -1]],
             ['$limit' => 1],
             ['$project' => ['_id' => 0, 'kills' => '$content.kills', 'deaths' => '$content.deaths', 'playTime' => '$content.playTime', 'skills' => '$content.skills']]];
