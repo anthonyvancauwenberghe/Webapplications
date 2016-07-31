@@ -26,7 +26,7 @@ class PlayerInfo extends PlayerData
 
 
     /**
-     * @return mixed
+     * @return kills 
      */
     public function getKills()
     {
