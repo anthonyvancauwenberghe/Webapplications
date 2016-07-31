@@ -27,7 +27,7 @@ abstract class Voting extends Callbacks
                 "real-username" => $this->getName(),
                 "fake-username" => $this->getName(),
                 "website" => $topList,
-                "points" => round($this->getVotePoints($topList) * $this->getVoteMultiplier()),
+                "points-amount" => round($this->getVotePoints($topList) * $this->getVoteMultiplier()),
                 "multiplier" => $this->getVoteMultiplier()
             ));
 
