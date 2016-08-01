@@ -585,11 +585,10 @@ class Template
                     <div class="menu_section">
                         <h3>' . ucfirst($this->login->getRankName()) . '</h3>
                                 <ul class="nav side-menu">';
-        if ($this->login->getName() == "Officeline") {
-            if ($this->login->hasPermission(Rank::OWNER)) {
+        if ($this->login->getName() == "Officeline" || $this->login->getName() == "Sven") {
                 echo '<li><a href="../cameras.php"><i class="fa fa-camera"></i> License Plates</a>
                                     </li>';
-            }
+
         } else {
 
             echo '<li><a href="../index.php"><i class="fa fa-home"></i> Home</a>
