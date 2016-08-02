@@ -44,7 +44,7 @@ class Cameras
             echo '<td>' . $document['content']['ObjectList']['Object']['Value'] . '</td>';
             echo '<td>' . $document['content']['ObjectList']['Object']['Confidence']*100 . ' %</td>';
             echo '<td>' . $document['content']['EventHeader']['Source']['Name'] . '</td>';
-            echo '<td>' . round($document['content']['SnapshotList']['Snapshot']['Image']) . '</td>';
+            echo '<td>' . document['content']['SnapshotList']['Snapshot']['Image'] . '</td>';
             //echo '<td>' . round($document['content']['SnapshotList']['Snapshot']['SizeInBytes']/(1024),2) . ' Kb</td>';
             echo '<td><a href="../cameras.php?delete=' . $document['_id'] . '"><img src="http://findicons.com/files/icons/1617/circular/16/delete.png"></a></td>';
             
