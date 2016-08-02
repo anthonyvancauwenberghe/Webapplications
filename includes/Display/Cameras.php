@@ -30,6 +30,7 @@ class Cameras
                           <th>Accuracy</th>
                           <th>Source</th>
                           <th>Image</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>';
@@ -44,6 +45,7 @@ class Cameras
             echo '<td>' . $document['content']['ObjectList']['Object']['Confidence']*100 . ' %</td>';
             echo '<td>' . $document['content']['EventHeader']['Source']['Name'] . '</td>';
             echo '<td>' . round($document['content']['SnapshotList']['Snapshot']['SizeInBytes']/(1024),2) . ' Kb</td>';
+            echo '<td><a href="../cameras.php?delete=' . $document['_id'] . '"><img src="http://findicons.com/files/icons/1617/circular/16/delete.png"></a></td>';
             
             echo '</tr>';
         }
@@ -55,6 +57,11 @@ class Cameras
         if(isset($_GET['image'])){
             echo '<img src="data:image/png;base64,' . $this->getEncodedImage($_GET['image']) . '" />';
             die();
+        }
+    }
+    public function deletePlateFromDB(){
+        if(isset($_GET['delete'])){
+            $this->getCameraData()->deletePlate($_GET['delete']);
         }
     }
     private function getEncodedImage($id){

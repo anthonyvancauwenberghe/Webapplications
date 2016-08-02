@@ -42,6 +42,10 @@ class CameraData extends Data
         $data = $this->findOne(Collection::CAMERAS, array('_id' => new MongoDB\BSON\ObjectID($id)));
         return $data['content']['SnapshotList']['Snapshot']['Image'];
     }
+    
+    public function deletePlate($id){
+        $this->deleteOne(Collection::CAMERAS, array('_id' => new MongoDB\BSON\ObjectID($id)));
+    }
 
     private function checkIfLicensePlateInParking($licensePlate, $ParkingPlates)
     {

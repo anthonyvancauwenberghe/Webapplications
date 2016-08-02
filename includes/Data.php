@@ -54,6 +54,13 @@ class Data
 
         return $cursor;
     }
+    
+    public function deleteOne($collectionLocation, $filter){
+
+        $collection = $this->getCollection($collectionLocation);
+        
+        $collection->deleteOne($filter);
+}
 
     public function count($collectionLocation, $filter, $options = null)
     {
