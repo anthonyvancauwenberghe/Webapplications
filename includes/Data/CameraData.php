@@ -108,8 +108,8 @@ class CameraData extends Data
         }
         echo '<br>';
 
-
-       echo "matchedPlate: " . isset($mathchedPlate) ? $mathchedPlate : "NONE FOUND";
+        echo "MatchedPlate: ";
+       echo isset($mathchedPlate) ? $mathchedPlate : "NONE FOUND";
 
     }
 }
