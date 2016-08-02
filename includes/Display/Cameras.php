@@ -63,6 +63,7 @@ class Cameras
         if(isset($_GET['delete'])){
             $this->getCameraData()->deletePlate($_GET['delete']);
             header('Location: ../cameras.php');
+            die();
         }
     }
     private function getEncodedImage($id){
