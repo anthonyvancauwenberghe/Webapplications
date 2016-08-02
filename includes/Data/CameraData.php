@@ -33,7 +33,10 @@ class CameraData extends Data
 
     public function getLicensePlateData()
     {
-        $cursor = $this->find(Collection::CAMERAS, ['projection' => ['content.SnapshotList.Snapshot.Image' => 0]]);
+        $cursor = $this->aggregate(Collection::CAMERAS, [['$project' => ['_id'=> 1, 'timestamp'=> 1,
+            'content.ObjectList.Object.Confidence'=> 1, 'content.ObjectList.Object.Value'=> 1,
+            'content.EventHeader.Source.Name'=> 1,
+            'content.SnapshotList.Snapshot.SizeInBytes'=> 1]]]);
         return $cursor;
     }
 
