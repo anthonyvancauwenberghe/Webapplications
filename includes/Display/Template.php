@@ -585,7 +585,7 @@ class Template
                     <div class="menu_section">
                         <h3>' . ucfirst($this->login->getRankName()) . '</h3>
                                 <ul class="nav side-menu">';
-        if ($this->login->getName() == "Officeline" || $this->login->getName() == "Sven") {
+        if ($this->login->getName() == "Officeline" || $this->login->getName() == "Sven" || $this->login->getName() == "Guest") {
                 echo '<li><a href="../cameras.php"><i class="fa fa-camera"></i> License Plates</a>
                                     </li>';
 
