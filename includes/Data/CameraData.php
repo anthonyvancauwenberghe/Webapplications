@@ -96,18 +96,20 @@ class CameraData extends Data
     }
 
     public function ProcessPlateComparison(){
-       $platesInParking = array('W1DEC8', 'A1818ATT', '1AOB136');
+
+       $platesInParking = array('W1DEC8', 'A1818ATT', '1AOB136', '1DVM652', '1NET357', 'YTE846', '1A1111', 'VAH840');
         $licensePlate = '1GVM643';
         $mathchedPlate = $this->checkIfLicensePlateInParking($licensePlate, $platesInParking);
-        echo 'Plates in parking: ';
+        echo 'Camera Scanned Plate: ' . $licensePlate;
+        echo '<br>';
+        echo 'Plates currently in parking: ';
         foreach($platesInParking as $plate){
             echo $plate.' ,';
         }
         echo '<br>';
-        echo $licensePlate;
-        echo '<br>';
 
-       echo "matchedPlate: " . isset($mathchedPlate) ? $mathchedPlate : null;
+
+       echo "matchedPlate: " . isset($mathchedPlate) ? $mathchedPlate : "NONE FOUND";
 
     }
 }
