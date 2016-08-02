@@ -33,7 +33,7 @@ class CameraData extends Data
 
     public function getLicensePlateData()
     {
-        $cursor = $this->find(Collection::CAMERAS, array());
+        $cursor = $this->find(Collection::CAMERAS, array(), ['content.SnapshotList.Snapshot.Image'=>0]);
         return $cursor;
     }
 
