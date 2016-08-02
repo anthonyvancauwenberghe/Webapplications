@@ -39,7 +39,7 @@ class Cameras
 
         foreach ($cursor as $document) {
             echo '<tr>';
-            echo '<td><a href="../cameras.php?image=' . $document['_id'] . '">' . $document['_id'] . '</a></td>';
+            echo '<td><a href="../cameras.php?image=' . $document['_id'] . '" target="_blank">' . $document['_id'] . '</a></td>';
             echo '<td>' . $this->getCore()->convertToTime($document['timestamp']) . '</td>';
             echo '<td>' . $document['content']['ObjectList']['Object']['Value'] . '</td>';
             echo '<td>' . $document['content']['ObjectList']['Object']['Confidence']*100 . ' %</td>';
