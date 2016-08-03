@@ -30,7 +30,7 @@ class Cameras
                           <th>License Plate</th>
                           <th>Accuracy</th>
                           <th>Source</th>
-                          <th>Image</th>
+                          <th>Image Size</th>
                           <th>Give Free Pass</th>
                           <th>Delete</th>
                         </tr>

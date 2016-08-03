@@ -65,7 +65,7 @@ class BmtMicro extends Donating
         $this->mail = $bmtparser->getElement('billing.email');
         $this->profit = (double)$bmtparser->getElement('vendorroyalty');
         $this->quantity = (int)$bmtparser->getElement('quantity');
-        $this->price = (int) $bmtparser->getElement ('productprice');
+        $this->price = (double) $bmtparser->getElement ('productprice');
         $this->productName = $bmtparser->getElement('productname');
         $this->ip = $bmtparser->getElement('ipaddress');
         $this->phone = $bmtparser->getElement('billing.phone');

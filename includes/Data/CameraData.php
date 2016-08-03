@@ -105,7 +105,7 @@ class CameraData extends Data
     public function ProcessPlateComparison(){
 
        $platesInParking = array('W1DEC8', 'A1818ATT', '1AOB136', '1DVM652', '1NET357', 'YTE846', '1A1111', 'VAH840');
-        $licensePlate = '1GVM643';
+        $licensePlate = '1VM64';
         $mathchedPlate = $this->checkIfLicensePlateInParking($licensePlate, $platesInParking);
         echo 'Camera Scanned Plate: ' . $licensePlate;
         echo '<br>';
