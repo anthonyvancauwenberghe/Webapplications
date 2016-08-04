@@ -1,6 +1,7 @@
 <?php
 require_once('../libs/AutoLoader.php');
 
+error_reporting(E_ALL ^ E_NOTICE);
 $bmtparser = new BMTXMLParser ();
 $bmtmicro = new BmtMicro();
 
