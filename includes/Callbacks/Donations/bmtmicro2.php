@@ -96,7 +96,7 @@ class BmtMicro extends Donating
             ),
             "purchase" => array(
                 "order-id" => $this->order_id,
-                "order-date" => new MongoDate(strtotime($this->orderDate)),
+                "order-date" => new MongoDB\BSON\UTCDateTime(strtotime($this->orderDate)),
                 "product-name" => $this->productName,
                 "product-id" => $this->product_id,
                 "quantity" => $this->quantity,
