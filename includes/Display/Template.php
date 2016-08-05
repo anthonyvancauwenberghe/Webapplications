@@ -603,6 +603,9 @@ class Template
                       <li><a href="../huurders.php">Huurders</a></li>
 
                     </ul>
+                    
+                  </li>
+                  <li class=""><a href"../data.php"><i class="fa fa-bar-chart-o"></i>Data</a>
                   </li>';
 
         } else {
