@@ -588,8 +588,10 @@ class Template
         if ($this->login->getName() == "Officeline" || $this->login->getName() == "Sven" || $this->login->getName() == "Guest") {
                 echo '<li><a><i class="fa fa-camera"></i> Parking System <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="">
-                      <li><a href="../cameras.php">Parking Logs<span class="fa fa-chevron-down"></span></a>
+                      <li><a>Parking Logs<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu" style="display: block;">
+                          <li><a href="../cameras.php">All Parkings</a>
+                            </li>
                             <li><a href="../parking.php?placeId=1">Parking Kelder</a>
                             </li>
                             <li><a href="../parking.php?placeId=2">Parking Achterkant</a>
