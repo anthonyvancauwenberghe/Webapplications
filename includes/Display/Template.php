@@ -589,7 +589,7 @@ class Template
                 echo '<li><a><i class="fa fa-camera"></i> License Plates <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="">
                       <li><a href="../cameras.php">Logs</a></li>
-                      <li><a href="media_gallery.html">Huurder</a></li>
+                      <li><a href="#">Huurder</a></li>
 
                     </ul>
                   </li>';
