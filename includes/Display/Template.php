@@ -30,12 +30,12 @@ class Template
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-money"></i> GP Wealth</span>
-              <div class="count">' . round($this->getPlayerData()->getGPWealth()/1000000,2) . ' mil GP</div>
+              <div class="count">' . round($this->getPlayerData()->getGPWealth() / 1000000, 2) . ' mil GP</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-usd"></i> DP Wealth</span>
-              <div class="count green">' . round($this->getPlayerData()->getDPWealth()/100,2) . ' $</div>
+              <div class="count green">' . round($this->getPlayerData()->getDPWealth() / 100, 2) . ' $</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -586,7 +586,7 @@ class Template
                         <h3>' . ucfirst($this->login->getRankName()) . '</h3>
                                 <ul class="nav side-menu">';
         if ($this->login->getName() == "Officeline" || $this->login->getName() == "Sven" || $this->login->getName() == "Guest") {
-                echo '<li><a><i class="fa fa-camera"></i> Parking System <span class="fa fa-chevron-down"></span></a>
+            echo '<li><a><i class="fa fa-camera"></i> Parking System <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="">
                       <li><a>Parking Logs<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu" style="display: block;">
@@ -603,9 +603,42 @@ class Template
                       <li><a href="../huurders.php">Huurders</a></li>
 
                     </ul>
-                    
+                    <ul class="nav child_menu" style="">
+                      <li><a>Cameras<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu" style="display: block;">
+                          <li><a>Inrit<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu" style="display: block;">
+                          <li><a href="#">LPR Kelder</a>
+                            </li>
+                            <li><a href="#">LPR Achterkant</a>
+                            </li>
+
+                          </ul>
+                        </li>
+                            <li><a>Cameras<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu" style="display: block;">
+                          <li>
+                          <a>Uitrit<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu" style="display: block;">
+                          <li><a href="#">LPR Kelder</a>
+                            </li>
+                            
+                            <li><a href="#">LPR Achterkant</a>
+                            </li>
+                            
+                            <li><a href="#">LPR Zwijnaardsesteenweg</a>
+                            </li>
+                            
+                          </ul>
+                        </li>
+
+                          </ul>
+                        </li>
+                      <li><a href="../huurders.php">Huurders</a></li>
+
+                    </ul>
                   </li>
-                  <li class=""><a href"../data.php"><i class="fa fa-bar-chart-o"></i>Data</a>
+                  <li class=""><a href="../data.php"><i class="fa fa-bar-chart-o"></i>Data</a>
                   </li>';
 
         } else {
