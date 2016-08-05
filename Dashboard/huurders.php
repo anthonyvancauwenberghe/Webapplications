@@ -27,7 +27,7 @@ $cameras->printLicensePlateImage();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>License Plates | DeviousPs</title>
+    <title>Huurders | DeviousPs</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -103,7 +103,7 @@ $cameras->printLicensePlateImage();
                         <div class="x_content">
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <?php
-                                $cameras->printLPRLogTables();
+                                $cameras->printLPRHuurderTables();
                                 ?>
                                 
                             </table>

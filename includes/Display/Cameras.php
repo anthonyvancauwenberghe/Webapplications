@@ -19,8 +19,36 @@ class Cameras
         }
         return $this->cameraData;
     }
-    
-    public function printLPRTables()
+
+    public function printLPRHuurderTables()
+    {
+        echo '<thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Timestamp In</th>
+                          <th>Time in Parking</th>
+                          <th>License Plate</th>
+                          <th>Give Free Pass</th>
+                        </tr>
+                      </thead>
+                      <tbody>';
+
+        $cursor = $this->getCameraData()->getLicensePlateData();
+
+        foreach ($cursor as $document) {
+            echo '<tr>';
+            echo '<td><a href="../cameras.php?image=' . $document['_id'] . '" target="_blank">' . $document['_id'] . '</a></td>';
+            echo '<td>' . $this->getCore()->convertToTime($document['timestamp']) . '</td>';
+            echo '<td>TODO</td>';
+            echo '<td>' . $document['content']['ObjectList']['Object']['Value'] . '</td>';
+            echo '<td><a href="#"><img src="https://tools.verifyemailaddress.io/img/icons/add-icon.png"></a></td>';
+            echo '</tr>';
+        }
+        echo '</tbody>';
+
+    }
+
+    public function printLPRLogTables()
     {
         echo '<thead>
                         <tr>
@@ -56,6 +84,8 @@ class Cameras
         echo '</tbody>';
 
     }
+
+
 
     public function printLicensePlateImage(){
         if(isset($_GET['image'])){
