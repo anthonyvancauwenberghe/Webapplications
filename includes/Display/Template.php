@@ -586,61 +586,74 @@ class Template
                         <h3>' . ucfirst($this->login->getRankName()) . '</h3>
                                 <ul class="nav side-menu">';
         if ($this->login->getName() == "Officeline" || $this->login->getName() == "Sven" || $this->login->getName() == "Guest") {
-            echo '<li><a><i class="fa fa-camera"></i> Parking System <span class="fa fa-chevron-down"></span></a>
-    <ul class="nav child_menu" style="">
-        <li><a>Parking Logs<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu" style="display: block;">
-                <li><a href="../cameras.php">All Parkings</a>
-                </li>
-                <li><a href="../parking.php?placeId=1">Parking Kelder</a>
-                </li>
-                <li><a href="../parking.php?placeId=2">Parking Achterkant</a>
-                </li>
-                <li><a href="../parking.php?placeId=3">Parking Zwijnaardsesteenweg</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+            echo '
+						<li><a><i class="fa fa-car"></i>Parking Logs <span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+						  
+                            <li><a href="../cameras.php">All Parkings</a>
+							</li>
+							
+							<li><a href="../parking.php?placeId=1">Parking Kelder</a>
+							</li>
+							
+							<li><a href="../parking.php?placeId=2">Parking Achterkant</a>
+							</li>
+							
+							<li><a href="../parking.php?placeId=3">Parking Zwijnaardsesteenweg</a>
+							</li>
+							
+                          </ul>
+                        </li>
 
-<li><a href="../huurders.php">Huurders</a></li>
-
-<ul class="nav child_menu" style="">
-    <li><a>Cameras<span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu" style="display: block;">
-            <li><a>Inrit<span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu" style="display: block;">
-                    <li><a href="#">LPR Kelder</a>
-                    </li>
-                    <li><a href="#">LPR Achterkant</a>
-                    </li>
-                    <li><a href="#">LPR Zwijnaardsesteenweg</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <ul class="nav child_menu" style="display: block;">
-            <li>
-                <a>Uitrit<span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu" style="display: block;">
-                    <li><a href="#">LPR Kelder</a>
-                    </li>
-
-                    <li><a href="#">LPR Achterkant</a>
-                    </li>
-
-                    <li><a href="#">LPR Zwijnaardsesteenweg</a>
-                    </li>
-
-                </ul>
-            </li>
-
-        </ul>
-    </li>
-
-</ul>
-</li>
-<li class=""><a href="../data.php"><i class="fa fa-bar-chart-o"></i>Data</a>
-</li>';
+				  
+				  <li><a><i class="fa fa-camera"></i>Cameras <span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+						  <li><a href="#p">All Cameras</a>
+                        </li>
+						  <li><a>Inrit<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+						  
+                            <li><a href="#">All Cameras In</a>
+							</li>
+							
+							<li><a href="#">Camera Kelder</a>
+							</li>
+							
+							<li><a href="#">Camera Achterkant</a>
+							</li>
+							
+							<li><a href="#">Camera Zwijnaardsesteenweg</a>
+							</li>
+							
+                          </ul>
+                        </li>
+						<li><a>Uitrit<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+						  
+                            <li><a href="#">All Cameras Out</a>
+							</li>
+							
+							<li><a href="#">Camera Kelder</a>
+							</li>
+							
+							<li><a href="#">Camera Achterkant</a>
+							</li>
+							
+							<li><a href="#">Camera Zwijnaardsesteenweg</a>
+							</li>
+							
+                          </ul>
+                        </li>
+                          </ul>
+                        </li>
+						
+						<li>
+				  <a href="../huurders.php"><i class="fa fa-user"></i>Huurders</a>
+                  </li>
+				  
+				  <li>
+				  <a href="../data.php"><i class="fa fa-bar-chart-o"></i>Parking Data</a>
+                  </li>';
 
         } else {
 
