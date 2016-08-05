@@ -58,6 +58,7 @@ class Cameras
                           <th>License Plate</th>
                           <th>Accuracy</th>
                           <th>Source</th>
+                          <th>Released By</th>
                           <th>Image Size</th>
                           <th>Give Free Pass</th>
                           <th>Delete</th>
@@ -75,6 +76,7 @@ class Cameras
             echo '<td>' . $document['content']['ObjectList']['Object']['Value'] . '</td>';
             echo '<td>' . $document['content']['ObjectList']['Object']['Confidence']*100 . ' %</td>';
             echo '<td>' . $document['content']['EventHeader']['Source']['Name'] . '</td>';
+            echo '<td>Still in Parking</td>';
             echo '<td>' . round($document['content']['SnapshotList']['Snapshot']['SizeInBytes']/(1024),2) . ' Kb</td>';
             echo '<td><a href="#"><img src="https://tools.verifyemailaddress.io/img/icons/add-icon.png"></a></td>';
             echo '<td><a href="../cameras.php?delete=' . $document['_id'] . '"><img src="http://findicons.com/files/icons/1617/circular/16/delete.png"></a></td>';

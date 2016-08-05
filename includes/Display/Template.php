@@ -586,10 +586,19 @@ class Template
                         <h3>' . ucfirst($this->login->getRankName()) . '</h3>
                                 <ul class="nav side-menu">';
         if ($this->login->getName() == "Officeline" || $this->login->getName() == "Sven" || $this->login->getName() == "Guest") {
-                echo '<li><a><i class="fa fa-camera"></i> License Plates <span class="fa fa-chevron-down"></span></a>
+                echo '<li><a><i class="fa fa-camera"></i> Parking System <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="">
-                      <li><a href="../cameras.php">Logs</a></li>
-                      <li><a href="#">Huurder</a></li>
+                      <li><a href="../cameras.php">Parking Logs<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu" style="display: block;">
+                            <li><a href="../parking.php?placeId=1">Parking Kelder</a>
+                            </li>
+                            <li><a href="../parking.php?placeId=2">Parking Achterkant</a>
+                            </li>
+                            <li><a href="../parking.php?placeId=3">Parking Zwijnaardsesteenweg</a>
+                            </li>
+                          </ul>
+                        </li>
+                      <li><a href="../huurders.php">Huurders</a></li>
 
                     </ul>
                   </li>';
