@@ -606,7 +606,7 @@ class Template
                         </li>
 
 				  
-				  <li><a><i class="fa fa-camera"></i>Cameras <span class="fa fa-chevron-down"></span></a>
+				  <li><a><i class="fa fa-camera"></i>Camera Logs <span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
 						  <li><a href="#p">All Cameras</a>
                         </li>
