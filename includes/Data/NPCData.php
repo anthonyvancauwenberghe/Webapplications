@@ -9,7 +9,7 @@ class NPCData extends Data
 
         $unwind = ['$unwind' => '$drops'];
         $group = ['$group' => ['_id' => ['name' => '$npcName', 'rarity' => '$drops.chance'], 'amount' => ['$sum' => 1]]];
-        $group2 = ['$group' => ['_id' => '$_id.name', 'rarities' => ['$push' => ['rarity' => '$_id.rarity', 'amount' => '$item.amount']]]];
+        $group2 = ['$group' => ['_id' => '$_id.name', 'rarities' => ['$push' => ['rarity' => '$_id.rarity', 'amount' => '$amount']]]];
 
         $cursor = $this->aggregate(Collection::NPC_DROPS, [$unwind, $group, $group2]);
 
@@ -80,24 +80,24 @@ class NPCData extends Data
 
     }
 
-    public function getNPCDrops($npc){
-        $npcName = (string) $npc;
+    public function getNPCDrops($npc)
+    {
+        $npcName = (string)$npc;
         $pipeline = [['$match' => ['npcName' => $npcName]],
             ['$unwind' => '$drops'],
             ['$lookup' => [
-                'from' => 'itemDefinitions',
+                'from' => 'itemDefinition',
                 'localField' => 'drops.item.itemId',
-                'foreignField' => 'item.itemId',
+                'foreignField' => 'itemId',
                 'as' => 'item'
             ]
             ],
             ['$unwind' => '$item'],
-            ['$project' => ['_id' => '$drops.item.itemId', 'amount' => '$drops.item.amount', 'rarity' => '$drops.chance', 'item-name' => '$item.name', 'value' => ['$multiply' => ['$drops.amount', '$item.value']]]]];
+            ['$project' => ['_id' => '$drops.item.itemId', 'amount' => '$drops.item.amount', 'rarity' => '$drops.chance', 'item-name' => '$item.name', 'value' => ['$multiply' => ['$drops.item.amount', '$item.value']]]]];
 
         $cursor = $this->aggregate(Collection::NPC_DROPS, $pipeline);
-        
+
         return $cursor;
 
     }
 }
-
