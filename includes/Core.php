@@ -9,7 +9,6 @@ class Core
     protected static $startTime;
     protected static $endTime;
     private $config;
-    private $data;
 
     private function setTimezone()
     {
@@ -114,16 +113,11 @@ class Core
 
     }
 
-    public function errorReporting()
+    public function setErrorReportingOn()
     {
-        if ($this->getConfig('Errors') == 'ON') {
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
             error_reporting(E_ALL);
-        } else {
-
-        }
-
     }
 
     public function getConfig($configName = null)

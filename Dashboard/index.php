@@ -10,13 +10,11 @@ require_once '../libs/AutoLoader.php';
 
 $core = new Core();
 $core->setStartTime();
-$login = new LoginSystem(Rank::PLAYER);
-
-$template = new Template($login);
-if($login->getName()=="Officeline" || $login->getName()=="Sven" || $login->getName() == "Guest"){
+$login = new LoginSystem(Rank::CUSTOMER);
     header('Location: ../cameras.php');
     exit();
-}
+
+$template = new Template($login);
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +26,7 @@ if($login->getName()=="Officeline" || $login->getName()=="Sven" || $login->getNa
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Home | DeviousPs</title>
+    <title>Home | Imber</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

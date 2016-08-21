@@ -23,7 +23,7 @@ class CameraData extends Data
     private function insertDocument()
     {
         $document = $this->buildDocument();
-        $this->insertOne(Collection::CAMERAS, $document);
+        $this->insertOne(Collection::PARKING, $document);
     }
 
     public function processXMLRequest()
@@ -33,7 +33,7 @@ class CameraData extends Data
 
     public function getLicensePlateData()
     {
-        $cursor = $this->aggregate(Collection::CAMERAS, [['$project' => ['_id'=> 1, 'timestamp'=> 1,
+        $cursor = $this->aggregate(Collection::PARKING, [['$project' => ['_id'=> 1, 'timestamp'=> 1,
             'content.ObjectList.Object.Confidence'=> 1, 'content.ObjectList.Object.Value'=> 1,
             'content.EventHeader.Source.Name'=> 1,
             'content.SnapshotList.Snapshot.SizeInBytes'=> 1]]]);
@@ -42,12 +42,12 @@ class CameraData extends Data
 
     public function getLicensePlateImage($id)
     {
-        $data = $this->findOne(Collection::CAMERAS, array('_id' => new MongoDB\BSON\ObjectID($id)));
+        $data = $this->findOne(Collection::PARKING, array('_id' => new MongoDB\BSON\ObjectID($id)));
         return $data['content']['SnapshotList']['Snapshot']['Image'];
     }
     
     public function deletePlate($id){
-        $this->deleteOne(Collection::CAMERAS, array('_id' => new MongoDB\BSON\ObjectID($id)));
+        $this->deleteOne(Collection::PARKING, array('_id' => new MongoDB\BSON\ObjectID($id)));
     }
 
     private function checkIfLicensePlateInParking($licensePlate, $ParkingPlates)

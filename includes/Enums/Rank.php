@@ -8,21 +8,34 @@
  */
 class Rank
 {
-    const PLAYER=1;
-    const HERO=2;
-    const LEGEND =3;
-    const VETERAN = 4;
-    const DONATOR = 5;
-    const SUPER_DONATOR = 6;
-    const EXTREME_DONATOR = 7;
-    const LEGENDARY_DONATOR = 8;
-    const MYTHICAL_DONATOR = 9;
-    const HELPER = 10;
-    const MODERATOR = 11;
-    const GLOBAL_MODERATOR = 12;
-    const COMMUNITY_MANAGER = 13;
-    const HEAD_MODERATOR = 14;
-    const ADMINISTRATOR = 15;
-    const DEVELOPER = 16;
-    const OWNER = 17;
+    const NONE = -1;
+    const CUSTOMER=1;
+    const EMPLOYEE = 5;
+    const STOREMANAGER=10;
+    const BUILDINGMANAGER =20;
+    const OWNER = 30;
+
+    public function getRank($rankName)
+    {
+        switch ($rankName) {
+            case 'CUSTOMER':
+                return Rank::CUSTOMER;
+                break;
+            case 'EMPLOYEE':
+                return Rank::EMPLOYEE;
+                break;
+            case 'STOREMANAGER':
+                return Rank::STOREMANAGER;
+                break;
+            case 'BUILDINGMANAGER':
+                return Rank::BUILDINGMANAGER;
+                break;
+            case 'OWNER':
+                return Rank::OWNER;
+                break;
+            default:
+                return Rank::NONE;
+                break;
+        }
+    }
 }

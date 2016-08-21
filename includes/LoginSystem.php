@@ -152,7 +152,7 @@ class LoginSystem
     public function processLoginCheck()
     {
         if (!$this->login_check()) {
-            header("Location: ../login.php");
+            header("Location: ../login.php?failed=true");
             die();
         }
     }
@@ -188,9 +188,9 @@ class LoginSystem
             $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
             //$query = array('player-name' => new MongoRegex('/' . strtolower($username) . '/i'));
-            if ($member = $this->data->findOne(Collection::CHARACTERS, array('_id' => new MongoDB\BSON\ObjectId($user_id)))) {
+            if ($member = $this->data->findOne(Collection::USERS, array('_id' => new MongoDB\BSON\ObjectId($user_id)))) {
 
-                $login_check = hash('sha512', $member['password']['hashed'] . $user_browser);
+                $login_check = hash('sha512', $member['Password']['hashed'] . $user_browser);
 
                 if (hash_equals($login_check, $login_string)) {
                     // Logged In!!!!
@@ -207,18 +207,17 @@ class LoginSystem
                 return false;
             }
         } else {
-
             return false;
         }
     }
 
-    private function login($playerName, $password)
+    private function login($username, $password)
     {
         if (!isset($this->data)) {
             $this->data = new Data();
         }
         //new MongoRegex('/' . strtolower($playerName) . '/i')
-        if ($member = $this->data->findOne(Collection::CHARACTERS, array('player-name' => $playerName))) {
+        if ($member = $this->data->findOne(Collection::USERS, array('Username' => $username))) {
 
             // If the user exists we check if the account is locked
             // from too many login attempts
@@ -232,7 +231,7 @@ class LoginSystem
             // the password the user submitted. We are using
             // the hahs_equals function to avoid timing attacks.
 
-            if (hash_equals($member['password']['hashed'], hash('sha512', $member['password']['salt'] . $password))) {
+            if (hash_equals($member['Password']['hashed'], hash('sha512', $member['Password']['salt'] . $password))) {
                 // Password is correct!
                 // Get the user-agent string of the user.
                 $user_browser = $_SERVER['HTTP_USER_AGENT'];
@@ -240,14 +239,16 @@ class LoginSystem
                 // XSS protection as we might print this value
 
                 $_SESSION['user_id'] = $user_id;
-                $_SESSION['username'] = $playerName;
-                $_SESSION['rank'] = $member['ranks']['highest-rank'];
-                $_SESSION['login_string'] = hash('sha512', $member['password']['hashed'] . $user_browser);
+                $_SESSION['username'] = $username;
+                $_SESSION['rank'] = $member['Permissions']['rank'];
+                $_SESSION['login_string'] = hash('sha512', $member['Password']['hashed'] . $user_browser);
                 // Login successful.
                 return true;
             } else {
                 // Password is not correct
                 // We record this attempt in the database
+
+                //TODO BRUTEFORCING BLOCKING
                 $now = time();
                 // $mysqli->query("INSERT INTO login_attempts(user_id, time)
                 // VALUES ('$user_id', '$now')");
@@ -257,6 +258,7 @@ class LoginSystem
 
         } else {
             // No user exists.
+            //TODO SET MESSAGE TO LET THEM KNOW USER DOOESN'T EXIST
             return false;
         }
 
@@ -309,59 +311,23 @@ class LoginSystem
     public function getRank()
     {
         switch ($this->getRankName()) {
-            case 'PLAYER':
-                return Rank::PLAYER;
+            case 'CUSTOMER':
+                return Rank::CUSTOMER;
                 break;
-            case 'HERO':
-                return Rank::HERO;
+            case 'EMPLOYEE':
+                return Rank::EMPLOYEE;
                 break;
-            case 'LEGEND':
-                return Rank::LEGEND;
+            case 'STOREMANAGER':
+                return Rank::STOREMANAGER;
                 break;
-            case 'VETERAN':
-                return Rank::VETERAN;
-                break;
-            case 'DONATOR':
-                return Rank::DONATOR;
-                break;
-            case 'SUPER_DONATOR':
-                return Rank::SUPER_DONATOR;
-                break;
-            case 'EXTREME_DONATOR':
-                return Rank::EXTREME_DONATOR;
-                break;
-            case 'LEGENDARY_DONATOR':
-                return Rank::LEGENDARY_DONATOR;
-                break;
-            case 'MYTHICAL_DONATOR':
-                return Rank::MYTHICAL_DONATOR;
-                break;
-            case 'HELPER':
-                return Rank::HELPER;
-                break;
-            case 'MODERATOR':
-                return Rank::MODERATOR;
-                break;
-            case 'GLOBAL_MODERATOR':
-                return Rank::GLOBAL_MODERATOR;
-                break;
-            case 'COMMUNITY_MANAGER':
-                return Rank::COMMUNITY_MANAGER;
-                break;
-            case 'HEAD_MODERATOR':
-                return Rank::HEAD_MODERATOR;
-                break;
-            case 'ADMINISTRATOR':
-                return Rank::ADMINISTRATOR;
-                break;
-            case 'DEVELOPER':
-                return Rank::DEVELOPER;
+            case 'BUILDINGMANAGER':
+                return Rank::BUILDINGMANAGER;
                 break;
             case 'OWNER':
                 return Rank::OWNER;
                 break;
-            case null:
-                return Rank::PLAYER;
+            default:
+                return Rank::CUSTOMER;
                 break;
         }
     }

@@ -17,9 +17,17 @@ class Database
         if (!isset(self::$connection)) {
             self::getConfig();
             try {
-                self::$connection = new MongoDB\Client('mongodb://' . self::$config['host'] . ':' . self::$config['port'] . '/' . self::$config['authdb'],
-                    array('username' => self::$config['username'], 'password' => self::$config['password'], 'replicaSet' => false, 'connect' => false),
-                    ['typeMap' => ['root' => 'array', 'document' => 'array', 'array' => 'array']]);
+                if(self::getAuthentication()){
+                    self::$connection = new MongoDB\Client('mongodb://' . self::$config['host'] . ':' . self::$config['port'] . '/' . self::$config['authdb'],
+                        array('username' => self::$config['username'], 'password' => self::$config['password'], 'replicaSet' => false, 'connect' => false),
+                        ['typeMap' => ['root' => 'array', 'document' => 'array', 'array' => 'array']]);    
+                }
+                else {
+                    self::$connection = new MongoDB\Client('mongodb://' . self::$config['host'] . ':' . self::$config['port'],
+                        array( 'replicaSet' => false, 'connect' => false),
+                        ['typeMap' => ['root' => 'array', 'document' => 'array', 'array' => 'array']]); 
+                }
+                
             } catch(MongoConnectionException $e) {
                 trigger_error('Mongodb not available', E_USER_ERROR);
                 die();
@@ -40,6 +48,16 @@ class Database
         }
 
         return self::$config;
+    }
+    
+    private static function getAuthentication(){
+        self::getConfig();
+        if(self::$config['auth']){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public static function getDatabaseInfoConfig()

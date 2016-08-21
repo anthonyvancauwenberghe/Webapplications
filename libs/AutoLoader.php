@@ -65,7 +65,7 @@ function autoloader($class_paths = NULL, $use_base_dir = true)
 
 
     static $conf = [
-        'basepath' => 'C:/xampp/htdocs/Webapplications/',
+        'basepath' => 'C:/xampp/htdocs/',
         'debug' => false,
         'extensions' => ['.php'], // multiple extensions ex: ['.php', '.class.php']
         'namespace' => '',
