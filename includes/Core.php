@@ -42,10 +42,15 @@ class Core
 
     public function convertToTime($time)
     {
+        return $this->convertToTimeWithFormat($time, 'd-M-Y H:i:s ');
+    }
+
+    public function convertToTimeWithFormat($time, $format)
+    {
         $this->setTimezone();
         $time = (string)$time;
         $time = round((int)($time) / 1000);
-        return date('d-M-Y H:i:s ', (string)$time);
+        return date($format, (string)$time);
     }
 
     public function getDateof($timeUnit)

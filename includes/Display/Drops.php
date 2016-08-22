@@ -25,38 +25,6 @@ class Drops
         }
     }
 
-    private function convertRaritytoID($rarity)
-    {
-        $rarity = (string) $rarity;
-
-        if ($rarity == 'ALWAYS') {
-            $rarityid = 0;
-        } elseif ($rarity == 'ALMOST_ALWAYS') {
-            $rarityid = 1;
-        } elseif ($rarity == 'VERY_COMMON') {
-            $rarityid = 2;
-        } elseif ($rarity == 'COMMON') {
-            $rarityid = 3;
-        } elseif ($rarity == 'UNCOMMON') {
-            $rarityid = 4;
-        } elseif ($rarity == 'NOT_THAT_RARE') {
-            $rarityid = 5;
-        } elseif ($rarity == 'RARE') {
-            $rarityid = 6;
-        } elseif ($rarity == 'LEGENDARY') {
-            $rarityid = 7;
-        } elseif ($rarity == 'LEGENDARY_2') {
-            $rarityid = 8;
-        } elseif ($rarity == 'LEGENDARY_3') {
-            $rarityid = 9;
-        } elseif ($rarity == 'LEGENDARY_4') {
-            $rarityid = 10;
-        } elseif ($rarity == 'LEGENDARY_5') {
-            $rarityid = 11;
-        }
-        return $rarityid;
-    }
-
     public function printNPCDrops()
     {
         if (!isset($this->NPCData)) {
@@ -67,11 +35,11 @@ class Drops
             echo '<thead>
                         <tr>
                           <th>Item ID</th>
-                          <th>Item Name</th>
+                          <th>Item name</th>
                           <th>Item value</th>
-                          <th>Drop Amount</th>
-                          <th>Drop Rarity</th>
-                          <th id="dropRarity" style="display: none"; >Drop Rarity Id</th>
+                          <th>Drop amount</th>
+                          <th>Drop rarity</th>
+                          <th id="dropRarity" style="display: none"; >Drop rarity ID</th>
                         </tr>
                       </thead>
                       <tbody>';
@@ -84,8 +52,8 @@ class Drops
                 echo '<td>' . $npcDrop['item-name'] . '</td>';
                 echo '<td>' . round($npcDrop['value']/1000,2) . ' k</td>';
                 echo '<td>' . $npcDrop['amount'] . '</td>';
-                echo '<td>' . $npcDrop['rarity'] . '</td>';
-                echo '<td style="display: none";>' . $this->convertRaritytoID($npcDrop['rarity']) . '</td>';
+                echo '<td>' . ucfirst(strtolower(str_replace('_', ' ', $npcDrop['rarity']))) . '</td>';
+                echo '<td style="display: none";>' . DropChance::convertRarityToId($npcDrop['rarity']) . '</td>';
                 echo '</tr>';
             }
             echo '</tbody>';
@@ -93,16 +61,16 @@ class Drops
         } else {
             echo '<thead>
                         <tr>
-                          <th>NPC Name</th>
-                          <th>Amount of Items</th>
-                          <th>ALWAYS</th>
-                          <th>ALMOST ALWAYS</th>
-                          <th>VERY COMMON</th>
-                          <th>COMMON</th>
-                          <th>UNCOMMON</th>
-                          <th>NOT THAT RARE</th>
-                          <th>RARE</th>
-                          <th>LEGENDARY</th>
+                          <th>Npc name</th>
+                          <th>Amount of items</th>
+                          <th>Always</th>
+                          <th>Almost always</th>
+                          <th>Very Common</th>
+                          <th>Common</th>
+                          <th>Uncommon</th>
+                          <th>Not that rare</th>
+                          <th>Rare</th>
+                          <th>Legendary</th>
                         </tr>
                       </thead>
                       
@@ -139,10 +107,10 @@ class Drops
         if (isset($_GET['item'])) {
             echo '<thead>
                         <tr>
-                          <th>NPC ID</th>
-                          <th>NPC Name</th>
-                          <th>Drop Chance</th>
-                          <th>Drop Amount</th>
+                          <th>Npc ID</th>
+                          <th>Npc name</th>
+                          <th>Drop chance</th>
+                          <th>Drop amount</th>
                         </tr>
                       </thead>
                       

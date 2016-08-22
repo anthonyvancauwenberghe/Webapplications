@@ -22,3 +22,4 @@
 
 config.ini
 /.idea/*
+/libs/AutoLoader.php

@@ -26,10 +26,10 @@ class Votes
 
         echo '<thead>
                         <tr>
-                          <th>Timestamp</th>
+                          <th>Time</th>
                           <th>Website</th>
-                          <th>Vote Points</th>
-                          <th>Bonus Multiplier</th>
+                          <th>Voting points</th>
+                          <th>Bonus multiplier</th>
                           <th>Received</th>
                         </tr>
                       </thead>
@@ -39,10 +39,10 @@ class Votes
 
         foreach ($cursor as $vote) {
             echo '<tr>';
-            echo '<td>' . $this->getCore()->convertToTime($vote['time']) . '</td>';
-            echo '<td>' . $vote['content']['website'] . '</td>';
-            echo '<td>' . $this->getCore()->checkIfNull((isset($vote['content']['pointsAmount'])) ? $vote['content']['pointsAmount'] : null) . '</td>';
-            echo '<td>' . $this->getCore()->checkIfNull((isset($vote['content']['multiplier'])) ? $vote['content']['multiplier'] : null) . 'X</td>';
+            echo '<td>' . $this->getCore()->convertToTimeWithFormat($vote['time'], 'd/m/Y \a\t H:i') . '</td>';
+            echo '<td>' . ucfirst(strtolower($vote['content']['website'])) . '</td>';
+            echo '<td>' . $this->getCore()->checkIfNull((isset($vote['content']['pointsAmount'])) ? $vote['content']['pointsAmount'] : 'Unknown') . '</td>';
+            echo '<td>' . $this->getCore()->checkIfNull((isset($vote['content']['multiplier'])) ? $vote['content']['multiplier'] : 1) . 'x</td>';
             echo '<td>' . $this->getCore()->convertTrueFalseToString($vote['processed']). '</td>';
             echo '</tr>';
         }
