@@ -13,10 +13,6 @@ $core->setStartTime();
 $login = new LoginSystem(Rank::PLAYER);
 
 $template = new Template($login);
-if($login->getName()=="Officeline" || $login->getName()=="Sven" || $login->getName() == "Guest"){
-    header('Location: ../cameras.php');
-    exit();
-}
 ?>
 
 <!DOCTYPE html>

@@ -585,100 +585,27 @@ class Template
                     <div class="menu_section">
                         <h3>' . ucfirst($this->login->getRankName()) . '</h3>
                                 <ul class="nav side-menu">';
-        if ($this->login->getName() == "Officeline" || $this->login->getName() == "Sven" || $this->login->getName() == "Guest") {
-            echo '
-						<li><a><i class="fa fa-car"></i>Parking Logs <span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-						  
-                            <li><a href="../cameras.php">All Parkings</a>
-							</li>
-							
-							<li><a href="../parking.php?placeId=1">Parking Kelder</a>
-							</li>
-							
-							<li><a href="../parking.php?placeId=2">Parking Achterkant</a>
-							</li>
-							
-							<li><a href="../parking.php?placeId=3">Parking Zwijnaardsesteenweg</a>
-							</li>
-							
-                          </ul>
-                        </li>
 
-				  
-				  <li><a><i class="fa fa-camera"></i>Camera Logs <span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-						  <li><a href="#p">All Cameras</a>
-                        </li>
-						  <li><a>Inrit<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-						  
-                            <li><a href="#">All Cameras In</a>
-							</li>
-							
-							<li><a href="#">Camera Kelder</a>
-							</li>
-							
-							<li><a href="#">Camera Achterkant</a>
-							</li>
-							
-							<li><a href="#">Camera Zwijnaardsesteenweg</a>
-							</li>
-							
-                          </ul>
-                        </li>
-						<li><a>Uitrit<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-						  
-                            <li><a href="#">All Cameras Out</a>
-							</li>
-							
-							<li><a href="#">Camera Kelder</a>
-							</li>
-							
-							<li><a href="#">Camera Achterkant</a>
-							</li>
-							
-							<li><a href="#">Camera Zwijnaardsesteenweg</a>
-							</li>
-							
-                          </ul>
-                        </li>
-                          </ul>
-                        </li>
-						
-						<li>
-				  <a href="../huurders.php"><i class="fa fa-user"></i>Huurders</a>
-                  </li>
-				  
-				  <li>
-				  <a href="../data.php"><i class="fa fa-bar-chart-o"></i>Parking Data</a>
-                  </li>';
-
-        } else {
-
-            echo '<li><a href="../index.php"><i class="fa fa-home"></i> Home</a>
+        echo '<li><a href="../index.php"><i class="fa fa-home"></i> Home</a>
                                     </li>';
 
-            echo '<li><a href="../votes.php"><i class="fa fa-check-square-o"></i> Votes</a>
+        echo '<li><a href="../votes.php"><i class="fa fa-check-square-o"></i> Votes</a>
                                     </li>';
 
-            echo '<li><a href="../donations.php"><i class="fa fa-usd"></i> Donations</a>
+        echo '<li><a href="../donations.php"><i class="fa fa-usd"></i> Donations</a>
                                     </li>';
 
-            echo '<li><a href="../drops.php"><i class="fa fa-bug"></i> Drops</a>
+        echo '<li><a href="../drops.php"><i class="fa fa-bug"></i> Drops</a>
                                     </li>';
 
-            if ($this->login->hasPermission(Rank::MODERATOR)) {
-                echo '<li><a href="../logs.php"><i class="fa fa-bar-chart-o"></i> Logs</a>
+        if ($this->login->hasPermission(Rank::MODERATOR)) {
+            echo '<li><a href="../logs.php"><i class="fa fa-bar-chart-o"></i> Logs</a>
                                     </li>';
-            }
+        }
 
-            if ($this->login->hasPermission(Rank::HEAD_MODERATOR)) {
-                echo '<li><a href="../admin/index.php"><i class="fa fa-desktop"></i> Admin Panel</a>
+        if ($this->login->hasPermission(Rank::HEAD_MODERATOR)) {
+            echo '<li><a href="../admin/index.php"><i class="fa fa-desktop"></i> Admin Panel</a>
                                     </li>';
-            }
-
         }
 
 

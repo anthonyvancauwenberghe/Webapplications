@@ -7,11 +7,7 @@ error_reporting(E_ALL);
 
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $camera = new CameraData();
-    $camera->processXMLRequest();
-}
-elseif (isset($_GET['request'])) {
+if (isset($_GET['request'])) {
 
     $request = $_GET['request'];
     $object = new ObjectCreator();
