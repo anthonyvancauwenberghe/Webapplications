@@ -5,21 +5,6 @@ class Donations
     private $donatorData;
     private $core;
 
-    private function getCore()
-    {
-        if (!isset($this->core)) {
-            $this->core = new Core();
-        }
-        return $this->core;
-    }
-    
-    private function getDonatorData(){
-        if (!isset($this->donatorData)) {
-            $this->donatorData = new DonatorData();
-        }
-        return $this->donatorData;
-    }
-    
     public function printDonationTables($name)
     {
         $name=$this->getCore()->normalizeUsername($name);
@@ -43,7 +28,7 @@ class Donations
         foreach ($cursor as $donation) {
             echo '<tr>';
             echo '<td>' . $donation['purchase']['order-id'] . '</td>';
-            echo '<td>' . $this->getCore()->convertToTime($donation['purchase']['order-date']) . '</td>';
+            echo '<td>' . $this->getCore()->convertToTimeWithFormat(($donation['purchase']['order-date'])) . '</td>';
             echo '<td>' . $donation['purchase']['product-name'] . '</td>';
             echo '<td>' . $donation['game']['points-amount']/100 . ' $</td>';
             echo '<td>' . $donation['purchase']['quantity'] . '</td>';
@@ -54,6 +39,22 @@ class Donations
         }
         echo '</tbody>';
 
+    }
+
+    private function getCore()
+    {
+        if (!isset($this->core)) {
+            $this->core = new Core();
+        }
+        return $this->core;
+    }
+
+    private function getDonatorData()
+    {
+        if (!isset($this->donatorData)) {
+            $this->donatorData = new DonatorData();
+        }
+        return $this->donatorData;
     }
     
     public function printDonationsAmount($name){

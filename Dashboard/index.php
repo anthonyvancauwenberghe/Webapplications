@@ -13,6 +13,7 @@ $core->setStartTime();
 $login = new LoginSystem(Rank::PLAYER);
 
 $template = new Template($login);
+$scripts = new Scripts();
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +24,9 @@ $template = new Template($login);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico'/>
 
-    <title>Home | DeviousPs</title>
+    <title>Home | NoxiousPs</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +47,8 @@ $template = new Template($login);
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="#" class="site_title"><i class="fa fa-paw"></i> <span>DeviousPs</span></a>
+                    <a href="#" class="site_title"><img src="images/footer-logo-small.png" style="height: 39px;">
+                        <span><img src="images/logo.png" style="width: 151px;height: 31px;"></span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -79,7 +82,7 @@ $template = new Template($login);
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                All Rights Reserved by - <a href="http://deviousps.com">DeviousPs</a>
+                All Rights Reserved by - <a href="http://NoxiousPs.com">NoxiousPs</a>
             </div>
             <div class="clearfix"></div>
         </footer>
@@ -387,53 +390,9 @@ $template = new Template($login);
 </script>
 <!-- /gauge.js -->
 
-<script>
-
-    $("#loglist li").on('click', function () {
-        $("#logTypeButton span").text($(this).text());
-        $("#logTypeButton span").attr('id', $(this).attr('id'));
-    });
-
-
-    $(document).ready(function () {
-        $("#searchButton").click(function () {
-            var searchValue = $('#searchform').val();
-
-            if (searchValue != '') {
-                window.location = window.location.href.split(/[?#]/)[0] + "?logtype=" + $("#logTypeButton span").attr('id') + "&name=" + searchValue;
-            }
-            else {
-                window.location = window.location.href.split(/[?#]/)[0] + "?logtype=" + $("#logTypeButton span").attr('id');
-            }
-        });
-
-        var $_GET = {};
-
-        document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-            function decode(s) {
-                return decodeURIComponent(s.split("+").join(" "));
-            }
-
-            $_GET[decode(arguments[1])] = decode(arguments[2]);
-        });
-
-        var logType = $("#" + $_GET["logtype"]).text();
-        var searchValue = $_GET["name"];
-        if (logType != '') {
-            $("#logTypeButton span").attr('id', $("#" + $_GET["logtype"]).attr('id'));
-            $("#logTypeButton span").text(logType);
-        }
-
-        if (searchValue != '') {
-
-            $('#searchform').val(searchValue);
-        }
-
-        $('#loglist').click();
-    });
-
-</script>
-
+<script src="../js/highstock/highstock.js"></script>
+<script src="../js/highstock/modules/exporting.js"></script>
+<?php $scripts->printWealthGraphScript() ?>
 <?php
 echo '<center><div class="loadtime"><h4>Page Generated in ' . $core->getPageLoadTime() . ' ms.</h4></div></center>';
 ?>

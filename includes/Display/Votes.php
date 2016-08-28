@@ -5,21 +5,6 @@ class Votes
     private $voteData;
     private $core;
 
-    private function getCore()
-    {
-        if (!isset($this->core)) {
-            $this->core = new Core();
-        }
-        return $this->core;
-    }
-    
-    private function getVoteData(){
-        if (!isset($this->voteData)) {
-            $this->voteData = new VoteData();
-        }
-        return $this->voteData;
-    }
-
     public function printVoteTables($name)
     {
         $name=$this->getCore()->normalizeUsername($name);
@@ -39,7 +24,7 @@ class Votes
 
         foreach ($cursor as $vote) {
             echo '<tr>';
-            echo '<td>' . $this->getCore()->convertToTimeWithFormat($vote['time'], 'd/m/Y \a\t H:i') . '</td>';
+            echo '<td>' . $this->getCore()->convertToTimeWithFormat($vote['time']) . '</td>';
             echo '<td>' . ucfirst(strtolower($vote['content']['website'])) . '</td>';
             echo '<td>' . $this->getCore()->checkIfNull((isset($vote['content']['pointsAmount'])) ? $vote['content']['pointsAmount'] : 'Unknown') . '</td>';
             echo '<td>' . $this->getCore()->checkIfNull((isset($vote['content']['multiplier'])) ? $vote['content']['multiplier'] : 1) . 'x</td>';
@@ -50,7 +35,22 @@ class Votes
 
     }
 
-    
+    private function getCore()
+    {
+        if (!isset($this->core)) {
+            $this->core = new Core();
+        }
+        return $this->core;
+    }
+
+    private function getVoteData()
+    {
+        if (!isset($this->voteData)) {
+            $this->voteData = new VoteData();
+        }
+        return $this->voteData;
+    }
+
     public function printVotesAmount($name){
         $name=$this->getCore()->normalizeUsername($name);
         echo $this->getVoteData()->getVotecount($name);

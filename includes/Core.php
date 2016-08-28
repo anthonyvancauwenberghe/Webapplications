@@ -11,15 +11,15 @@ class Core
     private $config;
     private $data;
 
-    private function setTimezone()
-    {
-        date_default_timezone_set('Europe/Brussels');
-    }
-
     public function getTime()
     {
         $this->setTimezone();
         return date('ymdHis');
+    }
+
+    private function setTimezone()
+    {
+        date_default_timezone_set('Europe/Brussels');
     }
 
     public function convertTrueFalseToString($boolean)
@@ -42,15 +42,21 @@ class Core
 
     public function convertToTime($time)
     {
-        return $this->convertToTimeWithFormat($time, 'd-M-Y H:i:s ');
+        $this->setTimezone();
+        $datetime = $time->toDateTime();
+        $datetime = $datetime->format(DATE_RSS);
+
+        return $datetime;
+
     }
 
-    public function convertToTimeWithFormat($time, $format)
+    public function convertToTimeWithFormat($time, $format = DATE_RSS)
     {
         $this->setTimezone();
-        $time = (string)$time;
-        $time = round((int)($time) / 1000);
-        return date($format, (string)$time);
+        $datetime = $time->toDateTime();
+        $datetime = $datetime->format((string)$format);
+
+        return $datetime;
     }
 
     public function getDateof($timeUnit)
@@ -90,13 +96,6 @@ class Core
         self::$startTime = $time[1] + $time[0];
     }
 
-    private function setEndTime()
-    {
-        $time = microtime();
-        $time = explode(' ', $time);
-        self::$endTime = $time[1] + $time[0];
-    }
-
     public function getPageLoadTime()
     {
         $this->setEndTime();
@@ -107,6 +106,13 @@ class Core
         }
 
         return $loadTime;
+    }
+
+    private function setEndTime()
+    {
+        $time = microtime();
+        $time = explode(' ', $time);
+        self::$endTime = $time[1] + $time[0];
     }
 
     public function filterRequest($variable)

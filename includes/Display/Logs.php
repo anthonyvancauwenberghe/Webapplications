@@ -61,67 +61,14 @@ class Logs
         }
     }
 
-    private function getPlayerData()
+    private function getLogType()
     {
-        if (!isset($this->playerData)) {
-            $this->playerData = new PlayerData();
-        }
-        return $this->playerData;
-    }
-
-    private function getLogsData()
-    {
-        if (!isset($this->logsData)) {
-            $this->logsData = new LogsData();
-        }
-        return $this->logsData;
-    }
-
-    private function getCore()
-    {
-        if (!isset($this->core)) {
-            $this->core = new Core();
-        }
-        return $this->core;
-    }
-
-    private function enterName(){
-        echo '<h2>Please Enter A Playername</h2>';
-    }
-
-
-    private function getAdminLookupTitle()
-    {
-        $name = $this->getName();
-        $ip = $this->getPlayerData()->getPlayerIP($name);
-        $mac = $this->getPlayerData()->getPlayerMAC($name);
-
-        if(!isset($ip))
-            $ip='unable to retrieve ip';
-
-        if(!isset($mac))
-            $mac='unable to retrieve mac';
-
-        if (isset($name)) {
-            return ucfirst($this->getLogType()) . '<small>' . $name . '</small> | ' . $ip . ' | ' . $mac;
+        if (isset($_GET["logtype"])) {
+            return (string)$_GET["logtype"];
         } else {
-            return ucfirst($this->getLogType()) . '<small>ALL</small>';
+            return null;
         }
-    }
-    private function getLookupTitle()
-    {
-        $name = $this->getName();
 
-
-        if (isset($name)) {
-            return ucfirst($this->getLogType()) . '<small>' . $name . '</small>';
-        } else {
-            return ucfirst($this->getLogType()) . '<small>ALL</small>';
-        }
-    }
-    public function getPageTitle()
-    {
-        return ucwords($this->getLogType()).' Logs';
     }
 
     private function getName()
@@ -133,15 +80,14 @@ class Logs
         }
     }
 
-    private function getLogType()
+    private function getCore()
     {
-        if (isset($_GET["logtype"])) {
-            return (string)$_GET["logtype"];
-        } else {
-            return null;
+        if (!isset($this->core)) {
+            $this->core = new Core();
         }
-
+        return $this->core;
     }
+
     private function getID()
     {
         if (isset($_GET["id"])) {
@@ -151,7 +97,6 @@ class Logs
         }
 
     }
-
 
     private function printAccountValueLogs()
     {
@@ -198,6 +143,26 @@ class Logs
 
     }
 
+    private function getPlayerData()
+    {
+        if (!isset($this->playerData)) {
+            $this->playerData = new PlayerData();
+        }
+        return $this->playerData;
+    }
+
+    private function getLookupTitle()
+    {
+        $name = $this->getName();
+
+
+        if (isset($name)) {
+            return ucfirst($this->getLogType()) . '<small>' . $name . '</small>';
+        } else {
+            return ucfirst($this->getLogType()) . '<small>ALL</small>';
+        }
+    }
+
     private function printTradeLogs()
     {
 
@@ -232,7 +197,7 @@ class Logs
             if (isset($trade)) {
                 echo '<tr>';
                 echo '<td><a href="../logs.php?logtype=trade&id=' . $trade["_id"] . '">' . $trade["_id"] . '</a></td>';
-                echo '<td>' . $this->getCore()->convertToTime($trade['time']) . '</td>';
+                echo '<td>' . $this->getCore()->convertToTimeWithFormat($trade['time']) . '</td>';
                 echo '<td>' . $name . '</td>';
                 echo '<td>TODO</td>';
                 echo '<td>TODO</td>';
@@ -245,6 +210,19 @@ class Logs
                         </div>
                     </div>
                 </div>';
+    }
+
+    private function getLogsData()
+    {
+        if (!isset($this->logsData)) {
+            $this->logsData = new LogsData();
+        }
+        return $this->logsData;
+    }
+
+    private function enterName()
+    {
+        echo '<h2>Please Enter A Playername</h2>';
     }
 
     private function printDeathLogs(){
@@ -288,13 +266,37 @@ class Logs
                     </div>
                 </div>';
     }
-    
+
+    private function getAdminLookupTitle()
+    {
+        $name = $this->getName();
+        $ip = $this->getPlayerData()->getPlayerIP($name);
+        $mac = $this->getPlayerData()->getPlayerMAC($name);
+
+        if (!isset($ip))
+            $ip = 'unable to retrieve ip';
+
+        if (!isset($mac))
+            $mac = 'unable to retrieve mac';
+
+        if (isset($name)) {
+            return ucfirst($this->getLogType()) . '<small>' . $name . '</small> | ' . $ip . ' | ' . $mac;
+        } else {
+            return ucfirst($this->getLogType()) . '<small>ALL</small>';
+        }
+    }
+
     public function printDuelLogs(){
         echo $this->TODO();
     }
 
     private function TODO(){
         return '<h1> Still got to code this shit</h1>';
+    }
+
+    public function getPageTitle()
+    {
+        return ucwords($this->getLogType()) . ' Logs';
     }
     
 }

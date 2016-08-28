@@ -32,7 +32,7 @@ $login = new LoginSystem(-1);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Login | DeviousPs </title>
+    <title>Login | NoxiousPs </title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,8 +45,12 @@ $login = new LoginSystem(-1);
 
 <body style="background:#F7F7F7;">
 <center><a href="#">
-        <div class="logo">
-            <img style="width:44%" class="loginlogo" alt="ArteroPK Logo" src="images/logo.png">
+        <div class="logo" style="margin-top: 7%;">
+
+
+            <img src="images/footer-logo.png" style="height: 100px;">
+            <span><img style="width:44%" class="loginlogo" alt="ArteroPK Logo" src="images/logo.png"></span>
+    </a>
         </div>
     </a></center>
 <div class="">
@@ -75,7 +79,7 @@ $login = new LoginSystem(-1);
                     <div class="separator">
                         <div>
 
-                            <p>©2016 All Rights Reserved DeviousPs </p>
+                            <p>©2016 All Rights Reserved NoxiousPs </p>
                         </div>
                     </div>
                 </form>

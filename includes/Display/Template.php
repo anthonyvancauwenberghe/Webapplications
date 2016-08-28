@@ -10,14 +10,6 @@ class Template
         $this->login = $login;
     }
 
-    private function getPlayerData()
-    {
-        if (!isset($this->playerInfo)) {
-            $this->playerInfo = new PlayerInfo($this->login->getname());
-        }
-        return $this->playerInfo;
-    }
-
     public function printPlayerDashboard()
     {
         echo '<div class="right_col" role="main">
@@ -72,12 +64,7 @@ class Template
                   </div>
                 </div>
 
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                  <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
-                  <div style="width: 100%;">
-                    <div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>
-                  </div>
-                </div>
+                <div id="wealth_graph" style="height: 400px; min-width: 310px"></div>
                 
 
                 <div class="clearfix"></div>
@@ -579,6 +566,14 @@ class Template
         </div>';
     }
 
+    private function getPlayerData()
+    {
+        if (!isset($this->playerInfo)) {
+            $this->playerInfo = new PlayerInfo($this->login->getname());
+        }
+        return $this->playerInfo;
+    }
+
     public function printSidebar()
     {
         echo '<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
@@ -630,82 +625,15 @@ class Template
 <span class=" fa fa-angle-down"></span>
 </a>
 <ul class="dropdown-menu dropdown-usermenu pull-right">
-    <li><a href="javascript:;"> Profile</a></li>
-    <li>
-        <a href="javascript:;">
-            <span class="badge bg-red pull-right">50%</span>
-            <span>Settings</span>
-        </a>
-    </li>
-    <li><a href="javascript:;">Help</a></li>
+    <li><a href="#"> Profile</a></li>
+    <li><a href="#"> Change Password</a></li>
     <li><a href="../index.php?logout=true"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 </ul>
 </li>
 
-<li role="presentation" class="dropdown">
-    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-        <i class="fa fa-envelope-o"></i>
-        <span class="badge bg-green">6</span>
-    </a>
-    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-        <li>
-            <a>
-                <span class="image"><img src="images/img.png" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-            </a>
-        </li>
-        <li>
-            <a>
-                <span class="image"><img src="images/img.png" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-            </a>
-        </li>
-        <li>
-            <a>
-                <span class="image"><img src="images/img.png" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-            </a>
-        </li>
-        <li>
-            <a>
-                <span class="image"><img src="images/img.png" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-            </a>
-        </li>
-        <li>
-            <div class="text-center">
-                <a>
-                    <strong>See All Alerts</strong>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-        </li>
-    </ul>
-</li>
+
+ 
+
 </ul>
 </nav>
 </div>
@@ -778,7 +706,6 @@ class Template
                     </div>';
     }
 
-
     public function printMenuProfile()
     {
         echo '<div class="profile">
@@ -790,5 +717,73 @@ class Template
                         <h2>' . ucfirst($this->login->getName()) . '</h2>
                     </div>
                 </div>';
+    }
+
+    private function printMessageTemplate()
+    {
+        echo '<li role="presentation" class="dropdown">
+<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-envelope-o"></i>
+        <span class="badge bg-green">6</span>
+    </a>
+    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+        <li>
+            <a>
+                <span class="image"><img src="images/img.png" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+            </a>
+        </li>
+        <li>
+            <a>
+                <span class="image"><img src="images/img.png" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+            </a>
+        </li>
+        <li>
+            <a>
+                <span class="image"><img src="images/img.png" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+            </a>
+        </li>
+        <li>
+            <a>
+                <span class="image"><img src="images/img.png" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+            </a>
+        </li>
+        <li>
+            <div class="text-center">
+                <a>
+                    <strong>See All Alerts</strong>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </li>
+    </ul>
+    </li>';
     }
 }

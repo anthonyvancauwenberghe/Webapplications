@@ -429,7 +429,7 @@ class ServerData extends Data
      */
     function ServerStatus()
     {
-        $fp = @fsockopen('gameserver.deviousps.com', 13377, $errno, $errstr, 0.5);
+        $fp = @fsockopen('gameserver.NoxiousPs.com', 13377, $errno, $errstr, 0.5);
         if (!$fp) {
             return 'Offline';
         } else {

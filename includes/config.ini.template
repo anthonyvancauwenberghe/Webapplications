@@ -7,7 +7,7 @@ authdb = admin
 
 [databases]
 logsDB = Logs
-mainDB = DeviousPs
+mainDB = NoxiousPs
 definitionsDB = Definitions
 
 [collections]
