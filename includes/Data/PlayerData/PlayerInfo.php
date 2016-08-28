@@ -11,6 +11,10 @@ class PlayerInfo extends PlayerData
     private $playTime;
     private $GPWealth;
     private $DPWealth;
+    private $GPWealthData;
+    private $DPWealthData;
+    private $playTimeWeek;
+    private $topPVMKills;
 
     private $totalLevel;
     private $totalExperience;
@@ -45,12 +49,15 @@ class PlayerInfo extends PlayerData
 
         $this->kills = $playerInfo[0]['kills'];
         $this->deaths = $playerInfo[0]['deaths'];
-        $this->deaths > 0 ? $this->kdr = round($this->kills / $this->deaths, 2) : $this->kdr = 0;
+        $this->deaths > 0 ? $this->kdr = round($this->kills / $this->deaths, 3) : $this->kdr = 0;
         $this->playTime = $playerInfo[0]['playTime'];
         $this->skills = $playerInfo[0]['skills'];
         $this->GPWealth = isset($wealthInfo[0]['coins']) ? $wealthInfo[0]['coins'] : 0;
         $this->DPWealth = isset($wealthInfo[0]['donatorPoints']) ? $wealthInfo[0]['donatorPoints'] : 0;
         $this->setSumLevels();
+        $this->setWealthData();
+        $this->setPlayTimeWeek();
+        $this->setTopPVMKills();
     }
 
     private function setSumLevels()
@@ -87,6 +94,97 @@ class PlayerInfo extends PlayerData
         $combatLevel = floor($base + max([$melee, $range, $mage]));
         return (int)$combatLevel;
     }
+
+    /**
+     * @param mixed $wealthData
+     */
+    private function setWealthData()
+    {
+        $query = [
+            ['$match' => ['log-type' => 'player-value-log']],
+            ['$match' => ['content.user.player-name' => $this->playerName]],
+            ['$project' => ['_id' => '$time', 'gp' => '$content.value.coins', 'dp' => '$content.value.donator-points']],
+            ['$sort' => ['time' => -1]]
+        ];
+        $wealthArray = $this->aggregate(Collection::LOGS, $query)->toArray();
+        $i = 0;
+        foreach ($wealthArray as $document) {
+            $GPWealth[$i][0] = $this->getCoreFunctions()->convertToUnixTimestamp($document['_id']) * 1000;
+            $GPWealth[$i][1] = round($document['gp'] / 1000000, 2);
+
+            $DPWealth[$i][0] = $GPWealth[$i][0];
+            $DPWealth[$i][1] = round($document['dp'] / 100, 2);
+            $i++;
+        }
+        if (isset($GPWealth)) {
+            $this->GPWealthData = json_encode($GPWealth);
+        } else {
+            $this->GPWealthData = null;
+        }
+        if (isset($DPWealth)) {
+            $this->DPWealthData = json_encode($DPWealth);
+        } else {
+            $this->DPWealthData = null;
+        }
+
+
+    }
+
+    private function setPlayTimeWeek()
+    {
+        /*
+        $query1 = [
+            ['$match'=> ['log-type'=> 'login-log']],
+            ['$match'=> ['content.user.player-name'=> 'Plum 95']],
+            ['$match'=> ['time'=> ['$lt'=> new MongoDB\BSON\UTCDateTime(time())]]],
+            ['$sort'=> ['time'=> -1]],
+            ['$limit'=> 1]
+        ];
+        
+        $query2 = [
+            ['$match'=> ['log-type'=> 'login-log']],
+            ['$match'=> ['content.user.player-name'=> 'Plum 95']],
+            ['$sort'=> ['time'=> -1]],
+            ['$limit'=> 1]
+        ];
+
+        $time1 = $this->aggregate(Collection::LOGS, $query1)->toArray();
+        print_r($time1);
+        $time2 = $this->aggregate(Collection::LOGS, $query2)->toArray();
+
+        $time = $this->getCoreFunctions()->convertToUnixTimestamp($time1['time3'])- $this->getCoreFunctions()->convertToUnixTimestamp($time2['time2']);
+        */
+        $this->playTimeWeek = 0;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTopPVMKills()
+    {
+        return $this->topPVMKills;
+    }
+
+    /**
+     * @param mixed $topPVMKills
+     */
+    public function setTopPVMKills()
+    {
+        $query = [
+            ['$match' => ['log-type' => 'kill-log']],
+            ['$match' => ['content.user-2.player-name' => $this->playerName]],
+            ['$group' => ['_id' => '$content.user.npc-name', 'amount' => ['$sum' => 1]]],
+            ['$sort' => ['amount' => -1]],
+            ['$limit' => 5]
+        ];
+
+        $topPVMKills = $this->aggregate(Collection::LOGS, $query)->toArray();
+
+
+        $this->topPVMKills = $topPVMKills;
+    }
+
+
 
     /**
      * @return mixed
@@ -168,16 +266,24 @@ class PlayerInfo extends PlayerData
         return $this->DPWealth;
     }
 
-    public function getDPWealthData()
-    {
-
-    }
-
     public function getGPWealthData()
     {
-        
+        return $this->GPWealthData;
     }
 
+    public function getDPWealthData()
+    {
+        return $this->DPWealthData;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlayTimeWeek()
+    {
+        return $this->playTimeWeek;
+    }
+    
     private function getSkillExperience($skillName)
     {
         return $this->skills[$skillName]['experience'];

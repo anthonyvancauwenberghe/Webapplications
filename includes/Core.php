@@ -1,7 +1,5 @@
 <?php
 
-use MongoDB\BSON\UTCDatetime;
-
 require_once('../libs/AutoLoader.php');
 
 class Core
@@ -28,6 +26,17 @@ class Core
             return 'Yes';
         } else {
             return 'No';
+        }
+    }
+
+    public function formatGP($gpValue)
+    {
+        if ($gpValue < 1000000) {
+            return (string)round($gpValue / 1000, 2) . ' k';
+        } elseif ($gpValue < 1000000000) {
+            return (string)round($gpValue / 1000000, 2) . ' m';
+        } else {
+            return (string)round($gpValue / 1000000000, 2) . 'b';
         }
     }
     
@@ -57,6 +66,15 @@ class Core
         $datetime = $datetime->format((string)$format);
 
         return $datetime;
+    }
+
+    public function convertToUnixTimestamp($time)
+    {
+        $this->setTimezone();
+        $datetime = $time->toDateTime();
+        $datetime = $datetime->format(DATE_RSS);
+
+        return strtotime($datetime);
     }
 
     public function getDateof($timeUnit)

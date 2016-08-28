@@ -9,7 +9,7 @@
 class Scripts
 {
 
-    public function printWealthGraphScript()
+    public function printWealthGraphScript($dataArray1, $dataArray2)
     {
         echo "<script>
     $(function () {
@@ -62,13 +62,13 @@ class Scripts
 
             series: [{
                 type: 'spline',
-                name: 'GP',
-                data: data
+                name: 'GP (/mil)',
+                data: " . $dataArray1 . "
             },
             {
-                type: 'area',
-                name: 'DP',
-                data: data
+                type: 'spline',
+                name: 'DP (per 100)',
+                data: " . $dataArray2 . "
             }]
         });
     });

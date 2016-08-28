@@ -131,5 +131,7 @@ class PlayerData extends Data
 
         return round($playTimeThisWeek / (1000 * 60 * 60), 2);
     }
+
+
 }
 
