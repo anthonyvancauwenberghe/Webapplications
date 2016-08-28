@@ -45,11 +45,10 @@ $login = new LoginSystem(-1);
 
 <body style="background:#F7F7F7;">
 <center><a href="#">
-        <div class="logo" style="margin-top: 7%;">
+        <div class="logo" style="margin-top: 4%;">
 
 
-            <img src="images/footer-logo.png" style="height: 100px;">
-            <span><img style="width:44%" class="loginlogo" alt="ArteroPK Logo" src="images/logo.png"></span>
+            <img src="images/footer-logo.png" style="width: 7%;">
     </a>
         </div>
     </a></center>
