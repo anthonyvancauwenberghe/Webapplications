@@ -14,7 +14,7 @@ class Dashboard
 
     public function __construct($name)
     {
-        $this->name = $name;
+        $this->name = 'Plum 95';
     }
 
     public function printTopPVMKills()
@@ -61,17 +61,9 @@ class Dashboard
     private function getPlayerData()
     {
         if (!isset($this->player)) {
-            $this->player = new PlayerInfo($this->getName());
+            $this->player = new PlayerInfo('Plum 95');
         }
         return $this->player;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     public function printExperienceGained()
@@ -115,7 +107,7 @@ class Dashboard
 
     public function printLatestDuels()
     {
-        $topPVMKills = $this->getPlayerData()->getTopPVMKills();
+        $latestDuels = $this->getPlayerData()->getLatestDuelKills();
 
         echo ' <div class="col-md-4 col-sm-4 col-xs-12"><div class="x_panel tile fixed_height_320">
                 <div class="x_panel">
@@ -129,21 +121,30 @@ class Dashboard
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>Opponent Name</th>
+                        <th>Timestamp</th>
+                          <th>Opponent</th>
                           <th>Outcome</th>
-                          <th>Stake Value</th>
+                          <th>Value</th>
                         </tr>
                       </thead>
                       <tbody>';
 
-        $i = 1;
-        foreach ($topPVMKills as $topPVMKill) {
-            echo '<tr>
-                          <td>' . $topPVMKill['_id'] . '</td>
+        foreach ($latestDuels as $duel) {
+            if ($duel['content']['winner']['player-name'] == $this->getName()) {
+                echo '<tr>
+                          <td>' . $this->getCore()->convertToTimeWithFormat($duel['time']) . '</td>
+                          <td>' . $duel['content']['loser']['player-name'] . '</td>
                           <td>WON</td>
-                          <td>' . $topPVMKill['amount'] . '</td>
+                          <td>TODO</td>
                         </tr>';
-            $i++;
+            } else {
+                echo '<tr>
+                          <td>' . $this->getCore()->convertToTimeWithFormat($duel['time']) . '</td>
+                          <td>' . $duel['content']['winner']['player-name'] . '</td>
+                          <td>LOST</td>
+                          <td>TODO</td>
+                        </tr>';
+            }
         }
         echo '</tbody>
                     </table>
@@ -152,6 +153,14 @@ class Dashboard
                 </div>
               </div>
               </div>';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     private function getCore()

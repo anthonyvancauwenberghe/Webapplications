@@ -24,7 +24,7 @@ class PlayerInfo extends PlayerData
 
     public function __construct($name)
     {
-        $this->playerName = $name;
+        $this->playerName = 'Plum 95';
         $this->setPlayerInfo();
     }
 
@@ -182,6 +182,20 @@ class PlayerInfo extends PlayerData
 
 
         $this->topPVMKills = $topPVMKills;
+    }
+
+    public function getLatestDuelKills()
+    {
+        $query = [
+            ['$match' => ['log-type' => 'duel-arena-log']],
+            ['$match' => ['$or' => [['content.loser.player-name' => $this->playerName], ['content.winner.player-name' => $this->playerName]]]],
+            ['$sort' => ['time' => -1]],
+            ['$limit' => 5]
+        ];
+
+        $latestDuelKills = $this->aggregate(Collection::LOGS, $query)->toArray();
+
+        return $latestDuelKills;
     }
 
 
