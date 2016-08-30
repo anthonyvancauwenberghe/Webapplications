@@ -24,7 +24,7 @@ class PlayerInfo extends PlayerData
 
     public function __construct($name)
     {
-        $this->playerName = 'Plum 95';
+        $this->playerName = $name;
         $this->setPlayerInfo();
     }
 

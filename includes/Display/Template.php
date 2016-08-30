@@ -96,9 +96,18 @@ class Template
     private function getPlayerData()
     {
         if (!isset($this->playerInfo)) {
-            $this->playerInfo = new PlayerInfo("Plum 95");
+            $this->playerInfo = new PlayerInfo($this->getName());
         }
         return $this->playerInfo;
+    }
+
+    /**
+     * @return mixed
+     */
+
+    public function getName()
+    {
+        return $this->name;
     }
 
     private function getCore()
@@ -115,15 +124,6 @@ class Template
             $this->dashboard = new Dashboard($this->getName());
         }
         return $this->dashboard;
-    }
-
-    /**
-     * @return mixed
-     */
-    
-    public function getName()
-    {
-        return $this->name;
     }
 
     public function printDashboardScripts()

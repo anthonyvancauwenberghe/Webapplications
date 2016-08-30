@@ -14,7 +14,7 @@ class Dashboard
 
     public function __construct($name)
     {
-        $this->name = 'Plum 95';
+        $this->name = $name;
     }
 
     public function printTopPVMKills()
@@ -61,7 +61,7 @@ class Dashboard
     private function getPlayerData()
     {
         if (!isset($this->player)) {
-            $this->player = new PlayerInfo('Plum 95');
+            $this->player = new PlayerInfo($this->name);
         }
         return $this->player;
     }
