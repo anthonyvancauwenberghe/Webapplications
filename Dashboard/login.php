@@ -60,7 +60,8 @@ $login = new LoginSystem(-1);
         <div id="login" class=" form">
             <section class="login_content">
                 <form action="" method="POST">
-                    <h1>Login Form</h1>
+                    <h1>Dashboard</h1>
+                    <?php echo (isset($_GET['error'])) ? '<h4 style="color: red; font-weight: bold">Wrong Credentials</h4><h5 style="color: red; font-weight: bold">Please use Your Ingame Username & Password</h5>' : '<h2>Use your Ingame Credentials</h2>'; ?>
                     <div>
                         <input name="username" type="text" class="form-control" placeholder="Username" required="" />
                     </div>
