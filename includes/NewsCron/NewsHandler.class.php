@@ -2,10 +2,11 @@
 
 class NewsHandler {
 
-    private $rssURL = array("", "");
+    private $rssURL = array("http://forums.noxiousps.com/index.php?/forum/6-staff-updates.xml/", "http://forums.noxiousps.com/index.php?/forum/11-updates.xml", "http://forums.noxiousps.com/index.php?/forum/5-news-announcements.xml");
     private $array = array();
 
-    const FORUMS_IP = "";
+    const FORUMS_IP = "http://google.com";
+    const NEWS_TO_DISPLAY = 5;
     const MONTHS = array("Jan" => "01",
         "Feb" => "02",
         "Mar" => "03",
@@ -39,6 +40,7 @@ class NewsHandler {
      */
     public function constructArray()
     {
+        $i = 1;
         foreach($this->rssURL as $row) {
             $load = simplexml_load_file($row);
             foreach($load->channel->item as $item) {
@@ -46,6 +48,7 @@ class NewsHandler {
             }
         }
         $this->array = $this->sksort($this->array, "pubDate");
+        $this->array = array_slice($this->array, 0, Self::NEWS_TO_DISPLAY);
     }
 
     /**

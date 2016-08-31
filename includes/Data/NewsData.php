@@ -8,8 +8,11 @@
 
 class NewsData extends Data {
 
+    /**
+     * @param $data
+     */
     public function updateNews($data)
     {
-        /** code to update news here */
+        $this->insertOne(Collection::CONFIG, array(array("config-type" => "newsConfig"), array('$set' => array("content" => $data))));
     }
 }
