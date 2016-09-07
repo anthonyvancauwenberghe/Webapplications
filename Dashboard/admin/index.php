@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tony
- * Date: 22/06/2016
- * Time: 19:00
- */
-
-require_once '../AutoLoaderLink.php';
+$config=parse_ini_file('config.ini');
+require_once $config['path'] . '/libs/AutoLoader.php';
 
 $core = new Core();
 $core->setStartTime();
