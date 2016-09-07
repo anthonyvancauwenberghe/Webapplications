@@ -614,8 +614,8 @@ class Template
     
     public function printSidebarLogo(){
         echo '<div class="navbar nav_title" style="border: 0;">
-                    <a href="#" class="site_title"><img src="images/footer-logo-small.png" style="height: 39px;">
-                        <span><img src="images/logo.png" style="width: 151px;height: 31px;"></span></a>
+                    <a href="#" class="site_title"><img src="../images/footer-logo-small.png" style="height: 39px;">
+                        <span><img src="../images/logo.png" style="width: 151px;height: 31px;"></span></a>
                 </div>
 
                 <div class="clearfix"></div>';
