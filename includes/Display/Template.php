@@ -412,10 +412,16 @@ class Template
 <script src='../js/highstock/highstock.js'></script>
 <script src='../js/highstock/modules/exporting.js'></script>";
         
+        $this->printReferralWealthGraphScript();
+        
     }
     
     private function printPlayerWealthGraphScript(){
         $this->getScripts()->printWealthGraphScript($this->getPlayerData()->getGPWealthData(), $this->getPlayerData()->getDPWealthData());
+    }
+
+    private function printReferralWealthGraphScript(){
+        $this->getScripts()->printRefGraphScript($this->getPlayerData()->getGPWealthData(), $this->getPlayerData()->getDPWealthData());
     }
 
     private function getScripts()
