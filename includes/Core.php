@@ -39,12 +39,12 @@ class Core
             return (string)round($gpValue / 1000000000, 2) . 'b';
         }
     }
-    
-    public function checkIfNull($input){
-        if(isset($input)){
+
+    public function checkIfNull($input)
+    {
+        if (isset($input)) {
             return $input;
-        }
-        else{
+        } else {
             return '';
         }
     }
@@ -100,11 +100,28 @@ class Core
 
     }
 
+    public function getDayNumber()
+    {
+        date_default_timezone_set('Europe/Brussels');
+        return (int)date("d", strtotime(date("Y-m-d")));
+    }
+
     public function getWeekNumber()
     {
         date_default_timezone_set('Europe/Brussels');
-        return date("W", strtotime(date("Y-m-d")));
+        return (int)date("W", strtotime(date("Y-m-d")));
+    }
 
+    public function getMonthNumber()
+    {
+        date_default_timezone_set('Europe/Brussels');
+        return (int)date("m", strtotime(date("Y-m-d")));
+    }
+
+    public function getYearNumber()
+    {
+        date_default_timezone_set('Europe/Brussels');
+        return (int)date("Y", strtotime(date("Y-m-d")));
     }
 
     public function setStartTime()

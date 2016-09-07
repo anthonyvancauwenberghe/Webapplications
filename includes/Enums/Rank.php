@@ -8,6 +8,7 @@
  */
 class Rank
 {
+    const GUEST = -1;
     const PLAYER=1;
     const HERO=2;
     const LEGEND =3;

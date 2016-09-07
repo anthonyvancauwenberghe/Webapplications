@@ -6,11 +6,11 @@
  * Time: 19:00
  */
 
-require_once '../libs/AutoLoader.php';
+require_once '../AutoLoaderLink.php';
 
 $core = new Core();
 $core->setStartTime();
-$login = new LoginSystem(Rank::ADMINISTRATOR);
+$login = new LoginSystem(Rank::OWNER);
 
 $template = new Template($login);
 

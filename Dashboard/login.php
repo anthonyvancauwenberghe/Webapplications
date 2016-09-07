@@ -18,7 +18,7 @@
 
 require_once '../libs/AutoLoader.php';
 
-$login = new LoginSystem(-1);
+$login = new LoginSystem(Rank::GUEST);
 
 
 ?>
