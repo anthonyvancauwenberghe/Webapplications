@@ -121,7 +121,7 @@ class Template
     private function getDashboard()
     {
         if (!isset($this->dashboard)) {
-            $this->dashboard = new Dashboard($this->getName());
+            $this->dashboard = new DashboardDisplay($this->getName());
         }
         return $this->dashboard;
     }

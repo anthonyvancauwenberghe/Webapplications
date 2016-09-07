@@ -1,6 +1,6 @@
 <?php
 
-class Donations
+class DonationsDisplay
 {
     private $donatorData;
     private $core;

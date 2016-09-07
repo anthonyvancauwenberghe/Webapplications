@@ -1,6 +1,6 @@
 <?php
 
-class Votes
+class VotesDisplay
 {
     private $voteData;
     private $core;

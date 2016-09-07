@@ -12,7 +12,7 @@ $core = new Core();
 $core->setStartTime();
 $login = new LoginSystem(Rank::MODERATOR);
 
-$logs = new Logs($login);
+$logs = new LogsDisplay($login);
 $template = new Template($login);
 
 ?>

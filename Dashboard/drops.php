@@ -12,7 +12,7 @@ $core = new Core();
 $core->setStartTime();
 $login = new LoginSystem(Rank::PLAYER);
 
-$drops = new Drops();
+$drops = new DropsDisplay();
 $template = new Template($login);
 ?>
 

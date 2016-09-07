@@ -1,6 +1,6 @@
 <?php
 
-class Logs
+class LogsDisplay
 {
     private $playerData;
     private $logsData;

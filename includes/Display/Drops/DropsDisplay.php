@@ -1,6 +1,6 @@
 <?php
 
-class Drops
+class DropsDisplay
 {
     private $NPCData;
     

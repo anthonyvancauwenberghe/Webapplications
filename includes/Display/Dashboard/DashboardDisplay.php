@@ -6,7 +6,7 @@
  * Date: 29/08/2016
  * Time: 0:26
  */
-class Dashboard
+class DashboardDisplay
 {
     private $core;
     private $player;
