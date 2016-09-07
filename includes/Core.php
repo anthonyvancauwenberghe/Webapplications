@@ -1,7 +1,5 @@
 <?php
 
-require_once('../libs/AutoLoader.php');
-
 class Core
 {
     protected static $startTime;

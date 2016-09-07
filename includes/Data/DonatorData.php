@@ -1,5 +1,4 @@
 <?php
-require_once('../libs/AutoLoader.php');
 
 class DonatorData extends Data
 {

@@ -1,6 +1,5 @@
 <?php
 ini_set('mongo.long_as_object', 1);
-require_once "../vendor/autoload.php";
 
 class Database
 {

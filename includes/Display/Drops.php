@@ -1,7 +1,5 @@
 <?php
 
-require_once '../libs/AutoLoader.php';
-
 class Drops
 {
     private $NPCData;

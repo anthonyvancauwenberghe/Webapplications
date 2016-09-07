@@ -1,6 +1,4 @@
 <?php
-require_once('../libs/AutoLoader.php');
-
 
 class PlayerInfo extends PlayerData
 {
