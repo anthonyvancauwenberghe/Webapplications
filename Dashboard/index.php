@@ -46,12 +46,8 @@ $scripts = new Scripts();
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="#" class="site_title"><img src="images/footer-logo-small.png" style="height: 39px;">
-                        <span><img src="images/logo.png" style="width: 151px;height: 31px;"></span></a>
-                </div>
 
-                <div class="clearfix"></div>
+                <?php $template->printSidebarLogo(); ?>
 
                 <!-- menu profile quick info -->
                 <?php $template->printMenuProfile(); ?>
