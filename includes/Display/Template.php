@@ -387,6 +387,34 @@ class Template
 
 <script src='../js/highstock/highstock.js'></script>
 <script src='../js/highstock/modules/exporting.js'></script>";
+        
+        $this->printPlayerWealthGraphScript();
+    }
+
+    public function printAdminScripts()
+    {
+        echo "
+<!-- jQuery -->
+<script src='vendors/jquery/dist/jquery.min.js'></script>
+
+<!-- Bootstrap -->
+<script src='vendors/bootstrap/dist/js/bootstrap.min.js'></script>
+
+<!-- FastClick -->
+<script src='vendors/fastclick/lib/fastclick.js'></script>
+
+
+<!-- Custom Theme Scripts -->
+<script src='js/custom.js'></script>
+
+
+
+<script src='../js/highstock/highstock.js'></script>
+<script src='../js/highstock/modules/exporting.js'></script>";
+        
+    }
+    
+    private function printPlayerWealthGraphScript(){
         $this->getScripts()->printWealthGraphScript($this->getPlayerData()->getGPWealthData(), $this->getPlayerData()->getDPWealthData());
     }
 
@@ -611,8 +639,9 @@ class Template
     </ul>
     </li>';
     }
-    
-    public function printSidebarLogo(){
+
+    public function printSidebarLogo()
+    {
         echo '<div class="navbar nav_title" style="border: 0;">
                     <a href="#" class="site_title"><img src="../images/footer-logo-small.png" style="height: 39px;">
                         <span><img src="../images/logo.png" style="width: 151px;height: 31px;"></span></a>
