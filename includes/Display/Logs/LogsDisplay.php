@@ -163,9 +163,10 @@ class LogsDisplay
 
     private function printTradeLogs()
     {
+        $tradeLogs = new TradeLogs();
 
 
-        $cursor = $this->getLogsData()->getTradeLogsData($this->getName());
+        $cursor = $tradeLogs->getLogData($this->getName());
 
         echo '<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -210,13 +211,6 @@ class LogsDisplay
                 </div>';
     }
 
-    private function getLogsData()
-    {
-        if (!isset($this->logsData)) {
-            $this->logsData = new LogsData();
-        }
-        return $this->logsData;
-    }
 
     private function enterName()
     {
@@ -224,7 +218,8 @@ class LogsDisplay
     }
 
     private function printDeathLogs(){
-        $cursor = $this->getLogsData()->getDeathLogsData($this->getName());
+        $deathLogs = new DeathLogs();
+        $cursor = $deathLogs->getLogData($this->getName());
 
         echo '<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
