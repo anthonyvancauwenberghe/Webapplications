@@ -1,6 +1,6 @@
 <?php
-$config = parse_ini_file('path.ini');
-require $config['path']."/libs/AutoLoader.php";
+$path = parse_ini_file('path.ini');
+require $path['path']."/libs/AutoLoader.php";
 
 $core = new Core();
 $core->setStartTime();
