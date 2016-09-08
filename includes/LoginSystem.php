@@ -5,6 +5,7 @@ class LoginSystem
     private $core;
     private $data;
     private $rank;
+    private $loginInfo;
 
     public function __construct($rank)
     {
@@ -23,6 +24,13 @@ class LoginSystem
             $this->processLoginCheckLoginPage();
         }
 
+    }
+
+    private function getLoginInfo(){
+        if (!isset($this->loginInfo)) {
+            $this->loginInfo = new LoginInfo();
+        }
+        return $this->loginInfo;
     }
 
     private function getCore()
@@ -171,9 +179,6 @@ class LoginSystem
     private function login_check()
     {
 
-        if (!isset($this->data)) {
-            $this->data = new Data();
-        }
 
         // Check if all session variables are set
         if (isset($_SESSION['user_id'], $_SESSION['username'], $_SESSION['login_string'], $_SESSION['rank'])) {
@@ -187,7 +192,7 @@ class LoginSystem
             $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
             //$query = array('player-name' => new MongoRegex('/' . strtolower($username) . '/i'));
-            if ($member = $this->data->findOne(Collection::CHARACTERS, array('_id' => new MongoDB\BSON\ObjectId($user_id)))) {
+            if ($member = $this->getLoginInfo()->getPlayerObjectByID($user_id)) {
 
                 $login_check = hash('sha512', $member['password']['hashed'] . $user_browser);
 
@@ -213,11 +218,9 @@ class LoginSystem
 
     private function login($playerName, $password)
     {
-        if (!isset($this->data)) {
-            $this->data = new Data();
-        }
+
         //new MongoRegex('/' . strtolower($playerName) . '/i')
-        if ($member = $this->data->findOne(Collection::CHARACTERS, array('player-name' => $playerName))) {
+        if ($member = $this->getLoginInfo()->getPlayerObjectByName($playerName)) {
 
             // If the user exists we check if the account is locked
             // from too many login attempts

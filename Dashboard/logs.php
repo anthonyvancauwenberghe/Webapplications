@@ -12,7 +12,7 @@ $core = new Core();
 $core->setStartTime();
 $login = new LoginSystem(Rank::MODERATOR);
 
-$logs = new LogsDisplay($login);
+$logs = new Logs($login);
 $template = new Template($login);
 
 ?>
@@ -77,21 +77,7 @@ $template = new Template($login);
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="">
-                <div class="page-title">
-                    <!-- Page Title -->
-                    <?php $template->printPageTitle($logs->getPageTitle()); ?>
-
-                    <!-- Search Bar -->
-                    <?php $template->printLogsSearchBar(); ?>
-
-                    <!-- Logs Content -->
-                    <?php $logs->printLogs(); ?>
-
-                </div>
-            </div>
-        </div>
+        <?php $template->printLogs(); ?>
         <!-- /page content -->
 
         <!-- footer content -->

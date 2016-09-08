@@ -10,13 +10,12 @@ class AccountValues extends LogsDisplay
 {
     public function printLogTypeByPlayername()
     {
-        $playerValuesArray = $this->getPlayerData()->getAccountvalues();
+        $accountValues = new AccountValueLogs();
+        $playerValuesArray = $accountValues->getLogData();
 
         echo '<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title"><h2>' . $this->getLookupTitle() . '</h2>
-                        <div class="clearfix"></div>
-                    </div>
+                    '. $this->getLookupTitle() .'
                         <div class="x_content">
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%"><thead>
                         <tr>

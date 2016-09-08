@@ -387,7 +387,7 @@ class Template
 
 <script src='../js/highstock/highstock.js'></script>
 <script src='../js/highstock/modules/exporting.js'></script>";
-        
+
         $this->printPlayerWealthGraphScript();
     }
 
@@ -411,16 +411,18 @@ class Template
 
 <script src='../js/highstock/highstock.js'></script>
 <script src='../js/highstock/modules/exporting.js'></script>";
-        
+
         $this->printReferralWealthGraphScript();
-        
+
     }
-    
-    private function printPlayerWealthGraphScript(){
+
+    private function printPlayerWealthGraphScript()
+    {
         $this->getScripts()->printWealthGraphScript($this->getPlayerData()->getGPWealthData(), $this->getPlayerData()->getDPWealthData());
     }
 
-    private function printReferralWealthGraphScript(){
+    private function printReferralWealthGraphScript()
+    {
         $this->getScripts()->printRefGraphScript($this->getPlayerData()->getGPWealthData(), $this->getPlayerData()->getDPWealthData());
     }
 
@@ -517,54 +519,6 @@ class Template
                 </div>';
     }
 
-    public function printPageTitle($title)
-    {
-        echo '<div class="title_left">
-                        <h3>' . $title . '</h3>
-                  </div>';
-    }
-
-    public function printLogsSearchBar()
-    {
-        echo '<div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input id="searchform" type="text" class="form-control" placeholder="Search for...">
-
-
-                                <span class="input-group-btn">
-                      <div class="btn-group open">
-                                    <button id="logTypeButton" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="true"> <span id="type">Log Type</span> </button>
-                                    <ul id="loglist" class="dropdown-menu">
-                                        <li id="death"><a>Death Logs</a>
-                                        </li>
-                                        <li id="trade"><a>Trade Logs</a>
-                                        </li>
-                                        <li id="duel"><a>Duel Logs</a>
-                                        </li>
-                                        <li id="pickup-item"><a>Pickup-Item Logs</a>
-                                        </li>
-                                        <li id="kill"><a>Kill Logs</a>
-                                        </li>
-                                        <li id="drop-item"><a>Drop-Item Logs</a>
-                                        </li>
-                                        <li id="public-chat"><a>Public Chat Logs</a>
-                                        </li>
-                                        <li id="private-chat"><a>Private Chat Logs</a>
-                                        </li>
-                                        <li id="clan-chat"><a>Clan Chat Logs</a>
-                                        </li>
-                                        <li id="accountvalues"><a>Accountvalue Logs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                  <button id="searchButton" class="btn btn-default" type="button">Search</button>
-                    </span>
-                            </div>
-                        </div>
-                    </div>';
-    }
-
     public function printMenuProfile()
     {
         echo '<div class="profile">
@@ -655,4 +609,12 @@ class Template
 
                 <div class="clearfix"></div>';
     }
+
+    public function printLogs()
+    {
+        $logs = new Logs($this->login);
+        $logs->printLogs();
+    }
+
+
 }

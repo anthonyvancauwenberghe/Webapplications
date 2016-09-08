@@ -40,7 +40,7 @@ class Data
         return Database::getReadPreference();
     }
 
-    public function aggregate($collectionLocation, $pipeline, $options=null)
+    protected function aggregate($collectionLocation, $pipeline, $options=null)
     {
         $collection = $this->getCollection($collectionLocation);
 
@@ -53,15 +53,15 @@ class Data
 
         return $cursor;
     }
-    
-    public function deleteOne($collectionLocation, $filter){
+
+    protected function deleteOne($collectionLocation, $filter){
 
         $collection = $this->getCollection($collectionLocation);
         
         $collection->deleteOne($filter);
 }
 
-    public function count($collectionLocation, $filter, $options = null)
+    protected function count($collectionLocation, $filter, $options = null)
     {
         $collection = $this->getCollection($collectionLocation);
 
@@ -74,7 +74,7 @@ class Data
         return $count;
     }
 
-    public function find($collectionLocation, $filter, $options = null)
+    protected function find($collectionLocation, $filter, $options = null)
     {
         $collection = $this->getCollection($collectionLocation);
 
@@ -86,7 +86,7 @@ class Data
 
         return $cursor;
     }
-    public function findOne($collectionLocation, $filter, $options = null)
+    protected function findOne($collectionLocation, $filter, $options = null)
     {
         $collection = $this->getCollection($collectionLocation);
 
@@ -99,7 +99,7 @@ class Data
         return $cursor;
     }
 
-    public function insertOne($collectionLocation, $document, $options = null){
+    protected function insertOne($collectionLocation, $document, $options = null){
         
         $collection = $this->getCollection($collectionLocation);
 

@@ -1,6 +1,6 @@
 <?php
 
 interface LogsData {
-    public function getLogData();
+    public function getLogData($input=null);
 }
 

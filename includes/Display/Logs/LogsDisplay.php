@@ -4,104 +4,23 @@ abstract class LogsDisplay
 {
     private $playerData;
     private $core;
+    private $logsInput;
     protected $login;
 
     public function __construct($login=null) {
         $this->login=$login;
-    }
-    
-    abstract public function printLogTypeByPlayername();
-
-    public function printLogs()
-    {
-        $logType = $this->getLogType();
-        $name = $this->getName();
-        $id = $this->getID();
-        
-        switch ($logType){
-            
-            case null:
-                break;
-
-            case 'accountvalues':
-                $accountValues = new AccountValues();
-                $accountValues->printLogTypeByPlayername();
-                break;
-            
-            case 'trade':
-                $trades = new Trades();
-                if(isset($name)){
-                    $trades->printLogTypeByPlayername();
-                }
-                elseif(isset($id)){
-                    echo '<h1>TODO</h1>';
-                }
-                else{
-                    $this->enterName();
-                }
-                break;
-            
-            case 'death':
-                $deaths = new Deaths();
-                if(isset($name)){
-                    $deaths->printLogTypeByPlayername();
-                }
-                elseif(isset($id)){
-                    echo '<h1>TODO</h1>';
-                }
-                else{
-                    $this->enterName();
-                }
-                break;
-            
-            case 'duel':
-                $duels = new Duels();
-                $duels->printLogTypeByPlayername();
-                break;
-            
-            default:
-                $this->printTODO();
-        }
-    }
-
-    private function getLogType()
-    {
-        if (isset($_GET["logtype"])) {
-            return (string)$_GET["logtype"];
-        } else {
-            return null;
-        }
-
+        $this->logsInput = $this->getLogsInput();
+        $this->name = $this->getLogsInput()->getName();
     }
 
     protected function getName()
     {
-        if (isset($_GET["name"])) {
-            return (string)$this->getCore()->normalizeUsername($_GET["name"]);
-        } else {
-            return null;
-        }
+        return $this->name;
     }
+    
+    abstract public function printLogTypeByPlayername();
 
-    public function getCore()
-    {
-        if (!isset($this->core)) {
-            $this->core = new Core();
-        }
-        return $this->core;
-    }
-
-    private function getID()
-    {
-        if (isset($_GET["id"])) {
-            return (string)$_GET["id"];
-        } else {
-            return null;
-        }
-
-    }
-
-    protected function getPlayerData()
+    private function getPlayerData()
     {
         if (!isset($this->playerData)) {
             $this->playerData = new PlayerData();
@@ -109,7 +28,30 @@ abstract class LogsDisplay
         return $this->playerData;
     }
 
-    protected function getLookupTitle()
+    private function getLogsInput()
+    {
+        if (!isset($this->logsInput)) {
+            $this->logsInput = new LogsInput();
+        }
+        return $this->logsInput;
+    }
+    
+    public function getCore()
+    {
+        if (!isset($this->core)) {
+            $this->core = new Core();
+        }
+        return $this->core;
+    }
+    
+    protected function getLookupTitle(){
+        return '<div class="x_title"><h2>' . $this->login->hasPermission(Rank::ADMINISTRATOR) ? $this->getAdminLookupTitle() : $this->getNormalLookupTitle() . '</h2>
+                        <div class="clearfix"></div>
+                    </div>';
+    }
+    
+
+    private function getNormalLookupTitle()
     {
         $name = $this->getName();
 
@@ -121,12 +63,7 @@ abstract class LogsDisplay
         }
     }
 
-    private function enterName()
-    {
-        echo '<h2>Please Enter A Playername</h2>';
-    }
-
-    protected function getAdminLookupTitle()
+    private function getAdminLookupTitle()
     {
         $name = $this->getName();
         $ip = $this->getPlayerData()->getPlayerIP($name);
@@ -139,19 +76,23 @@ abstract class LogsDisplay
             $mac = 'unable to retrieve mac';
 
         if (isset($name)) {
-            return ucfirst($this->getLogType()) . '<small>' . $name . '</small> | ' . $ip . ' | ' . $mac;
+            return ucfirst($this->getLogsInput()->getLogType()) . ' <small>' . $name . '</small> | ' . $ip . ' | ' . $mac;
         } else {
-            return ucfirst($this->getLogType()) . '<small>ALL</small>';
+            return ucfirst($this->getLogsInput()->getLogType()) . '<small>ALL</small>';
         }
     }
 
-    protected function printTODO(){
+    public function enterName()
+    {
+        echo '<h2>Please Enter A Playername</h2>';
+    }
+
+    
+
+    public function printTODO(){
         echo '<h1> Still got to code this</h1>';
     }
 
-    protected function getPageTitle()
-    {
-        return ucwords($this->getLogType()) . ' Logs';
-    }
+    
     
 }
