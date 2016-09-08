@@ -21,6 +21,7 @@
 /fuel/app/config/crypt.php
 
 config.ini
+path.ini
 /.idea/*
 /libs/AutoLoader.php
 AutoLoader.php

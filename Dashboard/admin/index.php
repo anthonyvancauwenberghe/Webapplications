@@ -1,5 +1,5 @@
 <?php
-$config = parse_ini_file('config.ini');
+$config = parse_ini_file('path.ini');
 require $config['path']."/libs/AutoLoader.php";
 
 $core = new Core();
