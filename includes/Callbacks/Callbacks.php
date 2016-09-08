@@ -6,7 +6,7 @@
  * Date: 4/07/2016
  * Time: 17:53
  */
-class Callbacks extends data
+class Callbacks extends Data
 {
     private $core;
     
