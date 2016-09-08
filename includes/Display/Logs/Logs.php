@@ -116,7 +116,7 @@ class Logs
 
     private function printLogType()
     {
-        $this->lookUpName = $this->getName();
+        $name = $this->getName();
         $logType = $this->getLogsInput()->getLogType();
         $id = $this->getLogsInput()->getID();
 
