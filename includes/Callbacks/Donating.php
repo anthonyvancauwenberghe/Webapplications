@@ -14,7 +14,7 @@ abstract class Donating extends Callbacks
     
     protected function getDonationMultiplier()
     {
-        $data = $this->getData()->findOne(Collection::CONFIG, ['config-type' => 'multipliers']);
+        $data = $this->findOne(Collection::CONFIG, ['config-type' => 'multipliers']);
         return $data['content']['donation'];
     }
 }

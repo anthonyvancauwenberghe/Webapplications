@@ -13,11 +13,7 @@ class Trades extends LogsDisplay
         $tradeLogs = new TradeLogs();
         $cursor = $tradeLogs->getLogData($this->getName());
 
-        echo '<div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    ' . $this->getLookupTitle() . '
-                        <div class="x_content">
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%"><thead>
+        echo '<thead>
                         <tr>
                           <th>TradeID</th>
                           <th>TimeStamp</th>
@@ -47,11 +43,7 @@ class Trades extends LogsDisplay
                 echo '</tr>';
             }
         }
-        echo '</tbody></table>
-
-                        </div>
-                    </div>
-                </div>';
+        echo '</tbody>';
     }
 
 }

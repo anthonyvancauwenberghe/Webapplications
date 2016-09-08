@@ -13,11 +13,7 @@ class AccountValues extends LogsDisplay
         $accountValues = new AccountValueLogs();
         $playerValuesArray = $accountValues->getLogData();
 
-        echo '<div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    '. $this->getLookupTitle() .'
-                        <div class="x_content">
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%"><thead>
+        echo '<thead>
                         <tr>
                           <th>Rank</th>
                           <th>Playername</th>
@@ -42,11 +38,7 @@ class AccountValues extends LogsDisplay
             }
             $i++;
         }
-        echo '</tbody></table>
-
-                        </div>
-                    </div>
-                </div>';
+        echo '</tbody>';
     }
 
 }

@@ -62,7 +62,6 @@ class HiPay extends Donating
 
     private function insertDonation()
     {
-        $data = $this->getData();
 
         $document = array("time" => new MongoDB\BSON\UTCDateTime(time() * 1000),
 
@@ -88,7 +87,7 @@ class HiPay extends Donating
             )
         );
 
-        $data->insertOne(Collection::DONATIONS, $document);
+        $this->insertOne(Collection::DONATIONS, $document);
     }
 
 

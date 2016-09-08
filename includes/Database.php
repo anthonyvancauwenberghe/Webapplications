@@ -1,7 +1,7 @@
 <?php
 ini_set('mongo.long_as_object', 1);
 $path = parse_ini_file('path.ini');
-require $path['path']."vendor/autoload.php";
+require $path['path']."/vendor/autoload.php";
 class Database
 {
 

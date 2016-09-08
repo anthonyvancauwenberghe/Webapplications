@@ -6,18 +6,9 @@
  * Date: 4/07/2016
  * Time: 17:53
  */
-class Callbacks
+class Callbacks extends data
 {
-    private $data;
     private $core;
-
-    protected function getData()
-    {
-        if (!isset($this->data)) {
-            $this->data = new Data();
-        }
-        return $this->data;
-    }
     
     protected function getCore()
     {

@@ -11,15 +11,27 @@ class Logs
     private $name;
     private $logsInput;
     private $login;
+    private $playerData;
 
     public function __construct($login)
     {
         $this->login = $login;
-        $this->name = $login->getName();
+        $this->getName();
     }
 
-    private function getName()
+    private function getPlayerData()
     {
+        if (!isset($this->playerData)) {
+            $this->playerData = new PlayerData();
+        }
+        return $this->playerData;
+    }
+
+    protected function getName()
+    {
+        if(!isset($this->name)){
+            $this->name = $this->getLogsInput()->getName();
+        }
         return $this->name;
     }
 
@@ -49,11 +61,66 @@ class Logs
             </div>';
     }
 
-    private function printLogType()
+    private function getNormalLookupTitle()
     {
         $name = $this->getName();
+
+
+        if (isset($name)) {
+            return ucfirst($this->$this->getLogsInput()->getLogType()) . '<small>' . $name . '</small>';
+        } else {
+            return ucfirst($this->getLogsInput()->getLogType()) . '<small>ALL</small>';
+        }
+    }
+
+    private function getAdminLookupTitle()
+    {
+        $name = $this->getName();
+        $ip = $this->getPlayerData()->getPlayerIP($name);
+        $mac = $this->getPlayerData()->getPlayerMAC($name);
+
+        if (!isset($ip))
+            $ip = 'unable to retrieve ip';
+
+        if (!isset($mac))
+            $mac = 'unable to retrieve mac';
+
+        if (isset($name)) {
+            return ucfirst($this->getLogsInput()->getLogType()) . ' <small>' . $name . '</small> | ' . $ip . ' | ' . $mac;
+        } else {
+            return ucfirst($this->getLogsInput()->getLogType()) . '<small>ALL</small>';
+        }
+    }
+
+    protected function getLookupTitle(){
+        return '<div class="x_title"><h2>' . $this->getLogin()->hasPermission(Rank::ADMINISTRATOR) ? $this->getAdminLookupTitle() : $this->getNormalLookupTitle() . '</h2>
+                        <div class="clearfix"></div>
+                    </div>';
+    }
+
+    private function printStartLogTable(){
+        echo'<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+    ' . $this->getLookupTitle() . '
+                        <div class="x_content">
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">';
+    }
+
+    private function printEndLogTable(){
+        echo '</table>
+
+                        </div>
+                    </div>
+                </div>';
+    }
+
+    private function printLogType()
+    {
+        $this->lookUpName = $this->getName();
         $logType = $this->getLogsInput()->getLogType();
         $id = $this->getLogsInput()->getID();
+
+
 
         switch ($logType) {
 
@@ -61,29 +128,36 @@ class Logs
                 break;
 
             case 'accountvalues':
-                $accountValues = new AccountValues($this->getLogin());
+
+                $accountValues = new AccountValues();
+                $this->printStartLogTable();
                 $accountValues->printLogTypeByPlayername();
+                $this->printEndLogTable();
                 break;
 
             case 'trade':
-                $trades = new Trades($this->getLogin());
+                $trades = new Trades();
                 if (isset($name)) {
+                    $this->printStartLogTable();
                     $trades->printLogTypeByPlayername();
+                    $this->printEndLogTable();
                 } elseif (isset($id)) {
                     $this->printTODO();
                 } else {
-                    $trades->enterName();
+                    $this->printEnterName();
                 }
                 break;
 
             case 'death':
-                $deaths = new Deaths($this->getLogin());
+                $deaths = new Deaths();
                 if (isset($name)) {
+                    $this->printStartLogTable();
                     $deaths->printLogTypeByPlayername();
+                    $this->printEndLogTable();
                 } elseif (isset($id)) {
                     $this->printTODO();
                 } else {
-                    $deaths->enterName();
+                    $this->printEnterName();
                 }
                 break;
 
@@ -95,6 +169,13 @@ class Logs
             default:
                 $this->printTODO();
         }
+
+
+    }
+
+    private function printEnterName()
+    {
+        echo '<h2>Please Enter A Playername</h2>';
     }
 
     private function printTODO()

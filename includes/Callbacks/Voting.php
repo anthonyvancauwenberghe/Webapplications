@@ -31,7 +31,7 @@ abstract class Voting extends Callbacks
                 "multiplier" => $this->getVoteMultiplier()
             ));
 
-        $this->getData()->insertOne(Collection::VOTES, $document);
+        $this->insertOne(Collection::VOTES, $document);
     }
 
     private function getName()
@@ -41,13 +41,13 @@ abstract class Voting extends Callbacks
 
     private function getVotePoints($topList)
     {
-        $data = $this->getData()->findOne(Collection::CONFIG, ['config-type' => 'vote-points']);
+        $data = $this->findOne(Collection::CONFIG, ['config-type' => 'vote-points']);
         return $data['content'][$topList];
     }
 
     private function getVoteMultiplier()
     {
-        $data = $this->getData()->findOne(Collection::CONFIG, ['config-type' => 'multipliers']);
+        $data = $this->findOne(Collection::CONFIG, ['config-type' => 'multipliers']);
         return $data['content']['vote'];
     }
 }
