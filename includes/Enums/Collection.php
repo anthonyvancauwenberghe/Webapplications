@@ -22,4 +22,5 @@ class Collection
     const NPC_WORLD = 'worldNpcsCollection';
     const CAMERAS = 'lprCollection';
     const CONFIG = 'configCollection';
+    const MARKETING = 'marketingCollection';
 }

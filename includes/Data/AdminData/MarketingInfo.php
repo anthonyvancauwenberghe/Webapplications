@@ -1,31 +1,31 @@
 <?php
 
-class MarketingInfo extends ServerData
+class MarketingInfo extends AdminData
 {
 
     public function getMarketingData()
     {
-        $dayNumber = $this->getCoreFunctions()->getDayNumber();
-        $monthNumber = $this->getCoreFunctions()->getMonthNumber();
-        $yearNumber = $this->getCoreFunctions()->getYearNumber();
 
         $query = [
-            ['$project' => [
-                'year' => ['$year' => '$time'],
-                'month' => ['$month' => '$time'],
-                'day' => ['$dayOfMonth' => '$time'],
-                'refName' => '$content.refName'
+            ['$match'=> ['type'=> 'GET_Referral']],
+            ['$project'=> [
+                'year'=> ['$year'=> '$time'],
+                'month'=> ['$month'=> '$time'],
+                'day'=> ['$dayOfMonth'=> '$time'],
+                'refName'=> '$content.ref'
             ]
             ],
-            ['$match' => [
-                'year' => $yearNumber,
-                'month' => $monthNumber,
-                'day' => $dayNumber,
+            ['$group'=> [
+                '_id'=> ['refName'=> '$refName', 'year'=> '$year', 'month'=> '$month', 'day'=> '$day'],
+                'count'=> ['$sum'=> 1],
             ]],
-            ['$group' => ['_id' => 'refName', 'count' => ['$sum', 1]]]
+            ['$sort'=> ['_id.year'=> 1, '_id.month'=> 1, '_id.day'=> 1]],
+            ['$group'=> ['_id'=> '$_id.refName', 'amounts'=> ['$push'=> ['year'=> '$_id.year', 'month'=> '$_id.month', 'day'=> '$_id.day', 'amount'=> '$count']]]]
         ];
+        
+        $marketingArray = $this->aggregate(Collection::MARKETING, $query)->toarray();
 
-
+        return $marketingArray;
     }
 
 }

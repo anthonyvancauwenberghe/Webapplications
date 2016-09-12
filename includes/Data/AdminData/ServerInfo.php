@@ -1,6 +1,6 @@
 <?php
 
-class ServerInfo extends ServerData
+class ServerInfo extends AdminData
 {
 
 }

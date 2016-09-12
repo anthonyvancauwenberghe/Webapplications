@@ -1,6 +1,6 @@
 <?php
 
-class VoteInfo extends ServerData
+class VoteInfo extends AdminData
 {
 
 }

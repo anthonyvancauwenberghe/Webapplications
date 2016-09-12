@@ -395,24 +395,24 @@ class Template
     {
         echo "
 <!-- jQuery -->
-<script src='vendors/jquery/dist/jquery.min.js'></script>
+<script src='../vendors/jquery/dist/jquery.min.js'></script>
 
 <!-- Bootstrap -->
-<script src='vendors/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='../vendors/bootstrap/dist/js/bootstrap.min.js'></script>
 
 <!-- FastClick -->
-<script src='vendors/fastclick/lib/fastclick.js'></script>
+<script src='../vendors/fastclick/lib/fastclick.js'></script>
 
 
 <!-- Custom Theme Scripts -->
-<script src='js/custom.js'></script>
+<script src='../js/custom.js'></script>
 
 
 
 <script src='../js/highstock/highstock.js'></script>
 <script src='../js/highstock/modules/exporting.js'></script>";
 
-        $this->printReferralWealthGraphScript();
+        $this->getScripts()->printReferralScript();
 
     }
 

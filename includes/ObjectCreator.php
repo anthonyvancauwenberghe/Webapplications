@@ -6,7 +6,6 @@ class ObjectCreator
 
     private $serverData;
     private $NPCData;
-    private $playerData;
     private $objectsData;
 
     public function getServerData()

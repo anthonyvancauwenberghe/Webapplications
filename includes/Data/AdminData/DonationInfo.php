@@ -1,6 +1,6 @@
 <?php
 
-class DonationInfo extends ServerData
+class DonationInfo extends AdminData
 {
    
 }
