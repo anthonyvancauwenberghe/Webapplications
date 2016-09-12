@@ -83,6 +83,7 @@ class Marketing
     }
 
     private function getUnixTimestamp($day, $month, $year){
+        date_default_timezone_set('Europe/Brussels');
         return (int) 1000 * strtotime($day . '-' . $month . '-' . $year);
     }
 
