@@ -6,11 +6,12 @@
  * Date: 8/09/2016
  * Time: 1:50
  */
-class AccountValueLogs extends Data implements LogsData
+class AccountValueLogs extends LogsData
 {
 
     public function getLogData($username = null)
     {
+        
         $weighting = 20000;
 
         if (isset($username)) {

@@ -12,7 +12,7 @@ class Trades extends LogsDisplay
     {
         $tradeLogs = new TradeLogs();
         $cursor = $tradeLogs->getLogData($this->getName());
-
+        $this->printStartLogTable();
         echo '<thead>
                         <tr>
                           <th>TradeID</th>
@@ -44,6 +44,68 @@ class Trades extends LogsDisplay
             }
         }
         echo '</tbody>';
+        $this->printEndLogTable();
+    }
+
+    public function printLogTypeByID(){
+        $tradeLogs = new TradeLogs();
+        $cursor = $tradeLogs->getLogDataByID($this->getID())->toArray();
+        $player1 = $cursor[0]['content']['user'];
+        $player2 = $cursor[0]['content']['user-2'];
+                
+        echo'<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                ' . $player1['player-name'] . '
+                        <div class="x_content">
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">';
+        echo '<thead>
+                        <tr>
+                          <th>ItemID</th>
+                          <th>Item Name</th>
+                          <th>Amount</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody>';
+
+        foreach ($player1['items'] as $item) {
+            if (isset($item)) {
+                echo '<tr>';
+                echo '<td>' . $item['itemId'] . '</td>';
+                echo '<td>TODO</td>';
+                echo '<td>' . $item['amount'] . '</td>';
+                echo '</tr>';
+            }
+        }
+        echo '</tbody>';
+        $this->printEndLogTable();
+        
+        echo'<br><br><div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                ' . $player2['player-name'] . '
+                        <div class="x_content">
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">';
+        echo '<thead>
+                        <tr>
+                          <th>ItemID</th>
+                          <th>Item Name</th>
+                          <th>Amount</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody>';
+
+        foreach ($player2['items'] as $item) {
+            if (isset($item)) {
+                echo '<tr>';
+                echo '<td>' . $item['itemId'] . '</td>';
+                echo '<td>TODO</td>';
+                echo '<td>' . $item['amount'] . '</td>';
+                echo '</tr>';
+            }
+        }
+        echo '</tbody>';
+        $this->printEndLogTable();
     }
 
 }

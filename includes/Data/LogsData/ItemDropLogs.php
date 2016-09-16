@@ -6,7 +6,7 @@
  * Date: 8/09/2016
  * Time: 0:12
  */
-class ItemDropLogs extends Data implements LogsData
+class ItemDropLogs extends LogsData
 {
 
     public function getLogData($name = null)

@@ -6,7 +6,7 @@
  * Date: 8/09/2016
  * Time: 0:34
  */
-class ItemDrops extends LogsDisplay
+class ItemPickup extends LogsDisplay
 {
     public function printLogTypeByPlayername()
     {

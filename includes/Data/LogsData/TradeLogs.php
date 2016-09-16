@@ -6,7 +6,7 @@
  * Date: 8/09/2016
  * Time: 0:10
  */
-class TradeLogs extends Data implements LogsData
+class TradeLogs extends LogsData
 {
 
     public function getLogData($name = null)

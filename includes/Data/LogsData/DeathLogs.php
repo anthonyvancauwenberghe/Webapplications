@@ -6,7 +6,7 @@
  * Date: 8/09/2016
  * Time: 0:12
  */
-class DeathLogs extends Data implements LogsData
+class DeathLogs extends LogsData
 {
 
     public function getLogData($name = null)
@@ -18,7 +18,7 @@ class DeathLogs extends Data implements LogsData
     }
     public function getLogDataByID($id)
     {
-        $query = array('$and' => array(array('log-type' => 'death-log'),array('_id'  => new MongoDB\BSON\ObjectId($id))));
+        $query = array('$and' => array(array('_id'  => new MongoDB\BSON\ObjectId($id))));
 
         $cursor = $this->find(Collection::LOGS, $query);
         return $cursor;

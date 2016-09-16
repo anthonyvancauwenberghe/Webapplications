@@ -13,6 +13,7 @@ class Deaths extends LogsDisplay
         $deathLogs = new DeathLogs();
         $cursor = $deathLogs->getLogData($this->getName());
 
+        $this->printStartLogTable();
         echo '<thead>
                         <tr>
                           <th>DeathID</th>
@@ -44,6 +45,7 @@ class Deaths extends LogsDisplay
             }
         }
         echo '</tbody>';
+        $this->printEndLogTable();
     }
 
     public function printLogTypeByID($id)
@@ -51,7 +53,7 @@ class Deaths extends LogsDisplay
         $deathLogs = new DeathLogs();
         $cursor = $deathLogs->getLogDataByID($id)->toArray();;
         $items = $cursor[0]['content']['items-lost'];
-
+        $this->printStartLogTable();
         echo '<thead>
                         <tr>
                           <th>ItemID</th>
@@ -81,6 +83,7 @@ class Deaths extends LogsDisplay
             }
         }
         echo '</tbody>';
+        $this->printEndLogTable();
     }
-
+    
 }

@@ -130,19 +130,15 @@ class Logs
             case 'accountvalues':
 
                 $accountValues = new AccountValues();
-                $this->printStartLogTable();
                 $accountValues->printLogTypeByPlayername();
-                $this->printEndLogTable();
                 break;
 
             case 'trade':
                 $trades = new Trades();
                 if (isset($name)) {
-                    $this->printStartLogTable();
                     $trades->printLogTypeByPlayername();
-                    $this->printEndLogTable();
                 } elseif (isset($id)) {
-                    $this->printTODO();
+                    $trades->printLogTypeByID();
                 } else {
                     $this->printEnterName();
                 }
@@ -151,13 +147,13 @@ class Logs
             case 'death':
                 $deaths = new Deaths();
                 if (isset($name)) {
-                    $this->printStartLogTable();
+
                     $deaths->printLogTypeByPlayername();
-                    $this->printEndLogTable();
+
                 } elseif (isset($id)) {
-                    $this->printStartLogTable();
+
                     $deaths->printLogTypeByID($id);
-                    $this->printEndLogTable();
+
                 } else {
                     $this->printEnterName();
                 }
@@ -166,9 +162,13 @@ class Logs
             case 'drop-item':
 
                 $itemDrops = new ItemDrops();
-                $this->printStartLogTable();
                 $itemDrops->printLogTypeByPlayername();
-                $this->printEndLogTable();
+                break;
+
+            case 'pickup-item':
+
+                $itemPickup= new ItemPickup();
+                $itemPickup->printLogTypeByPlayername();
                 break;
 
             case 'duel':

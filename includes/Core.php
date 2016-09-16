@@ -5,7 +5,6 @@ class Core
     protected static $startTime;
     protected static $endTime;
     private $config;
-    private $data;
 
     public function getTime()
     {

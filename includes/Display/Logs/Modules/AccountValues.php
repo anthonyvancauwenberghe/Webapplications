@@ -12,7 +12,7 @@ class AccountValues extends LogsDisplay
     {
         $accountValues = new AccountValueLogs();
         $playerValuesArray = $accountValues->getLogData();
-
+        $this->printStartLogTable();
         echo '<thead>
                         <tr>
                           <th>Rank</th>
@@ -39,6 +39,7 @@ class AccountValues extends LogsDisplay
             $i++;
         }
         echo '</tbody>';
+        $this->printEndLogTable();
     }
 
 }
