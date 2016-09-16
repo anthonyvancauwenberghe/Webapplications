@@ -49,7 +49,8 @@ class Deaths extends LogsDisplay
     public function printLogTypeByID($id)
     {
         $deathLogs = new DeathLogs();
-        $cursor = $deathLogs->getLogData($id);
+        $cursor = $deathLogs->getLogDataByID($id)->toArray();;
+        $items = $cursor[0]['content']['items-lost'];
 
         echo '<thead>
                         <tr>
@@ -63,7 +64,7 @@ class Deaths extends LogsDisplay
                       
                       <tbody>';
 
-        foreach ($cursor['content']['items-lost'] as $item) {
+        foreach ($items as $item) {
 
             if (isset($item)) {
                 echo '<tr>';
