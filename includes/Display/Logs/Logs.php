@@ -155,7 +155,9 @@ class Logs
                     $deaths->printLogTypeByPlayername();
                     $this->printEndLogTable();
                 } elseif (isset($id)) {
-                    $this->printTODO();
+                    $this->printStartLogTable();
+                    $deaths->printLogTypeByID($id);
+                    $this->printEndLogTable();
                 } else {
                     $this->printEnterName();
                 }

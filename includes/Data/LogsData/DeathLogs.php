@@ -16,5 +16,12 @@ class DeathLogs extends Data implements LogsData
         $cursor = $this->find(Collection::LOGS, $query);
         return $cursor;
     }
+    public function getLogDataByID($id)
+    {
+        $query = array('$and' => array(array('log-type' => 'death-log'),array('_id'  => new MongoDB\BSON\ObjectId($id))));
+
+        $cursor = $this->find(Collection::LOGS, $query);
+        return $cursor;
+    }
 
 }
