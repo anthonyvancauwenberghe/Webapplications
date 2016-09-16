@@ -163,6 +163,14 @@ class Logs
                 }
                 break;
 
+            case 'drop-item':
+
+                $itemDrops = new ItemDrops();
+                $this->printStartLogTable();
+                $itemDrops->printLogTypeByPlayername();
+                $this->printEndLogTable();
+                break;
+
             case 'duel':
                 $duels = new Duels();
                 $duels->printLogTypeByPlayername();
