@@ -23,7 +23,7 @@ class MarketingInfo extends AdminData
             ['$group'=> ['_id'=> '$_id.refName', 'amounts'=> ['$push'=> ['year'=> '$_id.year', 'month'=> '$_id.month', 'day'=> '$_id.day', 'amount'=> '$count']]]]
         ];
         
-        $marketingArray = $this->aggregate(Collection::MARKETING, $query)->toarray();
+        $marketingArray = $this->aggregate(Collection::MARKETING, $query);
 
         return $marketingArray;
     }

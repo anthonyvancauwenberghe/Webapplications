@@ -98,22 +98,6 @@ class Logs
                     </div>';
     }
 
-    private function printStartLogTable(){
-        echo'<div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-    ' . $this->getLookupTitle() . '
-                        <div class="x_content">
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">';
-    }
-
-    private function printEndLogTable(){
-        echo '</table>
-
-                        </div>
-                    </div>
-                </div>';
-    }
-
     private function printLogType()
     {
         $name = $this->getName();

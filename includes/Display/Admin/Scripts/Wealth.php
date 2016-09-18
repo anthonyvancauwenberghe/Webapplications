@@ -3,13 +3,13 @@
 /**
  * Created by PhpStorm.
  * User: tony
- * Date: 28/08/2016
- * Time: 14:15
+ * Date: 18/09/2016
+ * Time: 12:24
  */
-class Scripts
+class Wealth implements ScriptsInterface
 {
 
-    public function printWealthGraphScript($dataArray1, $dataArray2)
+    public function printScript()
     {
         echo "<script>
 
@@ -61,27 +61,21 @@ class Scripts
             series: [{
                 type: 'spline',
                 name: 'GP (/mil)',
-                data: " . $dataArray1 . "
+                data: " . $this->getModule()->getGPWealthData() . "
             },
             {
                 type: 'spline',
                 name: 'DP (per 100)',
-                data: " . $dataArray2 . "
+                data: " . $this->getModule()->getDPWealthData() . "
             }]
         });
 
     </script>";
     }
 
-    public function printReferralScript(){
-        $marketing = new Marketing();
-        $marketing->printScript();
+    public function getModule(){
+        $module = new WealthModule();
+        return $module;
     }
-    public function printWealthScript(){
-        $wealth = new Wealth();
-        $wealth->printScript();
-    }
-    
-    
 
 }

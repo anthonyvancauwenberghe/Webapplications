@@ -77,12 +77,6 @@ $template = new Template($login);
                             <div class="col-md-6">
                                 <h3>Marketing Graph </h3>
                             </div>
-                            <div class="col-md-6">
-                                <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                    <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                                </div>
-                            </div>
                         </div>
 
                         <div id="referral_graph" style="height: 400px; min-width: 310px"></div>
@@ -92,6 +86,23 @@ $template = new Template($login);
                     </div>
                 </div>
         </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="dashboard_graph">
+
+                        <div class="row x_title">
+                            <div class="col-md-6">
+                                <h3>Wealth Graph </h3>
+                            </div>
+                        </div>
+
+                        <div id="wealth_graph" style="height: 400px; min-width: 310px"></div>
+
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
             </div>
         <!-- /page content -->
 

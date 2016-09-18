@@ -9,4 +9,8 @@
 class Admin
 {
 
+    public function printAdminPanel(){
+
+    }
+
 }
