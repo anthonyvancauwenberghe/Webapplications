@@ -6,82 +6,61 @@
  * Date: 28/08/2016
  * Time: 14:15
  */
-class Scripts
+abstract class Scripts
 {
+    abstract public function printScripts();
 
-    public function printWealthGraphScript($dataArray1, $dataArray2)
+    protected function printBaseScripts()
     {
-        echo "<script>
-
-        $('#wealth_graph').highcharts({
-            chart: {
-                zoomType: 'x'
-            },
-            title: {
-                text: 'Wealth Graph Evolution'
-            },
-            xAxis: {
-                type: 'datetime'
-            },
-            yAxis: {
-                title: {
-                    text: 'GP'
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
-                    threshold: null
-                }
-            },
-
-            series: [{
-                type: 'spline',
-                name: 'GP (/mil)',
-                data: " . $dataArray1 . "
-            },
-            {
-                type: 'spline',
-                name: 'DP (per 100)',
-                data: " . $dataArray2 . "
-            }]
-        });
-
-    </script>";
+        $this->printJQuery();
+        $this->printBootstrap();
+        $this->printCustom();
     }
 
-    public function printReferralScript(){
-        $marketing = new Marketing();
-        $marketing->printScript();
+    protected function printHighStock(){
+        echo '<script src="../js/highstock/highstock.js"></script>
+                <script src="../js/highstock/modules/exporting.js"></script>';
     }
-    public function printWealthScript(){
-        $wealth = new Wealth();
-        $wealth->printScript();
+
+    protected function printFastClick(){
+        echo '<!-- FastClick -->
+                <script src="../vendors/fastclick/lib/fastclick.js"></script>';
     }
-    
-    
+
+    protected function printNProgress(){
+        echo '<!-- NProgress -->
+                <script src="../vendors/nprogress/nprogress.js"></script>';
+    }
+
+    protected function printChart(){
+        echo '<!-- Chart.js -->
+                <script src="../vendors/Chart.js/dist/Chart.min.js"></script>';
+    }
+
+    protected function printGauge(){
+        echo '<!-- gauge.js -->
+                <script src="../vendors/gauge.js/dist/gauge.min.js"></script>';
+    }
+
+    private function printJQuery(){
+        echo '
+            <!-- jQuery -->
+            <script src="../vendors/jquery/dist/jquery.min.js"></script>';
+    }
+
+    private function printBootstrap(){
+        echo '<!-- Bootstrap -->
+                <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+             <!-- Bootstrap-Progressbar.js -->
+                <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>';
+    }
+
+    private function printCustom(){
+       echo ' <!-- Custom Theme Scripts -->
+                <script src="../js/custom.js"></script>';
+    }
+
+
 
 }

@@ -5,6 +5,7 @@ class Template
     private $login;
     private $playerInfo;
     private $dashboard;
+    private $AdminDisplay;
     private $scripts;
     private $core;
     private $name;
@@ -124,6 +125,14 @@ class Template
             $this->dashboard = new DashboardDisplay($this->getName());
         }
         return $this->dashboard;
+    }
+
+    private function getAdminDisplay()
+    {
+        if (!isset($this->AdminDisplay)) {
+            $this->AdminDisplay = new AdminDisplay();
+        }
+        return $this->AdminDisplay;
     }
 
     public function printDashboardScripts()
@@ -393,41 +402,23 @@ class Template
 
     public function printAdminScripts()
     {
-        echo "
-<!-- jQuery -->
-<script src='../vendors/jquery/dist/jquery.min.js'></script>
-
-<!-- Bootstrap -->
-<script src='../vendors/bootstrap/dist/js/bootstrap.min.js'></script>
-
-<!-- FastClick -->
-<script src='../vendors/fastclick/lib/fastclick.js'></script>
-
-
-<!-- Custom Theme Scripts -->
-<script src='../js/custom.js'></script>
-
-
-
-<script src='../js/highstock/highstock.js'></script>
-<script src='../js/highstock/modules/exporting.js'></script>";
-
-        $this->getScripts()->printReferralScript();
-        $this->getScripts()->printWealthScript();
-
+    $this->getAdminDisplay()->printAdminScripts();
     }
+    public function printAdminContent(){
+        $this->getAdminDisplay()->printContent();
+        }
 
     private function printPlayerWealthGraphScript()
     {
-        $this->getScripts()->printWealthGraphScript($this->getPlayerData()->getGPWealthData(), $this->getPlayerData()->getDPWealthData());
+        $this->getDashboardScripts()->printPlayerWealthGraphScript($this->getPlayerData()->getGPWealthData(), $this->getPlayerData()->getDPWealthData());
     }
     
 
-    private function getScripts()
+    private function getDashboardScripts()
     {
 
         if (!isset($this->scripts)) {
-            $this->scripts = new Scripts();
+            $this->scripts = new DashboardScripts();
         }
         return $this->scripts;
     }

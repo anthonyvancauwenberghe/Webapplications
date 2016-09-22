@@ -68,42 +68,7 @@ $template = new Template($login);
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="dashboard_graph">
-
-                        <div class="row x_title">
-                            <div class="col-md-6">
-                                <h3>Marketing Graph </h3>
-                            </div>
-                        </div>
-
-                        <div id="referral_graph" style="height: 400px; min-width: 310px"></div>
-
-
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-        </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="dashboard_graph">
-
-                        <div class="row x_title">
-                            <div class="col-md-6">
-                                <h3>Wealth Graph </h3>
-                            </div>
-                        </div>
-
-                        <div id="wealth_graph" style="height: 400px; min-width: 310px"></div>
-
-
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-            </div>
+        <?php $template->printAdminContent(); ?>
         <!-- /page content -->
 
         <!-- footer content -->

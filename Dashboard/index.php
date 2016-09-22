@@ -13,7 +13,6 @@ $core->setStartTime();
 $login = new LoginSystem(Rank::PLAYER);
 
 $template = new Template($login);
-$scripts = new Scripts();
 ?>
 
 <!DOCTYPE html>

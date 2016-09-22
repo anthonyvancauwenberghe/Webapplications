@@ -3,13 +3,18 @@
 /**
  * Created by PhpStorm.
  * User: tony
- * Date: 18/09/2016
- * Time: 12:24
+ * Date: 8/09/2016
+ * Time: 3:47
  */
-class Wealth implements ScriptsInterface
+class DashboardScripts extends Scripts
 {
 
-    public function printScript()
+    public function printScripts(){
+
+
+    }
+
+    public function printPlayerWealthGraphScript($dataArray1, $dataArray2)
     {
         echo "<script>
 
@@ -61,21 +66,17 @@ class Wealth implements ScriptsInterface
             series: [{
                 type: 'spline',
                 name: 'GP (/mil)',
-                data: " . $this->getModule()->getGPWealthData() . "
+                data: " . $dataArray1 . "
             },
             {
                 type: 'spline',
                 name: 'DP (per 100)',
-                data: " . $this->getModule()->getDPWealthData() . "
+                data: " . $dataArray2 . "
             }]
         });
 
     </script>";
     }
 
-    public function getModule(){
-        $module = new WealthModule();
-        return $module;
-    }
 
 }

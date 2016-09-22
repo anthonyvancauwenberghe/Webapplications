@@ -6,7 +6,7 @@
  * Date: 18/09/2016
  * Time: 12:25
  */
-class MarketingModule
+class ReferralGraphModule
 {
     
     public function printData()
@@ -23,8 +23,8 @@ class MarketingModule
     }
     
     public function getData(){
-        $data = new MarketingInfo();
-        $referralArray = $data->getMarketingData()->toArray();
+        $data = new ReferralGraphData();
+        $referralArray = $data->getCursor()->toArray();
         return $referralArray;
     }
 

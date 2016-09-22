@@ -1,9 +1,9 @@
 <?php
 
-class MarketingInfo extends AdminData
+class ReferralGraphData extends Admin
 {
 
-    public function getMarketingData()
+    public function getCursor()
     {
 
         $query = [

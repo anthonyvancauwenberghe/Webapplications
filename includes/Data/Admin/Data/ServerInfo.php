@@ -1,8 +1,8 @@
 <?php
 
-class ServerInfo extends AdminData
+class ServerInfo extends Admin
 {
-    public function getWealthCursor()
+    public function getCursor()
     {
         $query = [['$match' => ['log-type' => 'server-wealth-log']], ['$sort' => ['time' => 1]]];
         $cursor = $this->aggregate(Collection::LOGS, $query);

@@ -15,7 +15,7 @@ class WealthModule
     public function setWealth()
     {
         $serverInfo = new ServerInfo();
-        $wealth = $serverInfo->getWealthCursor()->toArray();
+        $wealth = $serverInfo->getCursor()->toArray();
         $this->setGPWealth($wealth);
         $this->setDPWealth($wealth);
     }

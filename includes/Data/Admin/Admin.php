@@ -6,7 +6,8 @@
  * Date: 8/09/2016
  * Time: 3:37
  */
-class AdminData extends Data
+abstract class Admin extends Data
 {
+    abstract function getCursor();
 
 }

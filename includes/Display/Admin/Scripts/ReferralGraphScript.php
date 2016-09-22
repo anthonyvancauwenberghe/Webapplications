@@ -6,7 +6,7 @@
  * Date: 8/09/2016
  * Time: 3:47
  */
-class Marketing implements ScriptsInterface
+class ReferralGraphScript implements ScriptsInterface
 {
 
     public function printScript()
@@ -41,7 +41,7 @@ class Marketing implements ScriptsInterface
     }
     
     public function getModule(){
-        $module = new MarketingModule();
+        $module = new ReferralGraphModule();
         return $module;
     }
     
